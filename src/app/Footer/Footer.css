@@ -1,0 +1,18 @@
+.icons li {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.icons li:hover .icon-href{
+    transition: 0.3s;
+}
+.icons li:hover {
+  background-color: brown;
+}
+.icons li:hover .icon-href{
+    color: white !important;
+}
