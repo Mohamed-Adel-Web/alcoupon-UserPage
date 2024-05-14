@@ -5,8 +5,11 @@ import Grid from "@mui/material/Unstable_Grid2";
 import SwiperApp from "./Swiper";
 import TopStoreCoupon from "./TopFiveStore";
 import { StoreType } from "../types";
+import { useSearchParams } from "next/navigation";
 
 function HeroSection({ storesData }: { storesData: StoreType[] }) {
+  const searchParam = useSearchParams();
+  const lang: string | null = searchParam?.get("lang");
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -15,7 +18,7 @@ function HeroSection({ storesData }: { storesData: StoreType[] }) {
             <SwiperApp />
           </Grid>
           <Grid xs={12} lg={2}>
-            <TopStoreCoupon storesData={storesData} />
+            <TopStoreCoupon storesData={storesData} lang={lang} />
           </Grid>
         </Grid>
       </Box>

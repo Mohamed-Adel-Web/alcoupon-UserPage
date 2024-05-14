@@ -1,4 +1,4 @@
-import { StoreType } from "@/app/types";
+import { Language, StoreType } from "@/app/types";
 import useSearchStoresData from "./useSearchStoresData";
 import Link from "next/link";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -6,16 +6,18 @@ import { Box, Typography, Tooltip } from "@mui/material";
 
 export default async function name({
   params,
+  searchParams,
 }: {
-  params: { searchParam: string };
+  searchParams: { lang: Language };
+  params: { store: string };
 }) {
-  const storesData: StoreType[] = await useSearchStoresData(params.searchParam);
+  const storesData: StoreType[] = await useSearchStoresData(params.store);
 
   const allStoreDataList = storesData?.map((store) => {
     return (
       <Grid xs={6} sm={4} md={3} lg={3} key={store.name_en}>
         <Link
-          href={`discount-codes/${store.id}`}
+          href={`discount-codes/${store.id}?lang=${searchParams.lang}`}
           style={{ textDecoration: "none" }}
         >
           <Box
@@ -26,7 +28,13 @@ export default async function name({
               minHeight: "14rem",
             }}
           >
-            <Tooltip title={store.description_en}>
+            <Tooltip
+              title={
+                searchParams.lang == "en"
+                  ? store.description_en
+                  : store.description_ar
+              }
+            >
               <img
                 loading="lazy"
                 width={120}
@@ -41,14 +49,14 @@ export default async function name({
               className="storeDiscount"
               sx={{ padding: "1rem 0 ", color: "#b53d3d" }}
             >
-              {store.title_en}
+              {searchParams.lang == "en" ? store.title_en : store.title_ar}
             </Typography>
             <Typography
               variant="body2"
               color="text.secondary"
               className="storeName"
             >
-              {store.name_en}
+              {searchParams.lang == "en" ? store.name_en : store.name_ar}
             </Typography>
           </Box>
         </Link>
@@ -75,7 +83,10 @@ export default async function name({
             color: "#F25858",
           }}
         >
-          no stores match this Nama
+          {searchParams.lang == "en"
+            ? `no store match this Nama
+`
+            : `لا يوجد متجر بهذا الأسم `}
         </Typography>
       )}{" "}
     </Box>

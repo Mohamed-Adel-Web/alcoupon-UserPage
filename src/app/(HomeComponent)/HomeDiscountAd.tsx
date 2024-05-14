@@ -1,11 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
-import { CountryData } from "../types";
-function HomeDiscountAd() {
-  const countryCities = CountryData.countryCities?.map(
-    (city, i) => `${city}, `
-  );
-
+import { Language } from "../types";
+function HomeDiscountAd({ lang }: { lang: Language }) {
   return (
     <Box
       sx={{
@@ -16,27 +12,34 @@ function HomeDiscountAd() {
       }}
     >
       <Typography variant="h5">
-        Coupons and Discount Codes in {CountryData.countryName}
+        {lang == "en"
+          ? `Coupons and Discount Codes Online`
+          : `كوبونات وأكواد خصم عبر الإنترنت
+`}
       </Typography>
       <Typography
         variant="body2"
         color="text.secondary"
         sx={{ padding: "1rem 0" }}
       >
-        lore
-        Al Coupon is the best renowned Arab coupons’ website, collecting
-        hundreds of coupon codes and voucher coupons, in addition to offers and
-        discounts valid for 2024. The website also assists you in learning how
-        to use and apply coupons or promo codes, to save money while shopping
-        online through any e-commerce website. All in just one place!
+        {lang == "en"
+          ? `ShopCoupon is a top-tier website for coupons, gathering an extensive
+        array of coupon codes, voucher coupons, along with numerous offers and
+        discounts valid for the current year. The site also guides you on how to
+        effectively use and apply coupons or promo codes, enabling you to save
+        money while shopping online through various e-commerce platforms—all
+        conveniently available in one place!`
+          : `يعد موقع ShopCoupon من المواقع الرائدة في مجال الكوبونات، حيث يجمع مجموعة واسعة من أكواد الكوبونات وقسائم الخصم، إلى جانب العديد من العروض والتخفيضات السارية للعام الحالي. يوفر الموقع أيضًا إرشادات حول كيفية استخدام وتطبيق الكوبونات أو أكواد الخصم بفعالية، مما يمكنك من توفير المال أثناء التسوق عبر الإنترنت من خلال منصات التجارة الإلكترونية المختلفة—كل ذلك متاحًا في مكان واحد!`}
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        Our goal at Al Coupon is to help you find the newest and latest coupon
-        codes, promotional vouchers and discount codes, valid and tested for
-        hundreds of local and international online stores that ship to{" "}
-        {countryCities} ..etc.. Our team is working hard to check and update
-        every coupon on a daily basis to help you save more on your purchases
-        from your favorite shopping sites.
+        {lang == "en"
+          ? ` Our goal at shopCoupon is to assist you in discovering the freshest and
+        most recent coupon codes, promotional vouchers, and discount codes, all
+        valid and tested for a multitude of local and international online
+        retailers. Our dedicated team is committed to regularly checking and
+        updating every coupon to ensure you get the best savings on purchases
+        from your preferred shopping websites.`
+          : `هدفنا في ShopCoupon هو مساعدتك على اكتشاف أحدث وأجدد أكواد الكوبونات، وقسائم الترويج، وأكواد الخصم، كلها صالحة ومختبرة لعدد كبير من المتاجر الإلكترونية المحلية والدولية. يلتزم فريقنا بفحص وتحديث كل كوبون بانتظام لضمان حصولك على أفضل التوفيرات في مشترياتك من مواقع التسوق المفضلة لديك. `}
       </Typography>
     </Box>
   );

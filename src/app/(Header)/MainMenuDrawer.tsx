@@ -17,10 +17,14 @@ type Props = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   AllCategories: categoryTypes[];
+  lang: string | null;
 };
-const mainMenuNavigationSources: { title: string; href: string }[] =
-  NavigationSources;
-function MainMenuDrawer({ open, setOpen, AllCategories }: Props) {
+const mainMenuNavigationSources: {
+  title_en: string;
+  title_ar: string;
+  href: string;
+}[] = NavigationSources;
+function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
   function handleDrawerClose() {
     setOpen(false);
   }
@@ -30,12 +34,15 @@ function MainMenuDrawer({ open, setOpen, AllCategories }: Props) {
       <List>
         {mainMenuNavigationSources.map((link, index) => (
           <Link
-            href={`${link.href}`}
+            href={`${link.href}?lang=${lang}`}
             style={{
               textDecoration: "none",
               color: "black",
               fontWeight: "bold",
               textTransform: "capitalize",
+            }}
+            onClick={() => {
+              setOpen(false);
             }}
           >
             <ListItem
@@ -49,7 +56,7 @@ function MainMenuDrawer({ open, setOpen, AllCategories }: Props) {
             >
               <ListItemButton>
                 <ListItemText
-                  primary={link.title}
+                  primary={lang == "en" ? link.title_en : link.title_ar}
                   primaryTypographyProps={{
                     color: "black",
                     fontWeight: "bold",
@@ -62,7 +69,7 @@ function MainMenuDrawer({ open, setOpen, AllCategories }: Props) {
         ))}
         {AllCategories.map((category, index) => (
           <Link
-            href={`${category.name_en}/${category.id}`}
+            href={`${category.name_en}/${category.id}?lang=${lang}`}
             style={{ textDecoration: "none", color: "#000" }}
             onClick={() => {
               setOpen(false);
@@ -71,7 +78,7 @@ function MainMenuDrawer({ open, setOpen, AllCategories }: Props) {
             <ListItem key={index} disablePadding>
               <ListItemButton>
                 <ListItemText
-                  primary={category.name_en}
+                  primary={lang == "en" ? category.name_en : category.name_ar}
                   primaryTypographyProps={{
                     color: "black",
                     fontWeight: "bold",

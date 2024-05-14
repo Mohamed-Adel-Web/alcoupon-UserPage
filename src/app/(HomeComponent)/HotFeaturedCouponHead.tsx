@@ -2,24 +2,26 @@ import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
 import Link from "next/link";
-import { CountryData } from "../types";
-function HotOffersHead() {
+import {  Language } from "../types";
+function HotOffersHead({ lang }: { lang: Language }) {
   return (
     <Box sx={{ margin: "1rem 0" }}>
       <Typography variant="h6" sx={{ padding: "1rem 0" }}>
-        Online discount codes and Coupons in {CountryData.countryName}{" "}
+        {lang == "en"
+          ? "Online discount codes and Coupons"
+          : "أكواد خصم وقسائم شراء عبر الإنترنت"}
         <Link
           href={"/hot-discount-coupons-deals"}
           style={{
             textDecoration: "none",
             color: "#F3AD59",
-            marginLeft: "1rem",
+            margin: "1rem ",
             fontWeight: "bold",
             display: "inline-block",
             textTransform: "capitalize",
           }}
         >
-          See all offers
+          {lang == "en" ? " See all offers" : "مشاهدة جميع العروض"}
         </Link>
       </Typography>
       <Box sx={{ flexGrow: 1 }}>

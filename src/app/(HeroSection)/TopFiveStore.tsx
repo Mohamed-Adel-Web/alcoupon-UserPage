@@ -4,7 +4,13 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
 import { StoreType } from "../types";
 
-function TopStoreCoupon({ storesData }: { storesData: StoreType[] }) {
+function TopStoreCoupon({
+  storesData,
+  lang,
+}: {
+  storesData: StoreType[];
+  lang: string | null;
+}) {
   const TopHeroStore = storesData.filter((store, index) => {
     return index < 6;
   });
@@ -21,9 +27,9 @@ function TopStoreCoupon({ storesData }: { storesData: StoreType[] }) {
           padding: "0.5rem 2rem",
         }}
       >
-        <Link href={`discount-codes/${store.id}`}>
+        <Link href={`discount-codes/${store.id}?lang=${lang}`}>
           <Tooltip
-            title={store.description_en}
+            title={lang == "en" ? store.description_en : store.description_ar}
             sx={{ display: "block", widthL: "100%" }}
           >
             <img

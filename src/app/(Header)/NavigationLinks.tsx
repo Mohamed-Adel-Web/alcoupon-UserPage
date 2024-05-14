@@ -1,20 +1,53 @@
+"use client";
 import Container from "@mui/material/Container";
 import Link from "next/link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { useGetCategories } from "./useGetCategory";
 import MoreNavigation from "./MoreNavigation";
-export const NavigationSources: { title: string; href: string }[] = [
-  { title: "Home", href: "/" },
-  { title: "All Stores", href: "/discount-codes" },
+import { Language, categoryTypes } from "../types";
+import { useSearchParams } from "next/navigation";
+export const NavigationSources: {
+  title_en: string;
+  title_ar: string;
+  href: string;
+}[] = [
+  { title_en: "Home", title_ar: "الرئيسية", href: "/" },
+  { title_en: "All Stores", title_ar: "جميع المتاجر", href: "/discount-codes" },
 
   {
-    title: "All coupons",
+    title_en: "All coupons",
+    title_ar: "جميع الكوبونات",
     href: "/hot-discount-coupons-deals",
   },
 ];
 
-async function NavigationLinks() {
+function NavigationLinks({
+  AllCategoriesData,
+}: {
+  AllCategoriesData: categoryTypes[];
+}) {
+  const searchParam = useSearchParams();
+  const lang: string | null = searchParam?.get("lang");
+  const NavigationSources: {
+    title_en: string;
+    title_ar: string;
+    href: string;
+  }[] = [
+    { title_en: "Home", title_ar: "الرئيسية", href: `/?lang=${lang}` },
+    {
+      title_en: "All Stores",
+      title_ar: "جميع المتاجر",
+      href: `/discount-codes?lang=${lang}`,
+    },
+
+    {
+      title_en: "All coupons",
+      title_ar: "جميع الكوبونات",
+      href: `/hot-discount-coupons-deals?lang=${lang}`,
+    },
+  ];
+
   const NavigationLinksList = NavigationSources.map((link) => {
     return (
       <Link
@@ -31,17 +64,16 @@ async function NavigationLinks() {
           textTransform: "capitalize",
         }}
       >
-        {link.title}
+        {lang == "en" ? link.title_en : link.title_ar}
       </Link>
     );
   });
-  const AllCategoriesData = await useGetCategories();
   const DynamicNavigationLinksList = AllCategoriesData.map(
     (category, index) => {
       if (index < 8) {
         return (
           <Link
-            href={`/${category.name_en}/${category.id}`}
+            href={`/${category.name_en}/${category.id}?lang=${lang}`}
             style={{
               padding: "0 0.4rem",
               textDecoration: "none",
@@ -54,7 +86,7 @@ async function NavigationLinks() {
               textTransform: "capitalize",
             }}
           >
-            {category.name_en}
+            {lang == "en" ? category.name_en : category.name_ar}
           </Link>
         );
       }
@@ -73,7 +105,7 @@ async function NavigationLinks() {
         <Container maxWidth="lg" sx={{ display: "flex" }}>
           {NavigationLinksList}
           {DynamicNavigationLinksList}
-          <MoreNavigation AllCategoriesData={AllCategoriesData} />
+          <MoreNavigation AllCategoriesData={AllCategoriesData} lang={lang} />
         </Container>
       </Paper>
     </Box>

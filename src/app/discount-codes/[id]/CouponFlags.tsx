@@ -1,3 +1,4 @@
+import { Language } from "@/app/types";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
@@ -39,7 +40,13 @@ const flags: flag[] = [
     image: "/Images/flags/globe_14061916.png",
   },
 ];
-export default function CouponFlags({ flagCode }: { flagCode: string }) {
+export default function CouponFlags({
+  flagCode,
+  lang,
+}: {
+  flagCode: string;
+  lang: Language;
+}) {
   const couponCountry = flags.filter((flag) => {
     return flag.code === flagCode;
   });
@@ -72,11 +79,9 @@ export default function CouponFlags({ flagCode }: { flagCode: string }) {
         }}
       >
         {" "}
-        available in
+        {lang=="en" ?"available in":"متاح في"}
       </Typography>
-      <Box>
-        {couponCountryList} 
-      </Box>
+      <Box>{couponCountryList}</Box>
     </Box>
   );
 }

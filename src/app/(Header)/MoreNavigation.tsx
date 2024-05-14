@@ -5,7 +5,7 @@ import Menu, { MenuProps } from "@mui/material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuItem from "@mui/material/MenuItem";
 import { Button, Typography } from "@mui/material";
-import { categoryTypes } from "../types";
+import { Language, categoryTypes } from "../types";
 import Link from "next/link";
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -52,8 +52,10 @@ const StyledMenu = styled((props: MenuProps) => (
 
 export default function MoreNavigation({
   AllCategoriesData,
+  lang,
 }: {
   AllCategoriesData: categoryTypes[];
+  lang: string | null;
 }) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -68,7 +70,7 @@ export default function MoreNavigation({
       if (index >= 8) {
         return (
           <Link
-            href={`/${category.name_en}/${category.id}`}
+            href={`/${category.name_en}/${category.id}?lang=${lang}`}
             style={{
               textDecoration: "none",
               color: "black",
@@ -86,7 +88,7 @@ export default function MoreNavigation({
                 textTransform: "capitalize",
               }}
             >
-              {category.name_en}
+              {lang == "en" ? category.name_en : category.name_ar}
             </MenuItem>
           </Link>
         );
@@ -122,7 +124,7 @@ export default function MoreNavigation({
         }}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        More
+        {lang == "en" ? "More" : "المزيد"}
       </Button>
       <StyledMenu
         id="demo-customized-menu"

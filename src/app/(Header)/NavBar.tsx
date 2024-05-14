@@ -11,21 +11,19 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, Tooltip } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import MainMenuDrawer from "./MainMenuDrawer";
 import { categoryTypes } from "../types";
 import logo from "../../../public/images/logo/logo.png";
-import Cookies from "js-cookie";
 import SearchModal from "./SearchModal";
 import { usePathname, useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   const [openMainMenu, setMainMenuOpen] = useState<boolean>(false);
-  const [dir, setDir] = useState<string>("ltr");
-  const [lang, setLang] = useState<string>("ar");
+  const [lang, setLang] = useState<string | null>("ar");
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
-  const pathname = usePathname(); // let's get the pathname to make the component reusable - could be used anywhere in the project
+  const pathname = usePathname();
   const router = useRouter();
   const currentSearchParams = useSearchParams();
   const handleSearchOpen = () => {
@@ -34,10 +32,19 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   const handleSearchClose = () => {
     setSearchOpen(false);
   };
-
   useEffect(() => {
-    document.body.dir = dir;
-  }, [dir, lang]);
+    setLang(currentSearchParams.get("lang"));
+  }, []);
+  useMemo(() => {
+    if (lang == "ar") {
+      document.body.dir = "rtl";
+      document.body.className = "rtl";
+    } else if (lang == "en") {
+      document.body.dir = "ltr";
+      document.body.className = "ltr";
+    }
+  }, [lang]);
+
   return (
     <nav style={{ position: "sticky", top: "0", zIndex: "2" }}>
       <Container maxWidth="lg">
@@ -51,7 +58,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href={`/?lang=${lang}`}
             sx={{
               mr: 2,
               display: "flex",
@@ -83,7 +90,12 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
           >
             <InputBase
               sx={{ ml: 1, flex: 1 }}
-              placeholder="Search stores, coupons and discounts"
+              placeholder={
+                lang == "en"
+                  ? `Search stores, coupons and discounts`
+                  : `ابحث عن المتاجر، الكوبونات، والخصومات
+`
+              }
               inputProps={{
                 "aria-label": "Search stores, coupons and discounts",
               }}
@@ -98,7 +110,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               aria-label="search"
               onClick={() => {
                 if (searchInput.length > 1) {
-                  router.push(`/searchStore/${searchInput}`);
+                  router.push(`/searchStore/${searchInput}?lang=${lang}`);
                   setSearchInput("");
                 }
               }}
@@ -113,20 +125,17 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
             <Tooltip title="Go to Arabic Interface" sx={{ color: "black" }}>
               <IconButton
                 onClick={() => {
-                  const newDir = dir === "ltr" ? "rtl" : "ltr";
-                  setDir(newDir);
                   const newLang = lang === "ar" ? "en" : "ar";
                   setLang(newLang);
                   const updatedSearchParams = new URLSearchParams(
                     currentSearchParams.toString()
                   );
-                  updatedSearchParams.set("lang", lang);
-
+                  updatedSearchParams.set("lang", newLang);
                   router.push(pathname + "?" + updatedSearchParams.toString());
                 }}
               >
                 <LanguageIcon />
-                {dir === "ltr" ? " عربي" : "English"}
+                {lang === "en" ? " عربي" : "English"}
               </IconButton>
             </Tooltip>
             {/* languageControl */}
@@ -142,6 +151,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 </IconButton>
               </Tooltip>
               <SearchModal
+                lang={lang}
                 open={searchOpen}
                 handleSearchClose={handleSearchClose}
               />
@@ -172,6 +182,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
         open={openMainMenu}
         setOpen={setMainMenuOpen}
         AllCategories={AllCategories}
+        lang={lang}
       />
     </nav>
   );

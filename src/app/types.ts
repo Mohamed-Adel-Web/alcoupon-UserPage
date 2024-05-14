@@ -61,36 +61,15 @@ export interface categoryTypes {
   meta_keyword_en: string;
 }
 
-export interface CountryDataType {
-  countryName: string;
-  countryCities: string[];
-  countryCurrency: string;
-}
-export const CountryData: CountryDataType = {
-  countryName: "Egypt",
-  countryCities: ["Cairo", "Alexandria", "Giza"],
-  countryCurrency: "Egyptian Pound",
-};
+
+
 export interface DateType {
   month: string;
   year: string;
 }
-const months: string[] = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
 
-export const CouponDate: DateType = {
-  month: `${months[new Date().getMonth()]}`,
-  year: `${new Date().getFullYear()}`,
-};
+
+export enum Language {
+  AR = 'ar',
+  EN = 'en'
+}

@@ -3,8 +3,8 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
 import Link from "next/link";
 import { useFeaturedStoresData } from "./useFeatureStore";
-import { StoreType } from "../types";
-async function HomeAllStoreMain() {
+import { Language, StoreType } from "../types";
+async function HomeAllStoreMain({ lang }: { lang: Language }) {
   const featureStoresData: StoreType[] = await useFeaturedStoresData();
   const allStoreDataList = featureStoresData?.map((store) => {
     return (
@@ -21,7 +21,9 @@ async function HomeAllStoreMain() {
               minHeight: "14rem",
             }}
           >
-            <Tooltip title={store.description_en}>
+            <Tooltip
+              title={lang == "en" ? store.description_en : store.description_ar}
+            >
               <img
                 width={100}
                 height={36}
@@ -35,15 +37,17 @@ async function HomeAllStoreMain() {
               className="storeDiscount"
               sx={{ padding: "1rem 0 ", color: "#b53d3d" }}
             >
-              {store.title_en}
+              {lang == "en" ? store.title_en : store.title_ar}
             </Typography>
-            <Tooltip title={store.description_en}>
+            <Tooltip
+              title={lang == "en" ? store.description_en : store.description_ar}
+            >
               <Typography
                 variant="body2"
                 color="text.secondary"
                 className="storeName"
               >
-                {store.name_en}
+                {lang == "en" ? store.name_en : store.name_ar}
               </Typography>
             </Tooltip>
           </Box>

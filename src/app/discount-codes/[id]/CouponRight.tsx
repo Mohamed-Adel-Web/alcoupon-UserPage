@@ -1,8 +1,9 @@
-import { StoreType } from "@/app/types";
+import { Language, StoreType } from "@/app/types";
 import { Box, Tooltip, Typography } from "@mui/material";
 import Link from "next/link";
 type Props = {
   store: StoreType | null;
+  lang: Language;
 };
 
 const CouponRight = (props: Props) => {
@@ -17,8 +18,20 @@ const CouponRight = (props: Props) => {
           textAlign: " center",
         }}
       >
-        <Link href={`${props.store?.link_en}`}>
-          <Tooltip title={`${props.store?.name_en}`}>
+        <Link
+          href={
+            props.lang == "en"
+              ? `${props.store?.link_en}`
+              : `${props.store?.link_ar}`
+          }
+        >
+          <Tooltip
+            title={
+              props.lang == "en"
+                ? `${props.store?.name_en}`
+                : `${props.store?.name_ar}`
+            }
+          >
             <img
               src={`${props.store?.image}`}
               style={{ width: "210px" }}
@@ -27,10 +40,16 @@ const CouponRight = (props: Props) => {
           </Tooltip>
         </Link>
         <Typography variant="h6" sx={{ color: "#B53D3D", margin: "1rem 0" }}>
-          {props.store?.description_en}
+          {props.lang == "en"
+            ? props.store?.description_en
+            : props.store?.description_ar}
         </Typography>
         <Link
-          href={`${props.store?.link_en}`}
+          href={
+            props.lang == "en"
+              ? `${props.store?.link_en}`
+              : `${props.store?.link_ar}`
+          }
           target="blank"
           style={{
             padding: "1rem 4rem ",
@@ -43,7 +62,7 @@ const CouponRight = (props: Props) => {
             display: "block",
           }}
         >
-          Shop Now
+          {props.lang == "en" ? `Shop Now` : `تسوق الان`}
         </Link>
       </Box>{" "}
       <Box
@@ -55,7 +74,7 @@ const CouponRight = (props: Props) => {
           textAlign: " center",
         }}
       >
-        {props.store?.about_en}
+        {props.lang == "en" ? props.store?.about_en : props.store?.about_ar}
       </Box>
     </>
   );

@@ -2,9 +2,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
-import { couponType } from "@/app/types";
+import { Language, couponType } from "@/app/types";
 type Props = {
   coupon: couponType | null;
+  lang: Language;
 };
 function copyText(entryText: string) {
   navigator.clipboard.writeText(entryText);
@@ -45,7 +46,7 @@ export default function CouponDetails(props: Props) {
             }, 3000);
           }}
         >
-          copy
+          {props.lang == "en" ? "copy" : "عطني الكود"}
         </Button>
       </Box>
       {isCopied ? (
@@ -60,7 +61,8 @@ export default function CouponDetails(props: Props) {
             justifyContent: "center",
           }}
         >
-          <DoneIcon sx={{ fontSize: "20px", fontWeight: "bold" }} /> Copied
+          <DoneIcon sx={{ fontSize: "20px", fontWeight: "bold" }} />{" "}
+          {props.lang == "en" ? "Copied" : "تم النسخ"}
         </Typography>
       ) : (
         <Typography
@@ -70,7 +72,16 @@ export default function CouponDetails(props: Props) {
             color: "#0558A0",
           }}
         >
-          Copy the code above and paste at checkout.
+          {props.lang == "en"
+            ? "Copy the code above and paste at checkout."
+            : `"انسخ الكود  أعلاه والصقه عند الدفع."
+
+
+
+
+
+
+`}
         </Typography>
       )}
     </>

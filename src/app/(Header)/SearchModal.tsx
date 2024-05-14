@@ -10,9 +10,11 @@ import CloseIcon from "@mui/icons-material/Close";
 export default function SearchModal({
   open,
   handleSearchClose,
+  lang,
 }: {
   open: boolean;
   handleSearchClose: () => void;
+  lang: string | null;
 }) {
   const [searchInput, setSearchInput] = React.useState<string>("");
   const router = useRouter();
@@ -26,8 +28,8 @@ export default function SearchModal({
         fullWidth
         sx={{
           "& .MuiDialog-paper": {
-            position: "absolute", 
-            top: "13px", 
+            position: "absolute",
+            top: "13px",
             backgroundColor: "transparent",
           },
           display: { xs: "block", md: "none" },
@@ -53,7 +55,10 @@ export default function SearchModal({
         >
           <InputBase
             sx={{ ml: 1, flex: 1 }}
-            placeholder="Search stores, coupons and discounts"
+            placeholder={
+              lang == "en"
+                ? `Search stores, coupons and discounts`
+                : `ابحث عن المتاجر، الكوبونات، والخصومات` }
             inputProps={{
               "aria-label": "Search stores, coupons and discounts",
             }}
@@ -68,7 +73,7 @@ export default function SearchModal({
             aria-label="search"
             onClick={() => {
               if (searchInput.length > 1) {
-                router.push(`/searchStore/${searchInput}`);
+                router.push(`/searchStore/${searchInput}?lang=${lang}`);
                 setSearchInput("");
                 handleSearchClose();
               }

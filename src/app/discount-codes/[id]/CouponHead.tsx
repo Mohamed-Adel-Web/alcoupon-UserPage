@@ -2,11 +2,13 @@ import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import HouseIcon from "@mui/icons-material/House";
-import { StoreType } from "@/app/types";
+import { Language, StoreType } from "@/app/types";
 
 type Props = {
   store: StoreType | null;
+  lang: Language;
 };
 
 const CouponHead = (props: Props) => {
@@ -31,22 +33,32 @@ const CouponHead = (props: Props) => {
             alignItems: "center",
           }}
         >
-          <Link href={"/"}>
+          <Link href={`/?lang=${props.lang}`}>
             <HouseIcon sx={{ textDecoration: "none", color: "#0558A0" }} />
           </Link>
-          <KeyboardArrowRightIcon />
+          {props.lang == "en" ? (
+            <KeyboardArrowRightIcon />
+          ) : (
+            <KeyboardArrowLeftIcon />
+          )}
           <Link
-            href={"/discount-codes"}
+            href={`/discount-codes?lang=${props.lang}`}
             style={{ textDecoration: "none", color: "#0558A0" }}
           >
-            ALL Stores
+            {props.lang == "en" ? ` ALL Stores` : `جميع المتاجر`}
           </Link>
-          <KeyboardArrowRightIcon />
-          {props.store?.name_en}
+          {props.lang == "en" ? (
+            <KeyboardArrowRightIcon />
+          ) : (
+            <KeyboardArrowLeftIcon />
+          )}
+          {props.lang == "en" ? props.store?.name_en : props.store?.name_ar}
         </Typography>
 
-        <Typography sx={{ fontSize: "1.8125rem",}}>
-        {props.store?.description_en} 
+        <Typography sx={{ fontSize: "1.8125rem" }}>
+          {props.lang == "en"
+            ? props.store?.description_en
+            : props.store?.description_ar}
         </Typography>
       </Box>
     </>

@@ -3,17 +3,17 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { CountryData, CouponDate, couponType } from "../types";
+import {  Language, couponType } from "../types";
 import { useCouponsData } from "./useGetCoupon";
 export const metadata: Metadata = {
   title: "All stores coupon",
-  description: `Get instant discounts on your online purchases with special discount coupons in ${CountryData.countryName} Find the best promo codes, deals and your favorite products.`,
+  description: `Get instant discounts on your online purchases with special discount coupons in  Find the best promo codes, deals and your favorite products.`,
 };
 
 export default async function Offers({
   searchParams,
 }: {
-  searchParams: { lang: string };
+  searchParams: { lang: Language };
 }) {
   const couponsData: couponType[] = await useCouponsData();
   const couponsList = couponsData?.map((coupon) => {
@@ -28,8 +28,16 @@ export default async function Offers({
               minHeight: "11.25rem",
             }}
           >
-            <Link href={`discount-codes/${coupon.store.id}`}>
-              <Tooltip title={coupon.store.description_en}>
+            <Link
+              href={`discount-codes/${coupon.store.id}?lang=${searchParams.lang}`}
+            >
+              <Tooltip
+                title={
+                  searchParams.lang == "en"
+                    ? coupon.store.description_en
+                    : coupon.store.description_ar
+                }
+              >
                 <img
                   width={100}
                   height={36}
@@ -55,7 +63,11 @@ export default async function Offers({
                 {coupon.code}
               </textarea>
             </Box>
-            <Tooltip title={coupon.title_en}>
+            <Tooltip
+              title={
+                searchParams.lang == "en" ? coupon.title_en : coupon.title_ar
+              }
+            >
               <Typography
                 variant="body2"
                 color="text.secondary"
@@ -73,7 +85,9 @@ export default async function Offers({
   return (
     <Box sx={{ padding: "1rem 0" }}>
       <Typography variant="h4" sx={{ textAlign: "center", padding: "1rem 0" }}>
-        Hot Discount Coupons for {CountryData.countryName} - Fall Offers{" "}
+        {searchParams.lang == "en"
+          ? "Hot Coupon Deals"
+          : "خصومات كوبونات حصرية"}
       </Typography>
       <Box
         sx={{
@@ -84,8 +98,9 @@ export default async function Offers({
         }}
       >
         <Typography variant="h5">
-          Fall Offers, Sale, Deals & Discounts all throughout {CouponDate.month}
-          {CouponDate.year}
+          {searchParams.lang == "en"
+            ? "Offers, Sales, Deals, and Discounts are available year-round"
+            : "العروض، التخفيضات، الصفقات، والخصومات متوفرة طوال العام"}
         </Typography>
         <Typography
           variant="body2"
@@ -96,25 +111,23 @@ export default async function Offers({
             fontWeight: "400",
           }}
         >
-          A promo code can provide you with instant discounts in the form of
-          percentages of the total order, for example 10% off the total cost of
-          purchase, or fixed value reductions such as a 10 Egyptian pound
-          discount on purchases worth 100 {CountryData.countryCurrency} , or
-          free shipping to
-          {CountryData.countryName}. However, finding active discount codes
-          successfully can be difficult in some cases. For this reason, Al
-          Coupon’s team checks every voucher code and their expiry dates
-          everyday. If finding the best coupon while shopping from online stores
-          and applying it is difficult for you, there is no need to worry; we
-          will open the doors of knowledge for you and offer you all the advice
-          you may need to transform from a beginner to an expert in using
-          coupons and saving while shopping through the internet.
+          {searchParams.lang == "en"
+            ? `A promo code can offer instant discounts either as a percentage off
+            your total order, like 10% off, or as fixed value reductions, such as
+            a 10-pound discount on purchases of 100 pounds or more, or even free
+            shipping. However, finding active discount codes can sometimes be
+            challenging. For this reason, the team at Al Coupon checks every
+            voucher code and their expiry dates daily. If you find it difficult to
+            locate and apply the best coupon while shopping online, don't worry;
+            we're here to guide you. We provide all the advice you need to evolve
+            from a beginner to an expert in using coupons and saving money while
+            shopping on the internet.`
+            : " يمكن لرمز الترويج أن يقدم خصومات فورية إما على شكل نسبة مئوية من إجمالي طلبك، مثل خصم 10٪، أو كتخفيضات ذات قيمة ثابتة، مثل خصم 10 جنيهات على مشتريات بقيمة 100 جنيه أو أكثر، أو حتى الشحن المجاني. ومع ذلك، قد يكون العثور على أكواد خصم فعالة أمرًا صعبًا أحيانًا. لهذا السبب، يقوم فريق الكوبون بفحص كل كود قسيمة وتواريخ انتهاء صلاحيتها يوميًا. إذا كنت تجد صعوبة في العثور على أفضل كوبون وتطبيقه أثناء التسوق عبر الإنترنت، فلا داعي للقلق؛ نحن هنا لنرشدك. نحن نقدم كل النصائح التي تحتاجها للتحول من مبتدئ إلى خبير في استخدام الكوبونات وتوفير المال أثناء التسوق عبر الإنترنت."}
         </Typography>
       </Box>
       <Grid container spacing={0} sx={{ textAlign: "center" }}>
         {couponsList}
-        {/* {offerCouponDataList} */}
-        {/* {fetchStoresData.length} */}
+ 
       </Grid>
     </Box>
   );

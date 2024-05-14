@@ -1,24 +1,24 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import { CountryData } from "../types";
+import { Language } from "../types";
 
-function HomeAllStoreHead() {
+function HomeAllStoreHead({ lang }: { lang: Language }) {
   return (
     <Box sx={{ display: "block" }}>
       <Typography variant="h6" sx={{ padding: "1rem 0" }}>
-        Featured Stores in {CountryData.countryName}
+        {lang == "en" ? "Featured Stores Offers" : "عروض المتاجر المميزة"}
         <Link
           href={"/discount-codes"}
           style={{
             textDecoration: "none",
             color: "#F3AD59",
-            marginLeft: "1rem",
+            margin: "1rem",
             fontWeight: "bold",
             display: "inline-block",
             textTransform: "capitalize",
           }}
         >
-          See all stores
+          {lang == "en" ? " See all offers" : "مشاهدة جميع العروض"}
         </Link>
       </Typography>
     </Box>

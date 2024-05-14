@@ -6,30 +6,39 @@ import CouponRight from "./CouponRight";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import CouponDetails from "./CouponDetails";
 import { Metadata } from "next";
-import { ProductType, StoreType } from "@/app/types";
+import { Language, ProductType, StoreType } from "@/app/types";
 import CouponFlags from "./CouponFlags";
 import { useSingleStoreData } from "./useGetSingleStore";
 import { couponType } from "@/app/types";
 export const generateMetadata = async ({
   params,
+  searchParams,
 }: {
   params: { id: string };
+  searchParams: { lang: Language };
 }): Promise<Metadata> => {
   const storeData: StoreType | null = await useSingleStoreData(params.id);
 
-  return {
-    title: `${storeData?.meta.meta_title_en}`,
-    description: `${storeData?.meta.meta_description_en}`,
-    keywords: `${storeData?.meta.meta_keyword_en}`,
-  };
+  return searchParams?.lang === "ar"
+    ? {
+        title: `${storeData?.meta.meta_title_ar}`,
+        description: `${storeData?.meta.meta_description_ar}`,
+        keywords: `${storeData?.meta.meta_keyword_ar}`,
+      }
+    : {
+        title: `${storeData?.meta.meta_title_en}`,
+        description: `${storeData?.meta.meta_description_en}`,
+        keywords: `${storeData?.meta.meta_keyword_en}`,
+      };
 };
 
 export default async function couponDetails({
   params,
+  searchParams,
 }: {
   params: { id: string };
+  searchParams: { lang: Language };
 }) {
-
   const storeData: StoreType | null = await useSingleStoreData(params.id);
   const coupons: couponType[] | undefined = storeData?.coupons;
   const couponsList = coupons?.map((coupon) => {
@@ -56,15 +65,17 @@ export default async function couponDetails({
               justifyContent: "space-between",
             }}
           >
-            {coupon.title_en}
-            <Typography sx={{ color: "#B53D3D" }}>Coupon</Typography>
+            {searchParams.lang == "en" ? coupon.title_en : coupon.title_ar}
+            <Typography sx={{ color: "#B53D3D" }}>
+              {searchParams.lang == "en" ? "Coupon" : "كود خصم"}
+            </Typography>
           </Grid>
           <Grid lg={10} xs={12} sx={{ padding: "1rem 1.5rem" }}>
             <Typography
               variant="h5"
               sx={{ fontSize: "1.3125rem", marginBottom: "1rem" }}
             >
-              {coupon.title_en}
+              {searchParams.lang == "en" ? coupon.title_en : coupon.title_ar}
             </Typography>
             <Box>
               <Grid container spacing={2}>
@@ -78,12 +89,19 @@ export default async function couponDetails({
                   }}
                 >
                   {/* {flags} */}
-                  <CouponFlags flagCode={coupon.flag_code} />
+                  <CouponFlags
+                    flagCode={coupon.flag_code}
+                    lang={searchParams.lang}
+                  />
                 </Grid>
                 <Grid xs={12} lg={6}>
-                  <CouponDetails coupon={coupon} />
+                  <CouponDetails coupon={coupon} lang={searchParams.lang} />
                   <Link
-                    href={`${storeData?.link_en}`}
+                    href={
+                      searchParams.lang == "en"
+                        ? `${storeData?.link_en}`
+                        : `${storeData?.link_ar}`
+                    }
                     style={{
                       display: "flex",
                       alignItems: "center",
@@ -94,7 +112,10 @@ export default async function couponDetails({
                       fontSize: "14px",
                     }}
                   >
-                    Go to {storeData?.name_en} website <TelegramIcon />
+                    {searchParams.lang == "en"
+                      ? `Go to ${storeData?.name_en} website`
+                      : `اذهب الي متجر ${storeData?.name_ar}`}
+                    <TelegramIcon />
                   </Link>
                 </Grid>
               </Grid>
@@ -129,18 +150,16 @@ export default async function couponDetails({
               variant="h5"
               sx={{ fontWeight: "bold", textTransform: "capitalize" }}
             >
-              {product.title_en}
+              {searchParams.lang == "en" ? product.title_en : product.title_ar}
             </Typography>
             <Typography
               sx={{ margin: "1rem 0" }}
               color="text.secondary"
               component={"p"}
             >
-              {product.description_en} Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit. Perferendis harum corrupti iste quidem
-              voluptatum. Consectetur quia illum, ea ad facilis assumenda!
-              Nulla, iusto aspernatur fugiat voluptatum aut ullam facere
-              recusandae?
+              {searchParams.lang == "en"
+                ? product.description_en
+                : product.description_ar}
             </Typography>
             <Box
               sx={{
@@ -149,7 +168,9 @@ export default async function couponDetails({
               }}
             >
               <Link
-                href={product.link_en}
+                href={
+                  searchParams.lang == "en" ? product.link_en : product.link_ar
+                }
                 target="blank"
                 style={{
                   textDecoration: "none",
@@ -161,7 +182,9 @@ export default async function couponDetails({
                   borderRadius: "1rem",
                 }}
               >
-                Go To Product
+                {searchParams.lang == "en"
+                  ? `Go To Product`
+                  : `اذهب الي المنتج`}
               </Link>
             </Box>
           </Grid>
@@ -174,13 +197,13 @@ export default async function couponDetails({
       <Grid container spacing={2}>
         <Grid lg={8} xs={12} sx={{ textWrap: "wrap" }}>
           <Box>
-            <CouponHead store={storeData} />
+            <CouponHead store={storeData} lang={searchParams.lang} />
           </Box>
           {couponsList}
           {productList}
         </Grid>
         <Grid lg={4} xs={12}>
-          <CouponRight store={storeData} />
+          <CouponRight store={storeData} lang={searchParams.lang} />
         </Grid>
       </Grid>
     </Box>

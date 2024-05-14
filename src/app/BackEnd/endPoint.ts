@@ -17,3 +17,5 @@ const getAllCategoriesRoute = `category-user`;
 export const AllCategories = baseUrl + getAllCategoriesRoute ;
 const searchStoreRoute=`search-store`
 export const searchStore = baseUrl + searchStoreRoute
+const GetLangRoute=`langs`
+export const GetLang = baseUrl + GetLangRoute

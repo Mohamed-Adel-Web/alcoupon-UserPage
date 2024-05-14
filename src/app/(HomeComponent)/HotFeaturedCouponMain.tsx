@@ -1,9 +1,15 @@
 import { Box, Tooltip, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Link from "next/link";
-import { couponType } from "../types";
+import { Language, couponType } from "../types";
 
-function HotOffersMain({ couponData }: { couponData: couponType[] }) {
+function HotOffersMain({
+  couponData,
+  lang,
+}: {
+  couponData: couponType[];
+  lang: Language;
+}) {
   const offerCouponDataList = couponData?.map((coupon) => {
     return (
       <>
@@ -16,8 +22,8 @@ function HotOffersMain({ couponData }: { couponData: couponType[] }) {
               minHeight: "11.25rem",
             }}
           >
-            <Link href={`discount-codes/${coupon.store.id}`} >
-              <Tooltip title={coupon.title_en}>
+            <Link href={`discount-codes/${coupon.store.id}`}>
+              <Tooltip title={lang == "en" ? coupon.title_en : coupon.title_ar}>
                 <img
                   width={100}
                   height={36}
@@ -43,13 +49,13 @@ function HotOffersMain({ couponData }: { couponData: couponType[] }) {
                 {coupon.code}
               </textarea>
             </Box>
-            <Tooltip title={coupon.title_en}>
+            <Tooltip title={lang == "en" ? coupon.title_en : coupon.title_ar}>
               <Typography
                 variant="body2"
                 color="text.secondary"
                 className="promoCodeDiscount"
               >
-                {coupon.title_en}
+                {lang == "en" ? coupon.title_en : coupon.title_ar}
               </Typography>
             </Tooltip>
           </Box>
