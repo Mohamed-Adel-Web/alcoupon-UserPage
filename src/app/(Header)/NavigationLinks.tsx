@@ -38,13 +38,13 @@ function NavigationLinks({
     {
       title_en: "All Stores",
       title_ar: "جميع المتاجر",
-      href: `/discount-codes?lang=${lang}`,
+      href: `/discount-codes?page=1&lang=${lang}`,
     },
 
     {
       title_en: "All coupons",
       title_ar: "جميع الكوبونات",
-      href: `/hot-discount-coupons-deals?lang=${lang}`,
+      href: `/hot-discount-coupons-deals?page=1&lang=${lang}`,
     },
   ];
 

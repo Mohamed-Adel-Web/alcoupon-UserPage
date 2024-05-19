@@ -7,6 +7,8 @@ type Props = {
 };
 
 const CouponRight = (props: Props) => {
+  const aboutEn = props.store?.about_en || "";
+  const aboutAr = props.store?.about_ar || "";
   return (
     <>
       <Box
@@ -41,8 +43,8 @@ const CouponRight = (props: Props) => {
         </Link>
         <Typography variant="h6" sx={{ color: "#B53D3D", margin: "1rem 0" }}>
           {props.lang == "en"
-            ? props.store?.description_en
-            : props.store?.description_ar}
+            ? props.store?.discount_en
+            : props.store?.discount_ar}
         </Typography>
         <Link
           href={
@@ -74,7 +76,11 @@ const CouponRight = (props: Props) => {
           textAlign: " center",
         }}
       >
-        {props.lang == "en" ? props.store?.about_en : props.store?.about_ar}
+        {props.lang == "en" ? (
+          <div dangerouslySetInnerHTML={{ __html: aboutEn }}></div>
+        ) : (
+          <div dangerouslySetInnerHTML={{ __html: aboutAr }}></div>
+        )}
       </Box>
     </>
   );

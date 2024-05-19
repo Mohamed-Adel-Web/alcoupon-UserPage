@@ -7,6 +7,7 @@ import { Language, StoreType } from "../types";
 async function HomeAllStoreMain({ lang }: { lang: Language }) {
   const featureStoresData: StoreType[] = await useFeaturedStoresData();
   const allStoreDataList = featureStoresData?.map((store) => {
+    console.log(store);
     return (
       <Grid xs={6} sm={4} md={3} lg={3}>
         <Link
@@ -21,9 +22,7 @@ async function HomeAllStoreMain({ lang }: { lang: Language }) {
               minHeight: "14rem",
             }}
           >
-            <Tooltip
-              title={lang == "en" ? store.description_en : store.description_ar}
-            >
+            <Tooltip title={lang == "en" ? store.title_en : store.title_ar}>
               <img
                 width={100}
                 height={36}
@@ -37,11 +36,9 @@ async function HomeAllStoreMain({ lang }: { lang: Language }) {
               className="storeDiscount"
               sx={{ padding: "1rem 0 ", color: "#b53d3d" }}
             >
-              {lang == "en" ? store.title_en : store.title_ar}
+              {lang == "en" ? store.discount_en : store.discount_ar}
             </Typography>
-            <Tooltip
-              title={lang == "en" ? store.description_en : store.description_ar}
-            >
+            <Tooltip title={lang == "en" ? store.title_en : store.title_ar}>
               <Typography
                 variant="body2"
                 color="text.secondary"

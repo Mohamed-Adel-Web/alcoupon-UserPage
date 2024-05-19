@@ -34,7 +34,11 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
       <List>
         {mainMenuNavigationSources.map((link, index) => (
           <Link
-            href={`${link.href}?lang=${lang}`}
+            href={
+              index > 0
+                ? `${link.href}?page=1&lang=${lang}`
+                : `${link.href}?lang=${lang}`
+            }
             style={{
               textDecoration: "none",
               color: "black",

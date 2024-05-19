@@ -1,9 +1,10 @@
 import { Box, Tooltip, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
+import PaginationComponent from "../discount-codes/Pagination";
 import Link from "next/link";
 import type { Metadata } from "next";
-import {  Language, couponType } from "../types";
+import { Language, couponType } from "../types";
 import { useCouponsData } from "./useGetCoupon";
 export const metadata: Metadata = {
   title: "All stores coupon",
@@ -13,9 +14,9 @@ export const metadata: Metadata = {
 export default async function Offers({
   searchParams,
 }: {
-  searchParams: { lang: Language };
+  searchParams: { lang: Language; page: number };
 }) {
-  const couponsData: couponType[] = await useCouponsData();
+  const { couponsData, last_page } = await useCouponsData(searchParams.page);
   const couponsList = couponsData?.map((coupon) => {
     return (
       <>
@@ -127,7 +128,10 @@ export default async function Offers({
       </Box>
       <Grid container spacing={0} sx={{ textAlign: "center" }}>
         {couponsList}
- 
+        <PaginationComponent
+          page={Number(searchParams.page)}
+          lastPage={last_page}
+        />
       </Grid>
     </Box>
   );

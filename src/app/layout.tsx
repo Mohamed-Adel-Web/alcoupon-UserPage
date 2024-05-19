@@ -7,7 +7,6 @@ import Footer from "./Footer/Footer";
 import NavBar from "./(Header)/NavBar";
 import NavigationLinks from "./(Header)/NavigationLinks";
 import { useGetCategories } from "./(Header)/useGetCategory";
-import { useGetLang } from "@/useGetLang/useGetLang";
 import { useSearchParams } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +23,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const AllCategories = await useGetCategories();
-  const lang = await useGetLang();
 
   return (
-    <html lang={lang}>
+    <html lang="en">
       <head>
         {" "}
         <link
@@ -38,7 +36,7 @@ export default async function RootLayout({
       </head>
       <body className={inter.className}>
         <NavBar AllCategories={AllCategories} />
-        <NavigationLinks  AllCategoriesData={AllCategories} />
+        <NavigationLinks AllCategoriesData={AllCategories} />
         <Container
           maxWidth="lg"
           sx={{ textAlign: { xs: "center", md: "start" } }}

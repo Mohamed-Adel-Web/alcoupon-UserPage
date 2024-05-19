@@ -1,13 +1,13 @@
 import { AllCategories } from "@/app/BackEnd/endPoint";
 import { StoreType, categoryTypes } from "@/app/types";
 
-const fetchStoresByCategory= async (
+const fetchStoresByCategory = async (
   storeUrl: string
 ): Promise<categoryTypes> => {
   try {
     const response = await fetch(storeUrl, {
       method: "GET",
-      cache: "no-store",
+      next: { revalidate: 10800 },
     });
 
     if (!response.ok) {

@@ -57,8 +57,8 @@ const CouponHead = (props: Props) => {
 
         <Typography sx={{ fontSize: "1.8125rem" }}>
           {props.lang == "en"
-            ? props.store?.description_en
-            : props.store?.description_ar}
+            ? props.store?.title_en
+            : props.store?.title_ar}
         </Typography>
       </Box>
     </>

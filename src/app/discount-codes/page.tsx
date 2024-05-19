@@ -1,8 +1,9 @@
-import { Box, Typography, Tooltip } from "@mui/material";
+import { Box, Typography, Tooltip, Pagination, Stack } from "@mui/material";
 import type { Metadata } from "next";
 import { StoreType, Language } from "../types";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useStoresData } from "./useStoresData";
+import PaginationComponent from "./Pagination";
 import Link from "next/link";
 export const metadata: Metadata = {
   title: "All store discount",
@@ -12,9 +13,9 @@ export const metadata: Metadata = {
 export default async function ALLStores({
   searchParams,
 }: {
-  searchParams: { lang: Language };
+  searchParams: { lang: Language; page: number };
 }) {
-  const storesData: StoreType[] = await useStoresData();
+  const { storesData, last_page } = await useStoresData(searchParams.page);
   const allStoreDataList = storesData?.map((store) => {
     return (
       <Grid xs={6} sm={4} md={3} lg={3} key={store.name_en}>
@@ -33,8 +34,8 @@ export default async function ALLStores({
             <Tooltip
               title={
                 searchParams.lang == "en"
-                  ? store.description_en
-                  : store.description_ar
+                  ? store.title_en
+                  : store.title_ar
               }
             >
               <img
@@ -51,7 +52,7 @@ export default async function ALLStores({
               className="storeDiscount"
               sx={{ padding: "1rem 0 ", color: "#b53d3d" }}
             >
-              {searchParams.lang == "en" ? store.title_en : store.title_ar}
+              {searchParams.lang == "en" ? store.discount_en : store.discount_ar}
             </Typography>
             <Typography
               variant="body2"
@@ -101,6 +102,10 @@ export default async function ALLStores({
       </Box>
       <Grid container spacing={2} sx={{ textAlign: "center" }}>
         {allStoreDataList}
+        <PaginationComponent
+          page={Number(searchParams.page)}
+          lastPage={last_page}
+        />
       </Grid>
 
       <Box

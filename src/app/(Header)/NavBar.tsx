@@ -18,6 +18,7 @@ import logo from "../../../public/images/logo/logo.png";
 import SearchModal from "./SearchModal";
 import { usePathname, useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   const [openMainMenu, setMainMenuOpen] = useState<boolean>(false);
   const [lang, setLang] = useState<string | null>("ar");
@@ -53,29 +54,28 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
           {/* Logo */}
-
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href={`/?lang=${lang}`}
-            sx={{
-              mr: 2,
-              display: "flex",
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            <Image
-              src={logo}
-              width={180}
-              height={51}
-              alt="Picture of the author"
-            />{" "}
-          </Typography>
+          <Link href={`/?lang=${lang}`}>
+            <Typography
+              variant="h6"
+              noWrap
+              sx={{
+                mr: 2,
+                display: "flex",
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              <Image
+                src={logo}
+                width={180}
+                height={51}
+                alt="Picture of the author"
+              />{" "}
+            </Typography>
+          </Link>
           {/* Logo */}
 
           {/* search bar */}

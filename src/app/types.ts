@@ -47,6 +47,8 @@ export interface StoreType {
   title_en: string;
   title_ar: string;
   products: ProductType[];
+  discount_en: string;
+  discount_ar: string;
 }
 export interface categoryTypes {
   id: number;
@@ -61,15 +63,19 @@ export interface categoryTypes {
   meta_keyword_en: string;
 }
 
-
-
 export interface DateType {
   month: string;
   year: string;
 }
 
-
 export enum Language {
-  AR = 'ar',
-  EN = 'en'
+  AR = "ar",
+  EN = "en",
+}
+
+export interface SwiperType {
+  id?: number;
+  images: {
+    images: string;
+  };
 }

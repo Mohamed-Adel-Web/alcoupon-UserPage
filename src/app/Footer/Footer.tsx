@@ -1,15 +1,15 @@
+"use client";
 import { Box, Button, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Link from "next/link";
 import "./Footer.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import logo from "../../../public/images/logo/logo.png";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 const countries: string[] = [
   "Saudi Arabia",
   "UAE",
@@ -23,6 +23,8 @@ const countries: string[] = [
 ];
 
 function Footer() {
+  const searchParam = useSearchParams();
+  const lang = searchParam.get("lang");
   return (
     <Box
       sx={{
@@ -75,7 +77,7 @@ function Footer() {
               />{" "}
             </Typography>
             <Typography sx={{ fontWeight: "bold", margin: "1rem 0 " }}>
-              Follow us
+              {lang == "en" ? `Follow us` : `تابعونا`}
             </Typography>
             <ul
               style={{
@@ -166,10 +168,17 @@ function Footer() {
             </ul>
           </Grid>
           <Grid xs={12} sx={{ textAlign: "center" }}>
-            Copyrights © 2024 All rights reserved by{" "}
+            {lang == "en"
+              ? `            Copyrights © 2024 All rights reserved by
+`
+              : `جميع الحقوق محفوظة بواسطة `}
             <Link
               href={"https://kyanlabs.com/en"}
-              style={{ color: "#F6931E", textDecoration: "none" }}
+              style={{
+                color: "#F6931E",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
             >
               Kyanlabs
             </Link>

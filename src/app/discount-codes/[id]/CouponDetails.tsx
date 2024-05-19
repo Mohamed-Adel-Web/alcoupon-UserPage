@@ -75,12 +75,6 @@ export default function CouponDetails(props: Props) {
           {props.lang == "en"
             ? "Copy the code above and paste at checkout."
             : `"انسخ الكود  أعلاه والصقه عند الدفع."
-
-
-
-
-
-
 `}
         </Typography>
       )}

@@ -41,6 +41,8 @@ export default async function couponDetails({
 }) {
   const storeData: StoreType | null = await useSingleStoreData(params.id);
   const coupons: couponType[] | undefined = storeData?.coupons;
+  const descriptionEn = storeData?.description_en || "";
+  const descriptionAr = storeData?.description_ar || "";
   const couponsList = coupons?.map((coupon) => {
     return (
       <Box
@@ -201,6 +203,20 @@ export default async function couponDetails({
           </Box>
           {couponsList}
           {productList}
+          <Box
+            sx={{
+              backgroundColor: "white",
+              padding: "1rem 2rem",
+              margin: "1rem 0",
+              border: "1px solid #dddddd",
+            }}
+          >
+            {searchParams.lang == "en" ? (
+              <div dangerouslySetInnerHTML={{ __html: descriptionEn }}></div>
+            ) : (
+              <div dangerouslySetInnerHTML={{ __html: descriptionAr }}></div>
+            )}
+          </Box>
         </Grid>
         <Grid lg={4} xs={12}>
           <CouponRight store={storeData} lang={searchParams.lang} />

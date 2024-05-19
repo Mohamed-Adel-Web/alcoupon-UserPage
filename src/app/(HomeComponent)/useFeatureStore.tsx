@@ -1,10 +1,12 @@
 import { StoreType } from "../types";
 import { featuredStores } from "../BackEnd/endPoint";
-const fetchStoresData = async (featuredStores: string): Promise<StoreType[]> => {
+const fetchStoresData = async (
+  featuredStores: string
+): Promise<StoreType[]> => {
   try {
     const response = await fetch(featuredStores, {
       method: "GET",
-      cache: "no-store",
+      next: { revalidate: 10800 },
     });
 
     if (!response.ok) {
@@ -29,4 +31,4 @@ const useFeaturedStoresData = async () => {
     return [];
   }
 };
-export { useFeaturedStoresData  };
+export { useFeaturedStoresData };

@@ -1,11 +1,12 @@
 import { storeUrl } from "@/app/BackEnd/endPoint";
 import { StoreType } from "@/app/types";
+import next from "next";
 
 const fetchStoreData = async (storeUrl: string): Promise<StoreType> => {
   try {
     const response = await fetch(storeUrl, {
       method: "GET",
-      cache: "no-store",
+      next: { revalidate: 10800 },
     });
 
     if (!response.ok) {

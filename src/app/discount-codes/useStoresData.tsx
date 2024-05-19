@@ -1,32 +1,40 @@
 import { StoreType } from "../types";
 import { storeUrl } from "../BackEnd/endPoint";
-const fetchStoresData = async (storeUrl: string): Promise<StoreType[]> => {
+type StoresResponse = {
+  last_page: number;
+  storesData: StoreType[];
+};
+const fetchStoresData = async (storeUrl: string): Promise<StoresResponse> => {
   try {
     const response = await fetch(storeUrl, {
       method: "GET",
-      cache: "no-store",
-    });
+      next: { revalidate: 10800 },    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.json();
-    return data?.data as StoreType[];
+    return {
+      storesData: data?.data as StoreType[],
+      last_page: data?.last_page,
+    };
   } catch (error) {
     console.error("Fetching stores data failed:", error);
     throw error;
   }
 };
 
-const useStoresData = async () => {
+const useStoresData = async (page = 1) => {
   try {
-    const storesData = await fetchStoresData(storeUrl);
+    const { storesData, last_page } = await fetchStoresData(
+      `${storeUrl}?page=${page}`
+    );
     console.log("Stores Data:", storesData);
-    return storesData;
+    return { storesData, last_page };
   } catch (error) {
     console.error("Error in retrieving stores data:", error);
-    return [];
+    return { lastPage: 0, storesData: [] };
   }
 };
 export { useStoresData };

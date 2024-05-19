@@ -1,10 +1,12 @@
-import {  couponType } from "../types";
-import { featuredCoupons} from "../BackEnd/endPoint";
-const fetchCouponsData = async (featuredCoupons: string): Promise<couponType[]> => {
+import { couponType } from "../types";
+import { featuredCoupons } from "../BackEnd/endPoint";
+const fetchCouponsData = async (
+  featuredCoupons: string
+): Promise<couponType[]> => {
   try {
     const response = await fetch(featuredCoupons, {
       method: "GET",
-      cache: "no-store",
+      next: { revalidate: 10800 },
     });
 
     if (!response.ok) {
@@ -29,4 +31,4 @@ const useFeaturedCoupons = async () => {
     return [];
   }
 };
-export { useFeaturedCoupons  };
+export { useFeaturedCoupons };

@@ -1,7 +1,5 @@
-// Import Swiper React components
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -9,18 +7,39 @@ import "./swiperStyle.css";
 
 // import required modules
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
-const imagesSrc: string[] = [
-  "/images/Banners/Banner1.jpg",
-  "/images/Banners/Banner2.png",
-  "/images/Banners/Banner3.jpg",
-];
-const swiperList = imagesSrc.map((src, index) => (
-  <SwiperSlide key={index}>
-    <img src={src} width={948} height={332} alt="Hot offer Image" />{" "}
-  </SwiperSlide>
-));
+import { useEffect, useState } from "react";
+import { SwiperType } from "../types";
+import { useSwiperData } from "./useGetSwiper";
 
-function SwiperApp() {
+ function SwiperApp() {
+  const [imagesSrc, setImagesSrc] = useState<SwiperType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const data = await useSwiperData();
+        setImagesSrc(data);
+      } catch (error) {
+        console.error("Failed to fetch images:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
+  const swiperList = imagesSrc.map((swiper, index) => (
+    <SwiperSlide key={index}>
+      <img
+        src={swiper.images.images}
+        width={948}
+        height={302}
+        alt="Hot offer Image"
+      />
+    </SwiperSlide>
+  ));
+
   return (
     <div style={{ position: "relative" }}>
       <Swiper
@@ -36,7 +55,8 @@ function SwiperApp() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper">
+        className="mySwiper"
+      >
         {swiperList}
       </Swiper>
     </div>
