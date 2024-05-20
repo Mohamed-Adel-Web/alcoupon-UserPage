@@ -134,7 +134,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
                 />
               ) : (
                 <img
-                  src={"/images/logo/Logo_ar.svg"}
+                  src={"/images/logo/Logo_Ar.svg"}
                   width={151}
                   height={51}
                   alt="Picture of the author"

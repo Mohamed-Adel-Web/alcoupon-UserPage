@@ -76,17 +76,17 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
             >
               {lang == "en" ? (
                 <img
-                  src={"/images/logo/logo_En.svg"}
-                  width={141}
-                  height={40}
-                  alt="logo image"
+                  src={"/images/logo/Logo_En.svg"}
+                  width={151}
+                  height={51}
+                  alt="Picture of the author"
                 />
               ) : (
                 <img
-                  src={"/images/logo/logo_Ar.svg"}
-                  width={141}
-                  height={40}
-                  alt="logo image"
+                  src={"/images/logo/Logo_Ar.svg"}
+                  width={151}
+                  height={51}
+                  alt="Picture of the author"
                 />
               )}
             </Typography>

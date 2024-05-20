@@ -21,7 +21,9 @@ export default async function Home({
 
   return (
     <main>
-      <HeroSection storesData={storesData} />
+      <Suspense>
+        <HeroSection storesData={storesData} />
+      </Suspense>
       <HotFeaturedCouponHead lang={lang} />
       <HotFeaturedCouponMain couponData={couponData} lang={lang} />
       <HomeDiscountAd lang={lang} />
