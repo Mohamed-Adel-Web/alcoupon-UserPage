@@ -9,7 +9,7 @@ import "./swiperStyle.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { SwiperType } from "../types";
-import { useSwiperData } from "./useGetSwiper";
+import { useSwiperData } from "../FetchData/useGetSwiper";
 
  function SwiperApp() {
   const [imagesSrc, setImagesSrc] = useState<SwiperType[]>([]);

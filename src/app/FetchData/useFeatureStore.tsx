@@ -1,8 +1,10 @@
-import { StoreType } from "../../types";
-import { searchStore } from "../../BackEnd/endPoint";
-const fetchStoresData = async (SearchStores: string): Promise<StoreType[]> => {
+import { StoreType } from "../types";
+import { featuredStores } from "../BackEnd/endPoint";
+const fetchStoresData = async (
+  featuredStores: string
+): Promise<StoreType[]> => {
   try {
-    const response = await fetch(SearchStores, {
+    const response = await fetch(featuredStores, {
       method: "GET",
       cache: "no-store",
     });
@@ -19,9 +21,9 @@ const fetchStoresData = async (SearchStores: string): Promise<StoreType[]> => {
   }
 };
 
-const useSearchStoresData = async (searchParam: string) => {
+const useFeaturedStoresData = async () => {
   try {
-    const storesData = await fetchStoresData(`${searchStore}/${searchParam}`);
+    const storesData = await fetchStoresData(featuredStores);
     console.log("Stores Data:", storesData);
     return storesData;
   } catch (error) {
@@ -29,4 +31,4 @@ const useSearchStoresData = async (searchParam: string) => {
     return [];
   }
 };
-export default useSearchStoresData;
+export { useFeaturedStoresData };

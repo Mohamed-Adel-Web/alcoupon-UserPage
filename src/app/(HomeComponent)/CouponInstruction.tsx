@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Image from "next/image";
 import Link from "next/link";
-import instruction from "../../../public/images/CouponInstruction/couponInstruction1.jpg";
 import { Language } from "../types";
 function CouponInstruction({ lang }: { lang: Language }) {
   return (
@@ -68,11 +67,10 @@ function CouponInstruction({ lang }: { lang: Language }) {
             minHeight: "600px",
           }}
         >
-          <Image
+          <img
             src={"/images/CouponInstruction/instruction.jpg"}
-            width={1000}
-            height={1000}
-            style={{ width: "100%", height: "auto" }}
+       
+            style={{ width: "100%"}}
             alt="coupon instruction image"
           />
           <Box sx={{ padding: "1rem 2rem" }}>
@@ -154,7 +152,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
             minHeight: "630px",
           }}
         >
-          <Image
+          <img
             src={"/images/CouponInstruction/step-1.png"}
             width={1000}
             height={1000}
@@ -203,7 +201,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
             minHeight: "630px",
           }}
         >
-          <Image
+          <img
             src={"/images/CouponInstruction/step-2.png"}
             width={1000}
             height={1000}
@@ -264,7 +262,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
             minHeight: "630px",
           }}
         >
-          <Image
+          <img
             src={"/images/CouponInstruction/step-1.png"}
             width={1000}
             height={1000}

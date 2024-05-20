@@ -11,7 +11,7 @@
     transition: 0.3s;
 }
 .icons li:hover {
-  background-color: brown;
+  background-color: #F6931E;
 }
 .icons li:hover .icon-href{
     color: white !important;

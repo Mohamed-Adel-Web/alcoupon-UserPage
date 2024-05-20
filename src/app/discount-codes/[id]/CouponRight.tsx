@@ -56,9 +56,11 @@ const CouponRight = (props: Props) => {
           style={{
             padding: "1rem 4rem ",
             width: "fit-content",
-            backgroundColor: "#B53D3D",
+            background:
+              " linear-gradient(90deg, rgba(242,19,20,0.6895133053221288) 29%, rgba(244,147,30,0.7175245098039216) 72%)",
             textDecoration: "none",
-            color: "white",
+            color: "Black",
+            fontWeight:"bold",
             borderRadius: "2rem",
             margin: "1rem auto",
             display: "block",

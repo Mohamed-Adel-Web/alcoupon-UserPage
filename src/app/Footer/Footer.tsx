@@ -7,53 +7,109 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import logo from "../../../public/images/logo/logo.png";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-const countries: string[] = [
-  "Saudi Arabia",
-  "UAE",
-  "Kuwait",
-  "Bahrain",
-  "Oman",
-  "Qatar",
-  "Egypt",
-  "Jordan",
-  "Morocco",
-];
-
-function Footer() {
+import { StoreType } from "../types";
+function Footer({ stores }: { stores: StoreType[] }) {
   const searchParam = useSearchParams();
   const lang = searchParam.get("lang");
+  const NavigationSources: {
+    title_en: string;
+    title_ar: string;
+    href: string;
+  }[] = [
+    { title_en: "Home", title_ar: "الرئيسية", href: `/?lang=${lang}` },
+    {
+      title_en: "All Stores",
+      title_ar: "جميع المتاجر",
+      href: `/discount-codes?page=1&lang=${lang}`,
+    },
+
+    {
+      title_en: "All coupons",
+      title_ar: "جميع الكوبونات",
+      href: `/hot-discount-coupons-deals?page=1&lang=${lang}`,
+    },
+  ];
+
+  const NavigationLinksList = NavigationSources.map((link) => {
+    return (
+      <li style={{ margin: "1rem 0" }}>
+        <Link
+          href={`${link.href}`}
+          style={{
+            padding: "0 0.4rem",
+            textDecoration: "none",
+            color: "white",
+            fontWeight: "bold",
+            fontSize: "0.9rem",
+            lineHeight: "44px",
+            letterSpacing: "2px",
+
+            whiteSpace: "nowrap",
+            textTransform: "capitalize",
+          }}
+        >
+          {lang == "en" ? link.title_en : link.title_ar}
+        </Link>
+      </li>
+    );
+  });
+  const TopStoreData = stores.filter((store, index) => {
+    return index < 6;
+  });
+  const topStoresList = TopStoreData.map((store) => {
+    return (
+      <li style={{ margin: "1rem 0" }}>
+        <Link
+          href={`discount-codes/${store.id}?lang=${lang}`}
+          style={{
+            padding: "0 0.4rem",
+            textDecoration: "none",
+            color: "white",
+            fontWeight: "bold",
+            fontSize: "0.9rem",
+            lineHeight: "44px",
+            letterSpacing: "2px",
+
+            whiteSpace: "nowrap",
+            textTransform: "capitalize",
+          }}
+        >
+          {lang == "en" ? store.name_en : store.name_ar}
+        </Link>
+      </li>
+    );
+  });
   return (
     <Box
       sx={{
-        backgroundColor: "white",
         padding: "2rem 0rem",
+        color: "white",
         border: "1px solid #dddddd",
+        background: "black",
         marginTop: "2rem",
         textAlign: { xs: "center", md: "left" },
       }}
     >
       <Container maxWidth="lg">
         <Grid container spacing={2}>
-          <Grid xs={12} md={6} lg={2}>
-            <Typography sx={{ fontWeight: "bold" }}>Changes Country</Typography>
-            {/* <ul>{countryList}</ul> */}
-          </Grid>
-          <Grid xs={12} md={6} lg={3}>
-            <Typography sx={{ fontWeight: "bold" }}>
-              Featured sections
+          <Grid xs={12} md={6} lg={4}>
+            <Typography
+              sx={{ fontWeight: "bold", fontSize: "1.5rem", color: "#F6931E" }}
+            >
+              Feature sections
             </Typography>
-            {/* <ul>{featureSectionList}</ul> */}
+            <ul>{NavigationLinksList}</ul>
           </Grid>
-          <Grid xs={12} md={6} lg={5}>
-            <Typography sx={{ fontWeight: "bold" }}>
-              {/* Popular stores in {CountryData.countryName} */}
+          <Grid xs={12} md={6} lg={4}>
+            <Typography
+              sx={{ fontWeight: "bold", fontSize: "1.5rem", color: "#F6931E" }}
+            >
+              Top Stores
             </Typography>
-            {/* <ul>{TopFooterList}</ul> */}
+            <ul>{topStoresList}</ul>
           </Grid>
-          <Grid xs={12} md={6} lg={2} sx={{ textAlign: "center" }}>
+          <Grid xs={12} md={6} lg={4} sx={{ textAlign: "center" }}>
             <Typography
               variant="h6"
               noWrap
@@ -69,12 +125,21 @@ function Footer() {
                 justifyContent: "center",
               }}
             >
-              <Image
-                src={logo}
-                width={151}
-                height={51}
-                alt="Picture of the author"
-              />{" "}
+              {lang == "en" ? (
+                <img
+                  src={"/images/logo/Logo_En.svg"}
+                  width={151}
+                  height={51}
+                  alt="Picture of the author"
+                />
+              ) : (
+                <img
+                  src={"/images/logo/Logo_ar.svg"}
+                  width={151}
+                  height={51}
+                  alt="Picture of the author"
+                />
+              )}
             </Typography>
             <Typography sx={{ fontWeight: "bold", margin: "1rem 0 " }}>
               {lang == "en" ? `Follow us` : `تابعونا`}
@@ -82,7 +147,7 @@ function Footer() {
             <ul
               style={{
                 display: "flex",
-                justifyContent: "space-around",
+                justifyContent: "center",
                 flexWrap: "wrap",
                 gap: "1.5rem",
               }}
@@ -95,7 +160,7 @@ function Footer() {
                   }
                   style={{
                     textDecoration: "none",
-                    color: "red",
+                    color: "#F6931E",
                   }}
                   className="icon-href"
                 >
@@ -107,7 +172,7 @@ function Footer() {
                   href={
                     "https://twitter.com/i/flow/login?redirect_after_login=%2FShop_coupon_"
                   }
-                  style={{ textDecoration: "none", color: "red" }}
+                  style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
                 >
                   <TwitterIcon sx={{ fontSize: "2rem" }} />
@@ -118,7 +183,7 @@ function Footer() {
                   href={
                     "https://www.facebook.com/shop.coupon.codes?mibextid=ZbWKwL"
                   }
-                  style={{ textDecoration: "none", color: "red" }}
+                  style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
                 >
                   <FacebookIcon sx={{ fontSize: "2rem" }} />
@@ -127,7 +192,7 @@ function Footer() {
               <li>
                 <Link
                   href={"https://t.me/shop_couponz"}
-                  style={{ textDecoration: "none", color: "red" }}
+                  style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
                 >
                   <TelegramIcon sx={{ fontSize: "2rem" }} />
@@ -139,7 +204,7 @@ function Footer() {
                   href={
                     "https://www.snapchat.com/add/shop_coupons?share_id=ApMe0YNX2TA&locale=en-US"
                   }
-                  style={{ textDecoration: "none", color: "red" }}
+                  style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
                 >
                   <i className="fa-brands fa-snapchat fa-2xl"></i>
@@ -148,7 +213,7 @@ function Footer() {
               <li>
                 <Link
                   href={"https://www.youtube.com/@shop-coupons"}
-                  style={{ textDecoration: "none", color: "red" }}
+                  style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
                 >
                   <i className="fa-brands fa-youtube fa-2xl"></i>
@@ -159,7 +224,7 @@ function Footer() {
                   href={
                     "https://www.tiktok.com/@shopcoupons?_t=8k81TXP1Pd9&_r=1"
                   }
-                  style={{ textDecoration: "none", color: "red" }}
+                  style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
                 >
                   <i className="fa-brands fa-tiktok fa-2xl"></i>
@@ -167,7 +232,7 @@ function Footer() {
               </li>
             </ul>
           </Grid>
-          <Grid xs={12} sx={{ textAlign: "center" }}>
+          <Grid xs={12} sx={{ textAlign: "center", margin: "1rem 0" }}>
             {lang == "en"
               ? `            Copyrights © 2024 All rights reserved by
 `

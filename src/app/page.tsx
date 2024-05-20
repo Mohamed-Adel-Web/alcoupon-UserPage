@@ -1,4 +1,3 @@
-import styles from "./page.module.css";
 import HeroSection from "./(HeroSection)/HeroSection";
 import HotFeaturedCouponHead from "./(HomeComponent)/HotFeaturedCouponHead";
 import HotFeaturedCouponMain from "./(HomeComponent)/HotFeaturedCouponMain";
@@ -6,12 +5,10 @@ import HomeDiscountAd from "./(HomeComponent)/HomeDiscountAd";
 import HomeFeatureStoreHead from "./(HomeComponent)/HomeFeatureStoreHead";
 import HomeFeatureStoreMain from "./(HomeComponent)/HomaFeatureStoreMain";
 import CouponInstruction from "./(HomeComponent)/CouponInstruction";
-import { useFeaturedCoupons } from "./(HomeComponent)/useFeaturedCoupon";
-import { useFeaturedStoresData } from "./(HomeComponent)/useFeatureStore";
-import NavigationLinks from "./(Header)/NavigationLinks";
-import Link from "next/link";
-import { useGetLang } from "@/useGetLang/useGetLang";
+import { useFeaturedCoupons } from "./FetchData/useFeaturedCoupon";
+import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
 import { Language } from "./types";
+import { Suspense } from "react";
 
 export default async function Home({
   searchParams,

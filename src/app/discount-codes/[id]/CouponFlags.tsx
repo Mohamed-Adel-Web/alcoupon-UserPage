@@ -52,7 +52,7 @@ export default function CouponFlags({
   });
   const couponCountryList = couponCountry.map((country) => {
     return (
-      <Image
+      <img
         src={country.image}
         style={{ borderRadius: "50%" }}
         width={30}

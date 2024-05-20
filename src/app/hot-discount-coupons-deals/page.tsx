@@ -1,11 +1,24 @@
-import { Box, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import Image from "next/image";
+import GppGoodIcon from "@mui/icons-material/GppGood";
+import GppBadIcon from "@mui/icons-material/GppBad";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
 import PaginationComponent from "../discount-codes/Pagination";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Language, couponType } from "../types";
-import { useCouponsData } from "./useGetCoupon";
+import { useCouponsData } from "../FetchData/useGetCoupon";
+import { Suspense } from "react";
+import CustomCard from "@/CustomCard";
 export const metadata: Metadata = {
   title: "All stores coupon",
   description: `Get instant discounts on your online purchases with special discount coupons in  Find the best promo codes, deals and your favorite products.`,
@@ -20,64 +33,8 @@ export default async function Offers({
   const couponsList = couponsData?.map((coupon) => {
     return (
       <>
-        <Grid xs={6} sm={4} md={3} lg={2} key={coupon.id}>
-          <Box
-            sx={{
-              background: "white",
-              border: "1px solid #dddddd",
-              padding: "1rem",
-              minHeight: "11.25rem",
-            }}
-          >
-            <Link
-              href={`discount-codes/${coupon.store.id}?lang=${searchParams.lang}`}
-            >
-              <Tooltip
-                title={
-                  searchParams.lang == "en"
-                    ? coupon.store.description_en
-                    : coupon.store.description_ar
-                }
-              >
-                <img
-                  width={100}
-                  height={36}
-                  style={{ height: "36px" }}
-                  src={coupon.store.image}
-                  alt="company-image"
-                />
-              </Tooltip>
-            </Link>
-            <Box
-              className="coupon-box-text"
-              sx={{ margin: "1rem auto", width: "100%" }}
-            >
-              <textarea
-                name="discount_coupon_code"
-                className="couponCode"
-                cols={15}
-                rows={1}
-                readOnly
-                contentEditable="false"
-                autoComplete="off"
-              >
-                {coupon.code}
-              </textarea>
-            </Box>
-            <Tooltip
-              title={
-                searchParams.lang == "en" ? coupon.title_en : coupon.title_ar
-              }
-            >
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="promoCodeDiscount"
-              >
-                {searchParams.lang == "en" ? coupon.title_en : coupon.title_ar}
-              </Typography>
-            </Tooltip>
-          </Box>
+        <Grid xs={12} sm={6} md={4} lg={3} key={coupon.id}>
+          <CustomCard type="coupon" data={coupon} lang={searchParams.lang} />
         </Grid>
       </>
     );
@@ -128,10 +85,12 @@ export default async function Offers({
       </Box>
       <Grid container spacing={0} sx={{ textAlign: "center" }}>
         {couponsList}
-        <PaginationComponent
-          page={Number(searchParams.page)}
-          lastPage={last_page}
-        />
+        <Suspense>
+          <PaginationComponent
+            page={Number(searchParams.page)}
+            lastPage={last_page}
+          />
+        </Suspense>
       </Grid>
     </Box>
   );

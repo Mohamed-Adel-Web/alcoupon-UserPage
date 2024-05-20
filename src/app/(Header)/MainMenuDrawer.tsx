@@ -12,7 +12,6 @@ import Link from "next/link";
 import { NavigationSources } from "./NavigationLinks";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { categoryTypes } from "../types";
-import logo from "../../../public/images/logo/logo.png";
 type Props = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -119,7 +118,7 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
               textDecoration: "none",
             }}
           >
-            <Image src={logo} width={160} height={41} alt="logo" />{" "}
+            <Image src={""} width={160} height={41} alt="logo" />{" "}
           </Typography>
           <Tooltip
             title="Close"

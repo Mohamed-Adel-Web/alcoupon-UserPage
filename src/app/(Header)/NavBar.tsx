@@ -14,7 +14,6 @@ import { Button, Tooltip } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import MainMenuDrawer from "./MainMenuDrawer";
 import { categoryTypes } from "../types";
-import logo from "../../../public/images/logo/logo.png";
 import SearchModal from "./SearchModal";
 import { usePathname, useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
@@ -47,7 +46,14 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   }, [lang]);
 
   return (
-    <nav style={{ position: "sticky", top: "0", zIndex: "2" }}>
+    <nav
+      style={{
+        position: "sticky",
+        top: "0",
+        zIndex: "2",
+        background: "#212121",
+      }}
+    >
       <Container maxWidth="lg">
         <Toolbar
           disableGutters
@@ -68,12 +74,21 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 textDecoration: "none",
               }}
             >
-              <Image
-                src={logo}
-                width={180}
-                height={51}
-                alt="Picture of the author"
-              />{" "}
+              {lang == "en" ? (
+                <img
+                  src={"/images/logo/logo_En.svg"}
+                  width={141}
+                  height={40}
+                  alt="logo image"
+                />
+              ) : (
+                <img
+                  src={"/images/logo/logo_Ar.svg"}
+                  width={141}
+                  height={40}
+                  alt="logo image"
+                />
+              )}
             </Typography>
           </Link>
           {/* Logo */}
@@ -106,7 +121,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
             />
             <Button
               type="button"
-              sx={{ p: "7px", backgroundColor: "#E9ECEF", color: "#000" }}
+              sx={{ p: "7px", backgroundColor: "#E9ECEF", color: "black" }}
               aria-label="search"
               onClick={() => {
                 if (searchInput.length > 1) {
@@ -122,7 +137,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
 
           <Box sx={{ display: "flex" }}>
             {/* languageControl */}
-            <Tooltip title="Go to Arabic Interface" sx={{ color: "black" }}>
+            <Tooltip title="Go to Arabic Interface" sx={{ color: "white" }}>
               <IconButton
                 onClick={() => {
                   const newLang = lang === "ar" ? "en" : "ar";
@@ -159,7 +174,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               {/* main menu in small screen  */}
               <Tooltip
                 title="Main menu"
-                sx={{ color: "" }}
+                sx={{ color: "white" }}
                 onClick={() => {
                   setMainMenuOpen(true);
                 }}

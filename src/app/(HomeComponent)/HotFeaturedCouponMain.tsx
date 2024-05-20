@@ -1,7 +1,10 @@
-import { Box, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import Link from "next/link";
+
 import { Language, couponType } from "../types";
+import CustomCard from "@/CustomCard";
 
 function HotOffersMain({
   couponData,
@@ -13,52 +16,8 @@ function HotOffersMain({
   const offerCouponDataList = couponData?.map((coupon) => {
     return (
       <>
-        <Grid xs={6} sm={4} md={3} lg={3}>
-          <Box
-            sx={{
-              background: "white",
-              border: "1px solid #dddddd",
-              padding: "1rem",
-              minHeight: "11.25rem",
-            }}
-          >
-            <Link href={`discount-codes/${coupon.store.id}`}>
-              <Tooltip title={lang == "en" ? coupon.title_en : coupon.title_ar}>
-                <img
-                  width={100}
-                  height={36}
-                  style={{ height: "36px" }}
-                  src={coupon.store.image}
-                  alt="company-image"
-                />
-              </Tooltip>
-            </Link>
-            <Box
-              className="coupon-box-text"
-              sx={{ margin: "1rem auto", width: "100%" }}
-            >
-              <textarea
-                name="discount_coupon_code"
-                className="couponCode"
-                cols={15}
-                rows={1}
-                readOnly
-                contentEditable="false"
-                autoComplete="off"
-              >
-                {coupon.code}
-              </textarea>
-            </Box>
-            <Tooltip title={lang == "en" ? coupon.title_en : coupon.title_ar}>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                className="promoCodeDiscount"
-              >
-                {lang == "en" ? coupon.title_en : coupon.title_ar}
-              </Typography>
-            </Tooltip>
-          </Box>
+        <Grid xs={12} sm={6} md={4} lg={3} key={coupon.id}>
+          <CustomCard type="coupon" data={coupon} lang={lang} />
         </Grid>
       </>
     );

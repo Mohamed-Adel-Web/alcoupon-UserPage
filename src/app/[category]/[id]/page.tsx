@@ -1,9 +1,22 @@
-import { Box, Typography, Tooltip } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Tooltip,
+  CardMedia,
+  Card,
+  CardContent,
+  Button,
+  CardActions,
+} from "@mui/material";
 import type { Metadata } from "next";
 import Grid from "@mui/material/Unstable_Grid2";
 import Link from "next/link";
 import { Language, categoryTypes } from "@/app/types";
-import { useGetStoreByCategory } from "./useGetStoreByCategory";
+import { useGetStoreByCategory } from "../../FetchData/useGetStoreByCategory";
+import GppGoodIcon from "@mui/icons-material/GppGood";
+import GppBadIcon from "@mui/icons-material/GppBad";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import CustomCard from "@/CustomCard";
 export const generateMetadata = async ({
   params,
   searchParams,
@@ -40,51 +53,8 @@ export default async function categoryPage({
 
   const allStoreDataList = categoryData?.stores?.map((store) => {
     return (
-      <Grid xs={6} sm={4} md={3} lg={3} key={store.name_en}>
-        <Link
-          href={`/discount-codes/${store.id}?lang=${searchParams.lang}`}
-          style={{ textDecoration: "none" }}
-        >
-          <Box
-            sx={{
-              background: "white",
-              border: "1px solid #dddddd",
-              padding: "1rem",
-              minHeight: "14rem",
-            }}
-          >
-            <Tooltip
-              title={
-                searchParams.lang == "en"
-                  ? store.description_en
-                  : store.description_ar
-              }
-            >
-              <img
-                loading="lazy"
-                width={100}
-                height={36}
-                style={{ height: "36px" }}
-                src={store.image}
-                alt="company image"
-              />
-            </Tooltip>
-            <Typography
-              variant="body2"
-              className="storeDiscount"
-              sx={{ padding: "1rem 0 ", color: "#b53d3d" }}
-            >
-              {searchParams.lang == "en" ? store.title_en : store.title_ar}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              className="storeName"
-            >
-              {searchParams.lang == "en" ? store.name_en : store.name_ar}
-            </Typography>
-          </Box>
-        </Link>
+      <Grid xs={12} sm={6} md={4} lg={3} key={store.name_en}>
+        <CustomCard data={store} type="store" lang={searchParams.lang} />
       </Grid>
     );
   });

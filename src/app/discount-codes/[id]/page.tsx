@@ -1,4 +1,4 @@
-import { Box, Button, Tooltip, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import Grid from "@mui/material/Unstable_Grid2";
 import CouponHead from "./CouponHead";
@@ -8,7 +8,7 @@ import CouponDetails from "./CouponDetails";
 import { Metadata } from "next";
 import { Language, ProductType, StoreType } from "@/app/types";
 import CouponFlags from "./CouponFlags";
-import { useSingleStoreData } from "./useGetSingleStore";
+import { useSingleStoreData } from "../../FetchData/useGetSingleStore";
 import { couponType } from "@/app/types";
 export const generateMetadata = async ({
   params,

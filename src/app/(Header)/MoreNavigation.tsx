@@ -4,8 +4,8 @@ import { styled, alpha } from "@mui/material/styles";
 import Menu, { MenuProps } from "@mui/material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MenuItem from "@mui/material/MenuItem";
-import { Button, Typography } from "@mui/material";
-import { Language, categoryTypes } from "../types";
+import { Button } from "@mui/material";
+import { categoryTypes } from "../types";
 import Link from "next/link";
 const StyledMenu = styled((props: MenuProps) => (
   <Menu

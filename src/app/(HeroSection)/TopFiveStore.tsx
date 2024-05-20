@@ -29,7 +29,7 @@ function TopStoreCoupon({
       >
         <Link href={`discount-codes/${store.id}?lang=${lang}`}>
           <Tooltip
-            title={lang == "en" ? store.description_en : store.description_ar}
+            title={lang == "en" ? store.discount_en : store.discount_ar}
             sx={{ display: "block", widthL: "100%" }}
           >
             <img

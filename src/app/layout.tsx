@@ -6,8 +6,9 @@ import Container from "@mui/material/Container";
 import Footer from "./Footer/Footer";
 import NavBar from "./(Header)/NavBar";
 import NavigationLinks from "./(Header)/NavigationLinks";
-import { useGetCategories } from "./(Header)/useGetCategory";
-import { useSearchParams } from "next/navigation";
+import { useGetCategories } from "./FetchData/useGetCategory";
+import { Suspense } from "react";
+import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const AllCategories = await useGetCategories();
+  const AllStores = await useFeaturedStoresData();
 
   return (
     <html lang="en">
@@ -35,8 +37,13 @@ export default async function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <NavBar AllCategories={AllCategories} />
-        <NavigationLinks AllCategoriesData={AllCategories} />
+        <Suspense>
+          <NavBar AllCategories={AllCategories} />
+        </Suspense>
+        <Suspense>
+          <NavigationLinks AllCategoriesData={AllCategories} />
+        </Suspense>
+
         <Container
           maxWidth="lg"
           sx={{ textAlign: { xs: "center", md: "start" } }}
@@ -44,7 +51,9 @@ export default async function RootLayout({
           {children}
         </Container>
         <footer>
-          <Footer />
+          <Suspense>
+            <Footer stores={AllStores} />
+          </Suspense>
         </footer>
       </body>
     </html>

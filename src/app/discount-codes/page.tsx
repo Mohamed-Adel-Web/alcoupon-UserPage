@@ -1,10 +1,21 @@
 import { Box, Typography, Tooltip, Pagination, Stack } from "@mui/material";
 import type { Metadata } from "next";
-import { StoreType, Language } from "../types";
+import { Language } from "../types";
 import Grid from "@mui/material/Unstable_Grid2";
-import { useStoresData } from "./useStoresData";
+import { useStoresData } from "../FetchData/useStoresData";
 import PaginationComponent from "./Pagination";
 import Link from "next/link";
+import { Suspense } from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import GppGoodIcon from "@mui/icons-material/GppGood";
+import GppBadIcon from "@mui/icons-material/GppBad";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import CustomCard from "@/CustomCard";
+
 export const metadata: Metadata = {
   title: "All store discount",
   description: `Click here for all the online shopping sites and various e-commerce stores offering the latest coupons, discount codes, as well as deals & offers!`,
@@ -18,51 +29,8 @@ export default async function ALLStores({
   const { storesData, last_page } = await useStoresData(searchParams.page);
   const allStoreDataList = storesData?.map((store) => {
     return (
-      <Grid xs={6} sm={4} md={3} lg={3} key={store.name_en}>
-        <Link
-          href={`discount-codes/${store.id}?lang=${searchParams.lang}`}
-          style={{ textDecoration: "none" }}
-        >
-          <Box
-            sx={{
-              background: "white",
-              border: "1px solid #dddddd",
-              padding: "1rem",
-              minHeight: "14rem",
-            }}
-          >
-            <Tooltip
-              title={
-                searchParams.lang == "en"
-                  ? store.title_en
-                  : store.title_ar
-              }
-            >
-              <img
-                loading="lazy"
-                width={120}
-                height={46}
-                style={{ height: "40px" }}
-                src={store.image}
-                alt="company image"
-              />
-            </Tooltip>
-            <Typography
-              variant="body2"
-              className="storeDiscount"
-              sx={{ padding: "1rem 0 ", color: "#b53d3d" }}
-            >
-              {searchParams.lang == "en" ? store.discount_en : store.discount_ar}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              className="storeName"
-            >
-              {searchParams.lang == "en" ? store.name_en : store.name_ar}
-            </Typography>
-          </Box>
-        </Link>
+      <Grid xs={12} sm={6} md={4} lg={3} key={store.name_en}>
+        <CustomCard type="store" data={store} lang={searchParams.lang}/>
       </Grid>
     );
   });
@@ -102,10 +70,12 @@ export default async function ALLStores({
       </Box>
       <Grid container spacing={2} sx={{ textAlign: "center" }}>
         {allStoreDataList}
-        <PaginationComponent
-          page={Number(searchParams.page)}
-          lastPage={last_page}
-        />
+        <Suspense>
+          <PaginationComponent
+            page={Number(searchParams.page)}
+            lastPage={last_page}
+          />
+        </Suspense>
       </Grid>
 
       <Box

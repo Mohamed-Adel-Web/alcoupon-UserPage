@@ -3,9 +3,8 @@ import Container from "@mui/material/Container";
 import Link from "next/link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
-import { useGetCategories } from "./useGetCategory";
 import MoreNavigation from "./MoreNavigation";
-import { Language, categoryTypes } from "../types";
+import {  categoryTypes } from "../types";
 import { useSearchParams } from "next/navigation";
 export const NavigationSources: {
   title_en: string;
