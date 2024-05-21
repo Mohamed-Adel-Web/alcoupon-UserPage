@@ -55,10 +55,10 @@ function Footer({ stores }: { stores: StoreType[] }) {
       </li>
     );
   });
-  const TopStoreData = stores.filter((store, index) => {
+  const TopStoreData = stores?.filter((store, index) => {
     return index < 6;
   });
-  const topStoresList = TopStoreData.map((store) => {
+  const topStoresList = TopStoreData?.map((store) => {
     return (
       <li style={{ margin: "1rem 0" }}>
         <Link
