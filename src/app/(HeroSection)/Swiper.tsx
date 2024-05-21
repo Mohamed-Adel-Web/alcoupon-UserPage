@@ -7,12 +7,15 @@ import "./swiperStyle.css";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { SwiperType } from "../types";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 function SwiperApp({ swiperData }: { swiperData: SwiperType[] }) {
+  const searchParam = useSearchParams();
+  const lang = searchParam?.get("lang");
   const swiperList = swiperData.map((swiper, index) => (
     <SwiperSlide key={index}>
       <Image
-        src={swiper.images.images}
+        src={lang == "en" ? swiper.image_en : swiper.image_ar}
         width={948}
         height={302}
         alt="Hot offer Image"

@@ -75,7 +75,6 @@ export enum Language {
 
 export interface SwiperType {
   id?: number;
-  images: {
-    images: string;
-  };
+  image_ar: string;
+  image_en: string;
 }
