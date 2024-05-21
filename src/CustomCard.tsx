@@ -12,6 +12,7 @@ import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GppGoodIcon from "@mui/icons-material/GppGood";
 import GppBadIcon from "@mui/icons-material/GppBad";
 import { StoreType, couponType } from "./app/types";
+import Image from "next/image";
 
 type Props = {
   type: "store" | "coupon";
@@ -53,14 +54,16 @@ export default function CustomCard({ type, data, lang }: Props) {
 
   return (
     <Card sx={{ padding: "1rem 0", textAlign: "start" }}>
-      <CardMedia
-        sx={{
+      <Image
+        height={100}
+        width={300}
+        style={{
+          width: "100%",
           height: "100px",
           objectFit: "contain",
         }}
-        component={"img"}
-        image={store.image}
-        title="store image"
+        alt="store image"
+        src={store.image}
       />
       <CardContent>
         <Typography
@@ -127,7 +130,12 @@ export default function CustomCard({ type, data, lang }: Props) {
         {isCoupon && (
           <div
             className="coupon-box-text"
-            style={{ marginTop: "1rem", width: "100%" }}
+            style={{
+              marginTop: "1rem",
+              marginRight: "auto",
+              marginLeft: "auto",
+              width: "100%",
+            }}
           >
             <textarea
               name="discount_coupon_code"

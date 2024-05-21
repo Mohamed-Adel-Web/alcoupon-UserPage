@@ -4,34 +4,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./swiperStyle.css";
-
-// import required modules
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import { useEffect, useState } from "react";
 import { SwiperType } from "../types";
-import { useSwiperData } from "../FetchData/useGetSwiper";
+import Image from "next/image";
 
- function SwiperApp() {
-  const [imagesSrc, setImagesSrc] = useState<SwiperType[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const data = await useSwiperData();
-        setImagesSrc(data);
-      } catch (error) {
-        console.error("Failed to fetch images:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchImages();
-  }, []);
-
-  const swiperList = imagesSrc.map((swiper, index) => (
+function SwiperApp({ swiperData }: { swiperData: SwiperType[] }) {
+  const swiperList = swiperData.map((swiper, index) => (
     <SwiperSlide key={index}>
-      <img
+      <Image
         src={swiper.images.images}
         width={948}
         height={302}

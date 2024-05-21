@@ -29,4 +29,4 @@ const useSwiperData = async () => {
     return [];
   }
 };
-export { useSwiperData };
+export default useSwiperData;

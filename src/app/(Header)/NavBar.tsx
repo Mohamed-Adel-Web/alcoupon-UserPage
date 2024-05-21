@@ -75,14 +75,14 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               }}
             >
               {lang == "en" ? (
-                <img
+                <Image
                   src={"/images/logo/Logo_En.svg"}
                   width={151}
                   height={51}
                   alt="Picture of the author"
                 />
               ) : (
-                <img
+                <Image
                   src={"/images/logo/Logo_Ar.svg"}
                   width={151}
                   height={51}

@@ -9,6 +9,7 @@ import { useFeaturedCoupons } from "./FetchData/useFeaturedCoupon";
 import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
 import { Language } from "./types";
 import { Suspense } from "react";
+import useSwiperData from "./FetchData/useGetSwiper";
 
 export default async function Home({
   searchParams,
@@ -18,11 +19,11 @@ export default async function Home({
   const lang = searchParams.lang;
   const couponData = await useFeaturedCoupons();
   const storesData = await useFeaturedStoresData();
-
+  const swiperData = await useSwiperData();
   return (
     <main>
       <Suspense>
-        <HeroSection storesData={storesData} />
+        <HeroSection storesData={storesData} swiperData={swiperData} />
       </Suspense>
       <HotFeaturedCouponHead lang={lang} />
       <HotFeaturedCouponMain couponData={couponData} lang={lang} />

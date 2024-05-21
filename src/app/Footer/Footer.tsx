@@ -9,6 +9,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { useSearchParams } from "next/navigation";
 import { StoreType } from "../types";
+import Image from "next/image";
 function Footer({ stores }: { stores: StoreType[] }) {
   const searchParam = useSearchParams();
   const lang = searchParam.get("lang");
@@ -126,14 +127,14 @@ function Footer({ stores }: { stores: StoreType[] }) {
               }}
             >
               {lang == "en" ? (
-                <img
+                <Image
                   src={"/images/logo/Logo_En.svg"}
                   width={151}
                   height={51}
                   alt="Picture of the author"
                 />
               ) : (
-                <img
+                <Image
                   src={"/images/logo/Logo_Ar.svg"}
                   width={151}
                   height={51}
