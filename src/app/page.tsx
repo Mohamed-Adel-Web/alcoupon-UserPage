@@ -7,10 +7,31 @@ import HomeFeatureStoreMain from "./(HomeComponent)/HomaFeatureStoreMain";
 import CouponInstruction from "./(HomeComponent)/CouponInstruction";
 import { useFeaturedCoupons } from "./FetchData/useFeaturedCoupon";
 import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
-import { Language } from "./types";
 import { Suspense } from "react";
 import useSwiperData from "./FetchData/useGetSwiper";
+import { Metadata } from "next";
+import { Language } from "./types";
 
+export const metadata = ({
+  searchParams,
+}: {
+  searchParams: { lang: Language };
+}): Metadata => {
+  return searchParams?.lang === "en"
+    ? {
+        title: "Shop Coupons and Discount Codes in KSA & GCC",
+        description:
+          "Discover exclusive coupons and promo codes at our one-stop destination! Your ultimate destination for deals awaits; embrace discounts.",
+        keywords:
+          "Coupons, Discount codes, Promo codes, Vouchers, Coupon code, discount code, Coupon",
+      }
+    : {
+        title: "كوبونات التسوق - بوابة اكواد خصم المتاجر في السعودية والخليج",
+        description:
+          "اكتشف اكواد خصم وكوبونات المتاجر العالمية الحصرية في وجهتنا الاستثنائية! تنتظرك خصومات لا مثيل لها؛ اغتنم الصفقات الرائعة وفرص التوفير الكبير",
+        keywords: " كوبون، كود خصم، كوبونات، اكواد خصم، كود توفير",
+      };
+};
 export default async function Home({
   searchParams,
 }: {

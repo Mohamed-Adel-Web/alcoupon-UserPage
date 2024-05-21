@@ -18,6 +18,7 @@ body.rtl {
 body {
   background-color: #f2f2f2;
   direction: rtl;
+  overflow-x:hidden ;
 }
 @font-face {
   font-family: "Libre Franklin";
@@ -41,7 +42,6 @@ body {
 }
 nav,
 .DrawerHeader {
-  background: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   color: #292a2a;
 }

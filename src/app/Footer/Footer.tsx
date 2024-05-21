@@ -71,7 +71,6 @@ function Footer({ stores }: { stores: StoreType[] }) {
             fontSize: "0.9rem",
             lineHeight: "44px",
             letterSpacing: "2px",
-
             whiteSpace: "nowrap",
             textTransform: "capitalize",
           }}
@@ -89,28 +88,59 @@ function Footer({ stores }: { stores: StoreType[] }) {
         border: "1px solid #dddddd",
         background: "black",
         marginTop: "2rem",
-        textAlign: { xs: "center", md: "left" },
+        textAlign: { xs: "center", md: "start" },
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={2}>
-          <Grid xs={12} md={6} lg={4}>
+        <Grid container spacing={6}>
+          <Grid xs={12} md={6} lg={3}>
             <Typography
               sx={{ fontWeight: "bold", fontSize: "1.5rem", color: "#F6931E" }}
             >
-              Feature sections
+              {lang == "en"
+                ? `              About Shop Coupons
+                `
+                : `عن كوبونات التسوق
+`}{" "}
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ lineHeight: "2rem", margin: "1rem 0" }}
+            >
+              {lang == "en"
+                ? `Shop Coupons is Saudi Arabia and GCC's largest platform for
+              coupons and discount codes. It offers a range of features that
+              help users save money and avail discounts and offers from various
+              stores.`
+                : `كوبونات التسوق هي اكبر منصة كوبونات و اكواد خصم في المملكة العربية السعودية والخليج. تقدم مجموعة من المميزات التي تساعد المستخدمين على توفير المال والاستفادة من الخصومات الرائعه والعروض الحصريه من مختلف المتاجر.`}
+            </Typography>
+          </Grid>
+          <Grid xs={12} md={6} lg={3}>
+            <Typography
+              sx={{ fontWeight: "bold", fontSize: "1.5rem", color: "#F6931E" }}
+            >
+              {lang == "en"
+                ? `              Feature sections
+`
+                : `الأقسام المميزة
+
+`}
             </Typography>
             <ul>{NavigationLinksList}</ul>
           </Grid>
-          <Grid xs={12} md={6} lg={4}>
+          <Grid xs={12} md={6} lg={3}>
             <Typography
               sx={{ fontWeight: "bold", fontSize: "1.5rem", color: "#F6931E" }}
             >
-              Top Stores
+              {lang == "en"
+                ? `Top Stores`
+                : `المتاجر المميزة
+
+`}
             </Typography>
             <ul>{topStoresList}</ul>
           </Grid>
-          <Grid xs={12} md={6} lg={4} sx={{ textAlign: "center" }}>
+          <Grid xs={12} md={6} lg={3} sx={{ textAlign: "center" }}>
             <Typography
               variant="h6"
               noWrap

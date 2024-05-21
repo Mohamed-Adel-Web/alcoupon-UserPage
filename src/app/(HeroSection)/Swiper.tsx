@@ -17,7 +17,7 @@ function SwiperApp({ swiperData }: { swiperData: SwiperType[] }) {
       <Image
         src={lang == "en" ? swiper.image_en : swiper.image_ar}
         width={948}
-        height={302}
+        height={332}
         alt="Hot offer Image"
       />
     </SwiperSlide>

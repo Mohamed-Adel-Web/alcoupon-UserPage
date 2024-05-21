@@ -19,11 +19,27 @@ import { Language, couponType } from "../types";
 import { useCouponsData } from "../FetchData/useGetCoupon";
 import { Suspense } from "react";
 import CustomCard from "@/CustomCard";
-export const metadata: Metadata = {
-  title: "All stores coupon",
-  description: `Get instant discounts on your online purchases with special discount coupons in  Find the best promo codes, deals and your favorite products.`,
+export const generateMetadata = ({
+  searchParams,
+}: {
+  searchParams: { lang: Language };
+}): Metadata => {
+  return searchParams?.lang === "en"
+    ? {
+        title:
+          " Top Discount Codes & Coupons Saving Of Up To 90% - Shop Coupons",
+        description:
+          "Save big with Shop coupons, deals, and promos! Get discounts and exclusive offers from top brands on clothing, beauty, grocery, and more.",
+        keywords:
+          "Coupons, Discount codes, Promo codes, Vouchers, Coupon code, discount code, Coupon",
+      }
+    : {
+        title: "كوبونات التسوق - احدث اكواد الخصم وكوبونات التوفير حتى 90% لكل المتاجر",
+        description:
+          "وفر الكثير مع كوبونات التسوق والصفقات والعروض! احصل على خصومات وعروض حصرية من أفضل العلامات التجارية من الملابس والجمال والبقالة والمزيد.",
+        keywords: " كوبون، كود خصم، كوبونات، اكواد خصم، كود توفير",
+      };
 };
-
 export default async function Offers({
   searchParams,
 }: {

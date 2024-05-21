@@ -4,21 +4,30 @@ import { Language } from "../types";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useStoresData } from "../FetchData/useStoresData";
 import PaginationComponent from "./Pagination";
-import Link from "next/link";
 import { Suspense } from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import GppGoodIcon from "@mui/icons-material/GppGood";
-import GppBadIcon from "@mui/icons-material/GppBad";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
 import CustomCard from "@/CustomCard";
 
-export const metadata: Metadata = {
-  title: "All store discount",
-  description: `Click here for all the online shopping sites and various e-commerce stores offering the latest coupons, discount codes, as well as deals & offers!`,
+export const generateMetadata = ({
+  searchParams,
+}: {
+  searchParams: { lang: Language };
+}): Metadata => {
+  return searchParams?.lang === "en"
+    ? {
+        title:
+          " Explore Top Online Stores for Latest Coupons and Deals - Shop Coupons",
+        description:
+          "Click here for a comprehensive list of online shopping sites and e-commerce stores featuring the latest coupons, discount codes, and deals.",
+        keywords:
+          "Coupons, Discount codes, Promo codes, Vouchers, Coupon code, discount code, Coupon, deals",
+      }
+    : {
+        title:
+          "كوبونات التسوق - استكشف افضل المتاجر عبر الإنترنت للحصول على احدث اكواد الخصم",
+        description:
+          "اضغط هنا للحصول على قائمة شاملة بمواقع التسوق عبر الإنترنت والمتاجر الإلكترونية التي تعرض أحدث القسائم واكواد الخصم وكوبونات التوفير والعروض.",
+        keywords: "كوبون، كود خصم، كوبونات، اكواد خصم، كود توفير",
+      };
 };
 
 export default async function ALLStores({
@@ -30,7 +39,7 @@ export default async function ALLStores({
   const allStoreDataList = storesData?.map((store) => {
     return (
       <Grid xs={12} sm={6} md={4} lg={3} key={store.name_en}>
-        <CustomCard type="store" data={store} lang={searchParams.lang}/>
+        <CustomCard type="store" data={store} lang={searchParams.lang} />
       </Grid>
     );
   });

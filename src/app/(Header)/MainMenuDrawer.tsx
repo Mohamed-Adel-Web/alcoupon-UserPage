@@ -103,26 +103,45 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
           sx={{
             padding: "1rem 0.5rem",
             display: "flex",
+            backgroundColor:"black",
             justifyContent: "space-between",
             alignItems: "center",
           }}
         >
-          <Typography
-            sx={{
-              mr: 2,
-              display: "flex",
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            <Image src={""} width={160} height={41} alt="logo" />{" "}
-          </Typography>
+          <Link href={`/?lang=${lang}`}>
+            <Typography
+              variant="h6"
+              noWrap
+              sx={{
+                mr: 2,
+                display: "flex",
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              {lang == "en" ? (
+                <Image
+                  src={"/images/logo/Logo_En.svg"}
+                  width={151}
+                  height={51}
+                  alt="Picture of the author"
+                />
+              ) : (
+                <Image
+                  src={"/images/logo/Logo_Ar.svg"}
+                  width={151}
+                  height={51}
+                  alt="Picture of the author"
+                />
+              )}
+            </Typography>
+          </Link>
           <Tooltip
             title="Close"
-            sx={{ color: "black", cursor: "pointer" }}
+            sx={{ color: "white", cursor: "pointer" }}
             onClick={handleDrawerClose}
           >
             <CloseRoundedIcon />

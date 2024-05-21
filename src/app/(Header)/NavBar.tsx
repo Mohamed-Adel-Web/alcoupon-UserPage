@@ -1,4 +1,5 @@
 "use client";
+import React, { useEffect, useMemo, useState } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -11,13 +12,12 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, Tooltip } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
 import MainMenuDrawer from "./MainMenuDrawer";
 import { categoryTypes } from "../types";
 import SearchModal from "./SearchModal";
-import { usePathname, useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+
 function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   const [openMainMenu, setMainMenuOpen] = useState<boolean>(false);
   const [lang, setLang] = useState<string | null>("ar");
@@ -26,16 +26,20 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   const pathname = usePathname();
   const router = useRouter();
   const currentSearchParams = useSearchParams();
+
   const handleSearchOpen = () => {
     setSearchOpen(true);
   };
+  
   const handleSearchClose = () => {
     setSearchOpen(false);
   };
+
   useEffect(() => {
     setLang(currentSearchParams.get("lang"));
-  }, []);
-  useMemo(() => {
+  }, [currentSearchParams]);
+
+  useEffect(() => {
     if (lang == "ar") {
       document.body.dir = "rtl";
       document.body.className = "rtl";
@@ -79,14 +83,14 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                   src={"/images/logo/Logo_En.svg"}
                   width={151}
                   height={51}
-                  alt="Picture of the author"
+                  alt="Logo"
                 />
               ) : (
                 <Image
                   src={"/images/logo/Logo_Ar.svg"}
                   width={151}
                   height={51}
-                  alt="Picture of the author"
+                  alt="Logo"
                 />
               )}
             </Typography>
@@ -107,13 +111,10 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               sx={{ ml: 1, flex: 1 }}
               placeholder={
                 lang == "en"
-                  ? `Search stores, coupons and discounts`
-                  : `ابحث عن المتاجر، الكوبونات، والخصومات
-`
+                  ? "Search stores, coupons and discounts"
+                  : "ابحث عن المتاجر، الكوبونات، والخصومات"
               }
-              inputProps={{
-                "aria-label": "Search stores, coupons and discounts",
-              }}
+              inputProps={{ "aria-label": "Search stores, coupons and discounts" }}
               value={searchInput}
               onChange={(event) => {
                 setSearchInput(event.target.value);
@@ -142,9 +143,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 onClick={() => {
                   const newLang = lang === "ar" ? "en" : "ar";
                   setLang(newLang);
-                  const updatedSearchParams = new URLSearchParams(
-                    currentSearchParams.toString()
-                  );
+                  const updatedSearchParams = new URLSearchParams(currentSearchParams.toString());
                   updatedSearchParams.set("lang", newLang);
                   router.push(pathname + "?" + updatedSearchParams.toString());
                 }}
@@ -156,49 +155,25 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
             {/* languageControl */}
             <Typography sx={{ display: { xs: "flex", md: "none" } }}>
               {/* Search in small Screen */}
-              <Tooltip
-                title="Search"
-                sx={{ color: "black" }}
-                onClick={handleSearchOpen}
-              >
+              <Tooltip title="Search" sx={{ color: "white" }} onClick={handleSearchOpen}>
                 <IconButton>
                   <SearchIcon />
                 </IconButton>
               </Tooltip>
-              <SearchModal
-                lang={lang}
-                open={searchOpen}
-                handleSearchClose={handleSearchClose}
-              />
+              <SearchModal lang={lang} open={searchOpen} handleSearchClose={handleSearchClose} />
               {/* Search in small Screen */}
-              {/* main menu in small screen  */}
-              <Tooltip
-                title="Main menu"
-                sx={{ color: "white" }}
-                onClick={() => {
-                  setMainMenuOpen(true);
-                }}
-              >
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                >
+              {/* main menu in small screen */}
+              <Tooltip title="Main menu" sx={{ color: "white" }} onClick={() => setMainMenuOpen(true)}>
+                <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true">
                   <MenuIcon />
                 </IconButton>
               </Tooltip>
-              {/* main menu in small screen  */}
+              {/* main menu in small screen */}
             </Typography>
           </Box>
         </Toolbar>
       </Container>
-      <MainMenuDrawer
-        open={openMainMenu}
-        setOpen={setMainMenuOpen}
-        AllCategories={AllCategories}
-        lang={lang}
-      />
+      <MainMenuDrawer open={openMainMenu} setOpen={setMainMenuOpen} AllCategories={AllCategories} lang={lang} />
     </nav>
   );
 }
