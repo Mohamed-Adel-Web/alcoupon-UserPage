@@ -11,10 +11,10 @@ function TopStoreCoupon({
   storesData: StoreType[];
   lang: string | null;
 }) {
-  const TopHeroStore = storesData.filter((store, index) => {
+  const TopHeroStore = storesData?.filter((store, index) => {
     return index < 6;
   });
-  const TopStoreDataList = TopHeroStore.map((store) => {
+  const TopStoreDataList = TopHeroStore?.map((store) => {
     return (
       <Grid
         xs={6}
