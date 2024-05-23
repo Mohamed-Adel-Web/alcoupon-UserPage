@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./styles/all.min.css";
 import "./styles/globals.css";
 import Container from "@mui/material/Container";
@@ -9,14 +7,7 @@ import NavigationLinks from "./(Header)/NavigationLinks";
 import { useGetCategories } from "./FetchData/useGetCategory";
 import { Suspense } from "react";
 import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
-const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Al Coupon - Egypt Online Stores Discount Codes",
-
-  description:
-    "Searching for the best coupon codes for Arab & international online stores? Al Coupon offers you the latest promo codes & discounts, valid in Egypt",
-};
 
 export default async function RootLayout({
   children,
@@ -29,14 +20,43 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        {" "}
         <link
           rel="shortcut icon"
           type="image/png"
           href="/images/title/favicon.ico"
         />
+        {/* Google Tag Manager */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11459696307"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-11459696307');
+            `,
+          }}
+        />
+        {/* Google Analytics */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=UA-137368123-1"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'UA-137368123-1');
+            `,
+          }}
+        /> 
       </head>
-      <body className={inter.className}>
+      <body>
         <Suspense>
           <NavBar AllCategories={AllCategories} />
         </Suspense>

@@ -21,6 +21,7 @@ type Props = {
 };
 
 export default function CustomCard({ type, data, lang }: Props) {
+  
   const isCoupon = type === "coupon";
   const store = isCoupon ? (data as couponType).store : (data as StoreType);
 
@@ -31,15 +32,19 @@ export default function CustomCard({ type, data, lang }: Props) {
     } else if (typeof status === "boolean") {
       isActive = status;
     }
+    const iconProps =
+      lang === "en"
+        ? { startIcon: isActive ? <GppGoodIcon /> : <GppBadIcon /> }
+        : { endIcon: isActive ? <GppGoodIcon /> : <GppBadIcon /> };
     return (
       <Button
         component="label"
         role={undefined}
         color={isActive ? "success" : "error"}
         variant="text"
-        sx={{ padding: "0" }}
+        sx={{ padding: "0",gap: "8px"}}
         tabIndex={-1}
-        startIcon={isActive ? <GppGoodIcon /> : <GppBadIcon />}
+        {...iconProps}
       >
         {lang === "en"
           ? isActive

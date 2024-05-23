@@ -20,12 +20,10 @@ function HeroSection({
     <>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
-          <Grid xs={12} lg={10}>
+          <Grid xs={12} lg={12}>
             <SwiperApp swiperData={swiperData} />
           </Grid>
-          <Grid xs={12} lg={2}>
-            <TopStoreCoupon storesData={storesData} lang={lang} />
-          </Grid>
+
         </Grid>
       </Box>
     </>
