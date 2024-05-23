@@ -9,35 +9,35 @@ type flag = {
 const flags: flag[] = [
   {
     code: "EG",
-    image: "/Images/flags/egypt-flag-png-large.png",
+    image: "/images/flags/eg.svg",
   },
   {
     code: "SA",
-    image: "/Images/flags/saudi-arabia-flag-png-large.png",
+    image: "/images/flags/sa.svg",
   },
   {
     code: "QA",
-    image: "/Images/flags/qatar-flag-png-large.png",
+    image: "/images/flags/qa.svg",
   },
   {
     code: "OM",
-    image: "/Images/flags/oman-flag-png-large.png",
+    image: "/images/flags/om.svg",
   },
   {
     code: "KW",
-    image: "/Images/flags/kuwait-flag-png-large.png",
+    image: "/images/flags/kw.svg",
   },
   {
     code: "AE",
-    image: "/Images/flags/united-arab-emirates-flag-png-large.png",
+    image: "/images/flags/ae.svg",
   },
   {
     code: "BH",
-    image: "/Images/flags/flag-jpg-xl-13-2048x1229.jpg",
+    image: "/images/flags/bh.svg",
   },
   {
     code: "WW",
-    image: "/Images/flags/globe_14061916.png",
+    image: "/images/flags/ww.svg",
   },
 ];
 export default function CouponFlags({
@@ -52,7 +52,7 @@ export default function CouponFlags({
   });
   const couponCountryList = couponCountry.map((country) => {
     return (
-      <img
+      <Image
         src={country.image}
         style={{ borderRadius: "50%" }}
         width={30}

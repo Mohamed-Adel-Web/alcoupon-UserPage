@@ -4,9 +4,11 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Libre Franklin", sans-serif;
   list-style: none;
+  font-family: "Tajawal", sans-serif !important; ;
+
 }
+
 body.ltr {
   direction: ltr;
 }
@@ -14,30 +16,33 @@ body.ltr {
 body.rtl {
   direction: rtl;
 }
+.fa-brands {
+  font-family: "Font Awesome 6 Brands" !important;
+}
 
 body {
   background-color: #f2f2f2;
   direction: rtl;
-  overflow-x:hidden ;
+  overflow-x: hidden;
 }
 @font-face {
-  font-family: "Libre Franklin";
-  src: url("../../../public/Fonts/static/LibreFranklin-Light.ttf");
+  font-family: "Tajawal";
+  src: url("/Fonts/Tajawal-Light.ttf");
   font-weight: 300;
 }
 @font-face {
-  font-family: "Libre Franklin";
-  src: url("../../../public/Fonts/static/LibreFranklin-Regular.ttf");
+  font-family: "Tajawal";
+  src: url("/Fonts/Tajawal-Regular.ttf");
   font-weight: 400;
 }
 @font-face {
-  font-family: "Libre Franklin";
-  src: url("../../../public/Fonts/static/LibreFranklin-SemiBold.ttf");
+  font-family: "Tajawal";
+  src: url("/Fonts/Tajawal-Medium.ttf");
   font-weight: 600;
 }
 @font-face {
-  font-family: "Libre Franklin";
-  src: url("../../../public/Fonts/static/LibreFranklin-ExtraBold.ttf");
+  font-family: "Tajawal";
+  src: url("/Fonts/Tajawal-Bold.ttf");
   font-weight: 800;
 }
 nav,
@@ -69,4 +74,8 @@ nav,
   border: 1px dashed #cccccc;
   background-color: #3092493f;
   line-height: 0;
+}
+iframe {
+  width: 100%;
+  height: 500px;
 }

@@ -46,7 +46,7 @@ export default function CouponDetails(props: Props) {
             }, 3000);
           }}
         >
-          {props.lang == "en" ? "copy" : "عطني الكود"}
+          {props.lang == "en" ? "copy" : "نسخ"}
         </Button>
       </Box>
       {isCopied ? (

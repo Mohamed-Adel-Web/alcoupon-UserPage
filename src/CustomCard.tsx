@@ -100,7 +100,7 @@ export default function CustomCard({ type, data, lang }: Props) {
       </CardContent>
       <CardActions sx={{ flexDirection: isCoupon ? "column" : "row" }}>
         <Link
-          href={`discount-codes/${store.id}?lang=${lang}`}
+          href={`/discount-codes/${store.id}?lang=${lang}`}
           style={{
             textDecoration: "none",
             display: "block",
