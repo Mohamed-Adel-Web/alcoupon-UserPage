@@ -20,7 +20,6 @@ type Props = {
 };
 
 export default function CustomCard({ type, data, lang }: Props) {
-  
   const isCoupon = type === "coupon";
   const store = isCoupon ? (data as couponType).store : (data as StoreType);
 
@@ -41,7 +40,7 @@ export default function CustomCard({ type, data, lang }: Props) {
         role={undefined}
         color={isActive ? "success" : "error"}
         variant="text"
-        sx={{ padding: "0",gap: "8px"}}
+        sx={{ padding: "0", gap: "8px" }}
         tabIndex={-1}
         {...iconProps}
       >
@@ -58,17 +57,26 @@ export default function CustomCard({ type, data, lang }: Props) {
 
   return (
     <Card sx={{ padding: "1rem 0", textAlign: "start" }}>
-      <Image
-        height={100}
-        width={300}
+      <Link
+        href={`/discount-codes/${store.id}?lang=${lang}`}
         style={{
+          textDecoration: "none",
+          display: "block",
           width: "100%",
-          height: "100px",
-          objectFit: "contain",
         }}
-        alt="store image"
-        src={store.image}
-      />
+      >
+        <Image
+          height={100}
+          width={300}
+          style={{
+            width: "100%",
+            height: "100px",
+            objectFit: "contain",
+          }}
+          alt="store image"
+          src={store.image}
+        />
+      </Link>
       <CardContent>
         <Typography
           component="div"

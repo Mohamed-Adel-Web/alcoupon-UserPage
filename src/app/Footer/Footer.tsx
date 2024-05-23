@@ -34,7 +34,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
 
   const NavigationLinksList = NavigationSources.map((link) => {
     return (
-      <li style={{ margin: "1rem 0" }}>
+      <li style={{ margin: "1rem 0" }} key={link.title_en}>
         <Link
           href={`${link.href}`}
           style={{
@@ -60,7 +60,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
   });
   const topStoresList = TopStoreData?.map((store) => {
     return (
-      <li style={{ margin: "1rem 0" }}>
+      <li style={{ margin: "1rem 0" }} key={store.name_en}>
         <Link
           href={`/discount-codes/${store.id}?lang=${lang}`}
           style={{
