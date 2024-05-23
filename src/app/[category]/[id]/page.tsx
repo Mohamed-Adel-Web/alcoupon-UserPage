@@ -1,21 +1,11 @@
 import {
   Box,
   Typography,
-  Tooltip,
-  CardMedia,
-  Card,
-  CardContent,
-  Button,
-  CardActions,
 } from "@mui/material";
 import type { Metadata } from "next";
 import Grid from "@mui/material/Unstable_Grid2";
-import Link from "next/link";
 import { Language, categoryTypes } from "@/app/types";
 import { useGetStoreByCategory } from "../../FetchData/useGetStoreByCategory";
-import GppGoodIcon from "@mui/icons-material/GppGood";
-import GppBadIcon from "@mui/icons-material/GppBad";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
 import CustomCard from "@/CustomCard";
 export const generateMetadata = async ({
   params,

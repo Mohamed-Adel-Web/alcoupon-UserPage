@@ -1,21 +1,11 @@
 import {
   Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import GppGoodIcon from "@mui/icons-material/GppGood";
-import GppBadIcon from "@mui/icons-material/GppBad";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
 import PaginationComponent from "../discount-codes/Pagination";
-import Link from "next/link";
 import type { Metadata } from "next";
-import { Language, couponType } from "../types";
+import { Language } from "../types";
 import { useCouponsData } from "../FetchData/useGetCoupon";
 import { Suspense } from "react";
 import CustomCard from "@/CustomCard";

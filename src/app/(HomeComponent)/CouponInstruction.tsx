@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import Image from "next/image";
 import Link from "next/link";
 import { Language } from "../types";
 function CouponInstruction({ lang }: { lang: Language }) {

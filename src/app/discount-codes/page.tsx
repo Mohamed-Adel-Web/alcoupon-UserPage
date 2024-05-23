@@ -6,7 +6,6 @@ import { useStoresData } from "../FetchData/useStoresData";
 import PaginationComponent from "./Pagination";
 import { Suspense } from "react";
 import CustomCard from "@/CustomCard";
-import Head from "next/head";
 
 export const generateMetadata = ({
   searchParams,
