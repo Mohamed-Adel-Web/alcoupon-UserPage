@@ -4,7 +4,7 @@ import Link from "next/link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import MoreNavigation from "./MoreNavigation";
-import {  categoryTypes } from "../types";
+import { categoryTypes } from "../types";
 import { useSearchParams } from "next/navigation";
 export const NavigationSources: {
   title_en: string;
@@ -104,7 +104,11 @@ function NavigationLinks({
         <Container maxWidth="lg" sx={{ display: "flex" }}>
           {NavigationLinksList}
           {DynamicNavigationLinksList}
-          <MoreNavigation AllCategoriesData={AllCategoriesData} lang={lang} />
+          {DynamicNavigationLinksList.length >= 8 ? (
+            <MoreNavigation AllCategoriesData={AllCategoriesData} lang={lang} />
+          ) : (
+            ""
+          )}
         </Container>
       </Paper>
     </Box>

@@ -99,6 +99,7 @@ export default async function couponDetails({
                 <Grid xs={12} lg={6}>
                   <CouponDetails coupon={coupon} lang={searchParams.lang} />
                   <Link
+                    target="_blank"
                     href={
                       searchParams.lang == "en"
                         ? `${storeData?.link_en}`

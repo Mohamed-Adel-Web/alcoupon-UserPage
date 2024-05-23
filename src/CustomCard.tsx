@@ -5,13 +5,13 @@ import {
   CardContent,
   Typography,
   Button,
-  Link,
 } from "@mui/material";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GppGoodIcon from "@mui/icons-material/GppGood";
 import GppBadIcon from "@mui/icons-material/GppBad";
 import { StoreType, couponType } from "./app/types";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   type: "store" | "coupon";

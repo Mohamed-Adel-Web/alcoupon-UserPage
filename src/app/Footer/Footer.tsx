@@ -62,7 +62,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
     return (
       <li style={{ margin: "1rem 0" }}>
         <Link
-          href={`discount-codes/${store.id}?lang=${lang}`}
+          href={`/discount-codes/${store.id}?lang=${lang}`}
           style={{
             padding: "0 0.4rem",
             textDecoration: "none",
@@ -186,6 +186,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
             >
               <li>
                 <Link
+                  target="_blank"
                   href={
                     "https://www.instagram.com/shop.coupon/?igsh=dGJmc3Zpcm1ncTl6"
                   }
@@ -200,6 +201,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
               </li>
               <li>
                 <Link
+                  target="_blank"
                   href={
                     "https://twitter.com/i/flow/login?redirect_after_login=%2FShop_coupon_"
                   }
@@ -211,6 +213,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
               </li>
               <li>
                 <Link
+                  target="_blank"
                   href={
                     "https://www.facebook.com/shop.coupon.codes?mibextid=ZbWKwL"
                   }
@@ -222,6 +225,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
               </li>
               <li>
                 <Link
+                  target="_blank"
                   href={"https://t.me/shop_couponz"}
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
@@ -232,6 +236,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
 
               <li>
                 <Link
+                  target="_blank"
                   href={
                     "https://www.snapchat.com/add/shop_coupons?share_id=ApMe0YNX2TA&locale=en-US"
                   }
@@ -243,6 +248,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
               </li>
               <li>
                 <Link
+                  target="_blank"
                   href={"https://www.youtube.com/@shop-coupons"}
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
@@ -269,6 +275,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
 `
               : `جميع الحقوق محفوظة بواسطة `}
             <Link
+              target="_blank"
               href={"https://kyanlabs.com/en"}
               style={{
                 color: "#F6931E",
