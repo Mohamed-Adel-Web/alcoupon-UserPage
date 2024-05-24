@@ -72,7 +72,7 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
         ))}
         {AllCategories.map((category, index) => (
           <Link
-            href={`${category.name_en}/${category.id}?lang=${lang}`}
+            href={`/${category.name_en}/${category.id}?lang=${lang}`}
             style={{ textDecoration: "none", color: "#000" }}
             onClick={() => {
               setOpen(false);
