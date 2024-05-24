@@ -23,7 +23,7 @@ function HotOffersMain({
   });
   return (
     <Box sx={{ margin: "1rem 0", textAlign: "center" }}>
-      <Grid container spacing={0} sx={{ textAlign: "center" }}>
+      <Grid container spacing={2} sx={{ textAlign: "center" }}>
         {offerCouponDataList}
       </Grid>
     </Box>
