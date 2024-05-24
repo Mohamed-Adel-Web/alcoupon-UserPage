@@ -39,7 +39,7 @@ export default async function Offers({
   const couponsList = couponsData?.map((coupon) => {
     return (
       <>
-        <Grid xs={12} sm={6} md={4} lg={3} key={coupon.id} spacing={2}>
+        <Grid xs={12} sm={6} md={4} lg={3} key={coupon.id} >
           <CustomCard type="coupon" data={coupon} lang={searchParams.lang} />
         </Grid>
       </>
@@ -89,7 +89,7 @@ export default async function Offers({
             : " يمكن لرمز الترويج أن يقدم خصومات فورية إما على شكل نسبة مئوية من إجمالي طلبك، مثل خصم 10٪، أو كتخفيضات ذات قيمة ثابتة، مثل خصم 10 جنيهات على مشتريات بقيمة 100 جنيه أو أكثر، أو حتى الشحن المجاني. ومع ذلك، قد يكون العثور على أكواد خصم فعالة أمرًا صعبًا أحيانًا. لهذا السبب، يقوم فريق الكوبون بفحص كل كود قسيمة وتواريخ انتهاء صلاحيتها يوميًا. إذا كنت تجد صعوبة في العثور على أفضل كوبون وتطبيقه أثناء التسوق عبر الإنترنت، فلا داعي للقلق؛ نحن هنا لنرشدك. نحن نقدم كل النصائح التي تحتاجها للتحول من مبتدئ إلى خبير في استخدام الكوبونات وتوفير المال أثناء التسوق عبر الإنترنت."}
         </Typography>
       </Box>
-      <Grid container spacing={0} sx={{ textAlign: "center" }}>
+      <Grid container spacing={2} sx={{ textAlign: "center" }}>
         {couponsList}
         <Suspense>
           <PaginationComponent
