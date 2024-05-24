@@ -39,7 +39,7 @@ export default async function Offers({
   const couponsList = couponsData?.map((coupon) => {
     return (
       <>
-        <Grid xs={12} sm={6} md={4} lg={3} key={coupon.id}>
+        <Grid xs={12} sm={6} md={4} lg={3} key={coupon.id} spacing={2}>
           <CustomCard type="coupon" data={coupon} lang={searchParams.lang} />
         </Grid>
       </>
