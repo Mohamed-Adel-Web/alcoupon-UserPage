@@ -3,7 +3,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import type { Metadata } from "next";
 import { Language } from "../types";
 import { Suspense, lazy } from "react";
-const CouponList = lazy(() => import("./CouponList"));
+import CouponList from "./CouponList";
 export const generateMetadata = ({
   searchParams,
 }: {

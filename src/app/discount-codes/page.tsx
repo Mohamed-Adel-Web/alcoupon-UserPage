@@ -10,7 +10,7 @@ import type { Metadata } from "next";
 import { Language } from "../types";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Suspense, lazy } from "react";
-const StoreList = lazy(() => import("./StoreList"));
+import StoreList from "./StoreList";
 export const generateMetadata = ({
   searchParams,
 }: {
