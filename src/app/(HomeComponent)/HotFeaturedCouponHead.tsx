@@ -20,7 +20,7 @@ function HotOffersHead({ lang }: { lang: Language }) {
             textTransform: "capitalize",
           }}
         >
-          {lang == "en" ? " See all offers" : "مشاهدة جميع الكوبونات"}
+          {lang == "en" ? " See all Coupons" : "مشاهدة جميع الكوبونات"}
         </Link>
       </Typography>
   
