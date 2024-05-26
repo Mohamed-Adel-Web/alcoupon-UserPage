@@ -1,4 +1,11 @@
-import { Box, Typography, Tooltip, Pagination, Stack, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Tooltip,
+  Pagination,
+  Stack,
+  CircularProgress,
+} from "@mui/material";
 import type { Metadata } from "next";
 import { Language } from "../types";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -39,7 +46,9 @@ export default async function ALLStores({
   const allStoreDataList = storesData?.map((store) => {
     return (
       <Grid xs={12} sm={6} md={4} lg={3} key={store.name_en}>
-        <CustomCard type="store" data={store} lang={searchParams.lang} />
+        <Suspense fallback={<CircularProgress sx={{ color: "#F3AD59" }} />}>
+          <CustomCard type="store" data={store} lang={searchParams.lang} />
+        </Suspense>
       </Grid>
     );
   });
@@ -82,9 +91,7 @@ export default async function ALLStores({
           </Typography>
         </Box>
         <Grid container spacing={2} sx={{ textAlign: "center" }}>
-          <Suspense fallback={<CircularProgress sx={{ color: "#F3AD59" }} />}>
-            {allStoreDataList}
-          </Suspense>
+          {allStoreDataList}
 
           <Suspense>
             <PaginationComponent
