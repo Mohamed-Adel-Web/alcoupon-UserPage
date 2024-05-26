@@ -1,12 +1,12 @@
-import {
-  Box,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import type { Metadata } from "next";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Language, categoryTypes } from "@/app/types";
 import { useGetStoreByCategory } from "../../FetchData/useGetStoreByCategory";
 import CustomCard from "@/CustomCard";
+import { Suspense } from "react";
+import StoreListByCategory from "../StoreListByCategory";
+import CategoryHead from "./CategoryHead";
 export const generateMetadata = async ({
   params,
   searchParams,
@@ -37,31 +37,24 @@ export default async function categoryPage({
   searchParams: { lang: Language };
   params: { id: string };
 }) {
-  const categoryData: categoryTypes | null = await useGetStoreByCategory(
-    params.id
-  );
-
-  const allStoreDataList = categoryData?.stores?.map((store) => {
-    return (
-      <Grid xs={12} sm={6} md={4} lg={3} key={store.name_en}>
-        <CustomCard data={store} type="store" lang={searchParams.lang} />
-      </Grid>
-    );
-  });
   return (
     <Box sx={{ padding: "1rem 0" }}>
-      <Typography
-        variant="h4"
-        sx={{
-          textAlign: "center",
-          padding: "1rem 0",
-          textTransform: "capitalize",
-        }}
+      <Suspense
+        fallback={
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh",
+            }}
+          >
+            <CircularProgress sx={{ color: "#F3AD59" }} />
+          </Box>
+        }
       >
-        {searchParams.lang == "en"
-          ? `All Stores for ${categoryData?.name_en} category`
-          : `جميع المتاجر لفئة ${categoryData?.name_ar}`}
-      </Typography>
+        <CategoryHead lang={searchParams.lang} id={params.id} />
+      </Suspense>
       <Box
         sx={{
           backgroundColor: "white",
@@ -90,7 +83,22 @@ export default async function categoryPage({
         </Typography>
       </Box>
       <Grid container spacing={2} sx={{ textAlign: "center" }}>
-        {allStoreDataList}
+        <Suspense
+          fallback={
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+              }}
+            >
+              <CircularProgress sx={{ color: "#F3AD59" }} />
+            </Box>
+          }
+        >
+          <StoreListByCategory lang={searchParams.lang} id={params.id} />
+        </Suspense>
       </Grid>
 
       <Box
