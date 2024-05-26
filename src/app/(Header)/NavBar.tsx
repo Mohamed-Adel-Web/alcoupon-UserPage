@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useEffect, useMemo, useState } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -30,7 +30,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   const handleSearchOpen = () => {
     setSearchOpen(true);
   };
-  
+
   const handleSearchClose = () => {
     setSearchOpen(false);
   };
@@ -48,6 +48,14 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
       document.body.className = "ltr";
     }
   }, [lang]);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (searchInput.length > 1) {
+      router.push(`/searchStore/${searchInput}?lang=${lang}`);
+      setSearchInput("");
+    }
+  };
 
   return (
     <nav
@@ -106,6 +114,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               alignItems: "center",
               width: 600,
             }}
+            onSubmit={handleSubmit}
           >
             <InputBase
               sx={{ ml: 1, flex: 1 }}
@@ -114,22 +123,18 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                   ? "Search stores, coupons and discounts"
                   : "ابحث عن المتاجر، الكوبونات، والخصومات"
               }
-              inputProps={{ "aria-label": "Search stores, coupons and discounts" }}
+              inputProps={{
+                "aria-label": "Search stores, coupons and discounts",
+              }}
               value={searchInput}
               onChange={(event) => {
                 setSearchInput(event.target.value);
               }}
             />
             <Button
-              type="button"
+              type="submit"
               sx={{ p: "7px", backgroundColor: "#E9ECEF", color: "black" }}
               aria-label="search"
-              onClick={() => {
-                if (searchInput.length > 1) {
-                  router.push(`/searchStore/${searchInput}?lang=${lang}`);
-                  setSearchInput("");
-                }
-              }}
             >
               <SearchIcon />
             </Button>
@@ -143,7 +148,9 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 onClick={() => {
                   const newLang = lang === "ar" ? "en" : "ar";
                   setLang(newLang);
-                  const updatedSearchParams = new URLSearchParams(currentSearchParams.toString());
+                  const updatedSearchParams = new URLSearchParams(
+                    currentSearchParams.toString()
+                  );
                   updatedSearchParams.set("lang", newLang);
                   router.push(pathname + "?" + updatedSearchParams.toString());
                 }}
@@ -155,16 +162,33 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
             {/* languageControl */}
             <Typography sx={{ display: { xs: "flex", md: "none" } }}>
               {/* Search in small Screen */}
-              <Tooltip title="Search" sx={{ color: "white" }} onClick={handleSearchOpen}>
+              <Tooltip
+                title="Search"
+                sx={{ color: "white" }}
+                onClick={handleSearchOpen}
+              >
                 <IconButton>
                   <SearchIcon />
                 </IconButton>
               </Tooltip>
-              <SearchModal lang={lang} open={searchOpen} handleSearchClose={handleSearchClose} />
+              <SearchModal
+                lang={lang}
+                open={searchOpen}
+                handleSearchClose={handleSearchClose}
+              />
               {/* Search in small Screen */}
               {/* main menu in small screen */}
-              <Tooltip title="Main menu" sx={{ color: "white" }} onClick={() => setMainMenuOpen(true)}>
-                <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true">
+              <Tooltip
+                title="Main menu"
+                sx={{ color: "white" }}
+                onClick={() => setMainMenuOpen(true)}
+              >
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                >
                   <MenuIcon />
                 </IconButton>
               </Tooltip>
@@ -173,7 +197,12 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
           </Box>
         </Toolbar>
       </Container>
-      <MainMenuDrawer open={openMainMenu} setOpen={setMainMenuOpen} AllCategories={AllCategories} lang={lang} />
+      <MainMenuDrawer
+        open={openMainMenu}
+        setOpen={setMainMenuOpen}
+        AllCategories={AllCategories}
+        lang={lang}
+      />
     </nav>
   );
 }

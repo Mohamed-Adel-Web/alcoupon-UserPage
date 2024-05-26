@@ -18,7 +18,7 @@ function HomeAllStoreHead({ lang }: { lang: Language }) {
             textTransform: "capitalize",
           }}
         >
-          {lang == "en" ? " See all offers" :"مشاهدة جميع المتاجر"}
+          {lang == "en" ? " See all Stores" :"مشاهدة جميع المتاجر"}
         </Link>
       </Typography>
     </Box>

@@ -18,6 +18,16 @@ export default function SearchModal({
 }) {
   const [searchInput, setSearchInput] = React.useState<string>("");
   const router = useRouter();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (searchInput.length > 1) {
+      router.push(`/searchStore/${searchInput}?lang=${lang}`);
+      setSearchInput("");
+      handleSearchClose();
+    }
+  };
+
   return (
     <React.Fragment>
       <Dialog
@@ -52,13 +62,15 @@ export default function SearchModal({
             display: "flex",
             border: "1px solid black",
           }}
+          onSubmit={handleSubmit}
         >
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder={
               lang == "en"
                 ? `Search stores, coupons and discounts`
-                : `ابحث عن المتاجر، الكوبونات، والخصومات` }
+                : `ابحث عن المتاجر، الكوبونات، والخصومات`
+            }
             inputProps={{
               "aria-label": "Search stores, coupons and discounts",
             }}
@@ -68,16 +80,9 @@ export default function SearchModal({
             }}
           />
           <Button
-            type="button"
+            type="submit"
             sx={{ p: "7px", backgroundColor: "#E9ECEF", color: "#000" }}
             aria-label="search"
-            onClick={() => {
-              if (searchInput.length > 1) {
-                router.push(`/searchStore/${searchInput}?lang=${lang}`);
-                setSearchInput("");
-                handleSearchClose();
-              }
-            }}
           >
             <SearchIcon />
           </Button>
