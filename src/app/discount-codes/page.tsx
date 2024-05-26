@@ -1,4 +1,4 @@
-import { Box, Typography, Tooltip, Pagination, Stack } from "@mui/material";
+import { Box, Typography, Tooltip, Pagination, Stack, CircularProgress } from "@mui/material";
 import type { Metadata } from "next";
 import { Language } from "../types";
 import Grid from "@mui/material/Unstable_Grid2";
@@ -45,9 +45,11 @@ export default async function ALLStores({
   });
   return (
     <>
-    
       <Box sx={{ padding: "1rem 0" }}>
-        <Typography variant="h4" sx={{ textAlign: "center", padding: "1rem 0" }}>
+        <Typography
+          variant="h4"
+          sx={{ textAlign: "center", padding: "1rem 0" }}
+        >
           {searchParams.lang == "en"
             ? "All Stores and deals"
             : "جميع المتاجر والعروض "}
@@ -80,7 +82,10 @@ export default async function ALLStores({
           </Typography>
         </Box>
         <Grid container spacing={2} sx={{ textAlign: "center" }}>
-          {allStoreDataList}
+          <Suspense fallback={<CircularProgress sx={{ color: "#F3AD59" }} />}>
+            {allStoreDataList}
+          </Suspense>
+
           <Suspense>
             <PaginationComponent
               page={Number(searchParams.page)}
@@ -88,7 +93,7 @@ export default async function ALLStores({
             />
           </Suspense>
         </Grid>
-      
+
         <Box
           sx={{
             backgroundColor: "white",
