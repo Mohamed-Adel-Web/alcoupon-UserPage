@@ -9,11 +9,8 @@ import {
 import type { Metadata } from "next";
 import { Language } from "../types";
 import Grid from "@mui/material/Unstable_Grid2";
-import { useStoresData } from "../FetchData/useStoresData";
-import PaginationComponent from "./Pagination";
-import { Suspense } from "react";
-import CustomCard from "@/CustomCard";
-
+import { Suspense, lazy } from "react";
+const StoreList = lazy(() => import("./StoreList"));
 export const generateMetadata = ({
   searchParams,
 }: {
@@ -42,16 +39,6 @@ export default async function ALLStores({
 }: {
   searchParams: { lang: Language; page: number };
 }) {
-  const { storesData, last_page } = await useStoresData(searchParams.page);
-  const allStoreDataList = storesData?.map((store) => {
-    return (
-      <Grid xs={12} sm={6} md={4} lg={3} key={store.name_en}>
-        <Suspense fallback={<CircularProgress sx={{ color: "#F3AD59" }} />}>
-          <CustomCard type="store" data={store} lang={searchParams.lang} />
-        </Suspense>
-      </Grid>
-    );
-  });
   return (
     <>
       <Box sx={{ padding: "1rem 0" }}>
@@ -91,13 +78,21 @@ export default async function ALLStores({
           </Typography>
         </Box>
         <Grid container spacing={2} sx={{ textAlign: "center" }}>
-          {allStoreDataList}
-
-          <Suspense>
-            <PaginationComponent
-              page={Number(searchParams.page)}
-              lastPage={last_page}
-            />
+          <Suspense
+            fallback={
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100vh",
+                }}
+              >
+                <CircularProgress sx={{ color: "#F3AD59" }} />
+              </Box>
+            }
+          >
+            <StoreList lang={searchParams.lang} page={searchParams.page} />
           </Suspense>
         </Grid>
 

@@ -1,14 +1,9 @@
-import {
-  Box,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import PaginationComponent from "../discount-codes/Pagination";
 import type { Metadata } from "next";
 import { Language } from "../types";
-import { useCouponsData } from "../FetchData/useGetCoupon";
-import { Suspense } from "react";
-import CustomCard from "@/CustomCard";
+import { Suspense, lazy } from "react";
+const CouponList = lazy(() => import("./CouponList"));
 export const generateMetadata = ({
   searchParams,
 }: {
@@ -24,7 +19,8 @@ export const generateMetadata = ({
           "Coupons, Discount codes, Promo codes, Vouchers, Coupon code, discount code, Coupon",
       }
     : {
-        title: "كوبونات التسوق - احدث اكواد الخصم وكوبونات التوفير حتى 90% لكل المتاجر",
+        title:
+          "كوبونات التسوق - احدث اكواد الخصم وكوبونات التوفير حتى 90% لكل المتاجر",
         description:
           "وفر الكثير مع كوبونات التسوق والصفقات والعروض! احصل على خصومات وعروض حصرية من أفضل العلامات التجارية من الملابس والجمال والبقالة والمزيد.",
         keywords: " كوبون، كود خصم، كوبونات، اكواد خصم، كود توفير",
@@ -35,17 +31,6 @@ export default async function Offers({
 }: {
   searchParams: { lang: Language; page: number };
 }) {
-  const { couponsData, last_page } = await useCouponsData(searchParams.page);
-  const couponsList = couponsData?.map((coupon) => {
-    return (
-      <>
-        <Grid xs={12} sm={6} md={4} lg={3} key={coupon.id} >
-          <CustomCard type="coupon" data={coupon} lang={searchParams.lang} />
-        </Grid>
-      </>
-    );
-  });
-
   return (
     <Box sx={{ padding: "1rem 0" }}>
       <Typography variant="h4" sx={{ textAlign: "center", padding: "1rem 0" }}>
@@ -90,12 +75,21 @@ export default async function Offers({
         </Typography>
       </Box>
       <Grid container spacing={2} sx={{ textAlign: "center" }}>
-        {couponsList}
-        <Suspense>
-          <PaginationComponent
-            page={Number(searchParams.page)}
-            lastPage={last_page}
-          />
+        <Suspense
+          fallback={
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+              }}
+            >
+              <CircularProgress sx={{ color: "#F3AD59" }} />
+            </Box>
+          }
+        >
+          <CouponList lang={searchParams.lang} page={searchParams.page} />
         </Suspense>
       </Grid>
     </Box>
