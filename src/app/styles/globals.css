@@ -83,7 +83,7 @@ table {
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 18px;
-  text-align: left;
+  text-align: start;
   background-color: #f9f9f9;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
@@ -91,7 +91,7 @@ table {
 table thead tr {
   background-color: #3d6cb9;
   color: #ffffff;
-  text-align: left;
+  text-align: start;
   font-weight: bold;
 }
 
