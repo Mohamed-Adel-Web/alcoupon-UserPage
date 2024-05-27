@@ -8,7 +8,7 @@ const fetchStoresData = async (storeUrl: string): Promise<StoresResponse> => {
   try {
     const response = await fetch(storeUrl, {
       method: "GET",
-      cache: "no-store",
+      cache: "force-cache",
     });
 
     if (!response.ok) {

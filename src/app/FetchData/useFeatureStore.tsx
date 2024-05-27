@@ -6,7 +6,7 @@ const fetchStoresData = async (
   try {
     const response = await fetch(featuredStores, {
       method: "GET",
-      cache: "no-store",
+      cache: "force-cache",
     });
 
     if (!response.ok) {

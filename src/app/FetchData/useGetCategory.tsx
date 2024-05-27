@@ -6,7 +6,7 @@ const fetchCategoriesData = async (
   try {
     const response = await fetch(AllCategories, {
       method: "GET",
-      cache: "no-store",
+      cache: "force-cache",
     });
 
     if (!response.ok) {
