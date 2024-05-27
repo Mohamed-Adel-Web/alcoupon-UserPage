@@ -9,9 +9,10 @@ import {
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GppGoodIcon from "@mui/icons-material/GppGood";
 import GppBadIcon from "@mui/icons-material/GppBad";
-import { StoreType, couponType } from "./app/types";
+import { StoreType, couponType } from "../types";
 import Image from "next/image";
 import Link from "next/link";
+import CouponBoxText from "./CouponBoxText";
 
 type Props = {
   type: "store" | "coupon";
@@ -140,27 +141,7 @@ export default function CustomCard({ type, data, lang }: Props) {
           </Button>
         </Link>
         {isCoupon && (
-          <div
-            className="coupon-box-text"
-            style={{
-              marginTop: "1rem",
-              marginRight: "auto",
-              marginLeft: "auto",
-              width: "100%",
-            }}
-          >
-            <textarea
-              name="discount_coupon_code"
-              className="couponCode"
-              cols={100}
-              rows={1}
-              readOnly
-              contentEditable="false"
-              autoComplete="off"
-            >
-              {(data as couponType).code}
-            </textarea>
-          </div>
+          <CouponBoxText lang={lang} code={(data as couponType).code} />
         )}
       </CardActions>
     </Card>

@@ -4,9 +4,7 @@ const fetchSwiperData = async (getSwiperUrl: string): Promise<SwiperType[]> => {
   try {
     const response = await fetch(getSwiperUrl, {
       method: "GET",
-      next: {
-        revalidate: 3600, // 1 hour
-      },
+      cache: "no-store",
     });
 
     if (!response.ok) {

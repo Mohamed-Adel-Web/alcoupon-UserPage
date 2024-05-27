@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Typography, CircularProgress } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import CustomCard from "@/CustomCard";
 import { Language, categoryTypes } from "../types";
 import { useGetStoreByCategory } from "../FetchData/useGetStoreByCategory";
+import CustomCard from "../Card/CustomCard";
 
 interface CategoryListProps {
   lang: Language;

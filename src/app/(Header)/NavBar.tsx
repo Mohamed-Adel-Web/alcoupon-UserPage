@@ -156,7 +156,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 }}
               >
                 <LanguageIcon />
-                {lang === "en" ? " عربي" : "English"}
+                {lang === "en" ? "AR" : "EN"}
               </IconButton>
             </Tooltip>
             {/* languageControl */}

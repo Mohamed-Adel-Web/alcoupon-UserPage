@@ -7,9 +7,7 @@ const fetchStoresByCategory = async (
   try {
     const response = await fetch(storeUrl, {
       method: "GET",
-      next: {
-        revalidate: 3600, // 1 hour
-      },
+      cache: "no-store",
     });
 
     if (!response.ok) {

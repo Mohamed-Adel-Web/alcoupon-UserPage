@@ -3,8 +3,8 @@ import { Box, CircularProgress } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import PaginationComponent from "../discount-codes/Pagination";
 import { useCouponsData } from "../FetchData/useGetCoupon";
-import CustomCard from "@/CustomCard";
 import { Language } from "../types";
+import CustomCard from "../Card/CustomCard";
 
 interface CouponListProps {
   lang: Language;

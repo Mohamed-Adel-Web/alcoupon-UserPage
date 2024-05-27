@@ -2,9 +2,9 @@ import React from "react";
 import { Box, Typography, CircularProgress } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import PaginationComponent from "../discount-codes/Pagination";
-import CustomCard from "@/CustomCard";
 import { Language } from "../types";
 import { useStoresData } from "../FetchData/useStoresData";
+import CustomCard from "../Card/CustomCard";
 
 interface StoreListProps {
   lang: Language;

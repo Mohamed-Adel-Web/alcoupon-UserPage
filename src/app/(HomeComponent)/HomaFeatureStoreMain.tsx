@@ -5,7 +5,7 @@ import {
 import Grid from "@mui/material/Unstable_Grid2";
 import { useFeaturedStoresData } from "../FetchData/useFeatureStore";
 import { Language, StoreType } from "../types";
-import CustomCard from "@/CustomCard";
+import CustomCard from "../Card/CustomCard";
 async function HomeAllStoreMain({ lang }: { lang: Language }) {
   const featureStoresData: StoreType[] = await useFeaturedStoresData();
   const allStoreDataList = featureStoresData?.map((store) => {

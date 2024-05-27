@@ -2,8 +2,8 @@ import { Language, StoreType } from "@/app/types";
 import useSearchStoresData from "../../FetchData/useSearchStoresData";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Box, Typography } from "@mui/material";
-import CustomCard from "@/CustomCard";
 import { Metadata } from "next";
+import CustomCard from "@/app/Card/CustomCard";
 
 export const generateMetadata = ({
   searchParams,
