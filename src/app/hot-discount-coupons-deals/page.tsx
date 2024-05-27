@@ -2,8 +2,11 @@ import { Box, CircularProgress, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import type { Metadata } from "next";
 import { Language } from "../types";
-import CouponList from "./CouponList";
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
+const CouponList = dynamic(() => import("./CouponList"), {
+  ssr: false,
+});
 export const generateMetadata = ({
   searchParams,
 }: {
