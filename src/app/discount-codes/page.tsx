@@ -1,15 +1,10 @@
 import {
   Box,
   Typography,
-  Tooltip,
-  Pagination,
-  Stack,
-  CircularProgress,
 } from "@mui/material";
 import type { Metadata } from "next";
 import { Language } from "../types";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Suspense, lazy } from "react";
 import StoreList from "./StoreList";
 export const generateMetadata = ({
   searchParams,
@@ -78,22 +73,7 @@ export default async function ALLStores({
           </Typography>
         </Box>
         <Grid container spacing={2} sx={{ textAlign: "center" }}>
-          <Suspense
-            fallback={
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "100vh",
-                }}
-              >
-                <CircularProgress sx={{ color: "#F3AD59" }} />
-              </Box>
-            }
-          >
             <StoreList lang={searchParams.lang} page={searchParams.page} />
-          </Suspense>
         </Grid>
 
         <Box

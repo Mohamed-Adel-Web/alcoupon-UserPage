@@ -44,21 +44,22 @@ export default function CouponFlags({
   flagCode,
   lang,
 }: {
-  flagCode: string;
+  flagCode: string[];
   lang: Language;
 }) {
-  const couponCountry = flags.filter((flag) => {
-    return flag.code === flagCode;
-  });
-  const couponCountryList = couponCountry.map((country) => {
+  const couponCountryList = flagCode?.map((code) => {
+    const flag = flags.find((f) => f.code === code);
     return (
-      <Image
-        src={country.image}
-        style={{ borderRadius: "50%" }}
-        width={30}
-        height={30}
-        alt="flag image"
-      />
+      flag && (
+        <Image
+          key={flag.code}
+          src={flag.image}
+          style={{ borderRadius: "50%", margin: "0.5rem" }}
+          width={30}
+          height={30}
+          alt={`${flag.code} flag`}
+        />
+      )
     );
   });
   return (
@@ -79,9 +80,9 @@ export default function CouponFlags({
         }}
       >
         {" "}
-        {lang=="en" ?"available in":"متاح في"}
+        {lang == "en" ? "available in" : "متاح في"}
       </Typography>
-      <Box>{couponCountryList}</Box>
+      <Box> {couponCountryList}</Box>
     </Box>
   );
 }

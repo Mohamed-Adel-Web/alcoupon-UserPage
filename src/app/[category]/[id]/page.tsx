@@ -1,10 +1,8 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import type { Metadata } from "next";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Language, categoryTypes } from "@/app/types";
 import { useGetStoreByCategory } from "../../FetchData/useGetStoreByCategory";
-import CustomCard from "@/CustomCard";
-import { Suspense } from "react";
 import StoreListByCategory from "../StoreListByCategory";
 import CategoryHead from "./CategoryHead";
 export const generateMetadata = async ({
@@ -39,22 +37,8 @@ export default async function categoryPage({
 }) {
   return (
     <Box sx={{ padding: "1rem 0" }}>
-      <Suspense
-        fallback={
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100vh",
-            }}
-          >
-            <CircularProgress sx={{ color: "#F3AD59" }} />
-          </Box>
-        }
-      >
+   
         <CategoryHead lang={searchParams.lang} id={params.id} />
-      </Suspense>
       <Box
         sx={{
           backgroundColor: "white",
@@ -83,22 +67,7 @@ export default async function categoryPage({
         </Typography>
       </Box>
       <Grid container spacing={2} sx={{ textAlign: "center" }}>
-        <Suspense
-          fallback={
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100vh",
-              }}
-            >
-              <CircularProgress sx={{ color: "#F3AD59" }} />
-            </Box>
-          }
-        >
           <StoreListByCategory lang={searchParams.lang} id={params.id} />
-        </Suspense>
       </Grid>
 
       <Box

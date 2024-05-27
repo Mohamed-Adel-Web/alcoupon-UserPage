@@ -15,7 +15,7 @@ export interface couponType {
   featured: boolean;
   start_date: Date;
   end_date: Date;
-  flag_code: string;
+  flag_code: string[];
   store: StoreType;
 }
 export interface ProductType {
