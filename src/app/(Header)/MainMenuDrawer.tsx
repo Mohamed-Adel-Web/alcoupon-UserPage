@@ -38,6 +38,7 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
                 ? `${link.href}?page=1&lang=${lang}`
                 : `${link.href}?lang=${lang}`
             }
+            prefetch={true}
             style={{
               textDecoration: "none",
               color: "black",
@@ -74,6 +75,7 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
           <Link
             href={`/${category.name_en}/${category.id}?lang=${lang}`}
             style={{ textDecoration: "none", color: "#000" }}
+            prefetch={true}
             onClick={() => {
               setOpen(false);
             }}
@@ -109,6 +111,7 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
           }}
         >
           <Link href={`/?lang=${lang}`}>
+            
             <Typography
               variant="h6"
               noWrap

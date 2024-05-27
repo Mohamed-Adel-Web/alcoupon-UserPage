@@ -51,6 +51,7 @@ function NavigationLinks({
     return (
       <Link
         href={`${link.href}`}
+        prefetch={true}
         style={{
           padding: "0 0.4rem",
           textDecoration: "none",
@@ -73,6 +74,7 @@ function NavigationLinks({
         return (
           <Link
             href={`/${category.name_en}/${category.id}?lang=${lang}`}
+            prefetch={true}
             style={{
               padding: "0 0.4rem",
               textDecoration: "none",

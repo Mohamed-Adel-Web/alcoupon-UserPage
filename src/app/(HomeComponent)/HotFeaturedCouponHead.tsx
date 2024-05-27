@@ -11,6 +11,7 @@ function HotOffersHead({ lang }: { lang: Language }) {
           : "أكواد خصم وقسائم شراء عبر الإنترنت"}
         <Link
           href={`/hot-discount-coupons-deals?page=1&lang=${lang}`}
+          prefetch={true}
           style={{
             textDecoration: "none",
             color: "#F3AD59",

@@ -75,6 +75,7 @@ export default function MoreNavigation({
               textDecoration: "none",
               color: "black",
             }}
+            prefetch={true}
           >
             <MenuItem
               onClick={handleClose}

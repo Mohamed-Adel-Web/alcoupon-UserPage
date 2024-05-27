@@ -8,6 +8,7 @@ function HomeAllStoreHead({ lang }: { lang: Language }) {
       <Typography variant="h6" sx={{ padding: "1rem 0" }}>
         {lang == "en" ? "Featured Stores Offers" : "عروض المتاجر المميزة"}
         <Link
+        prefetch={true}
           href={`/discount-codes?page=1&lang=${lang}`}
           style={{
             textDecoration: "none",

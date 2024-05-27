@@ -72,7 +72,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
           {/* Logo */}
-          <Link href={`/?lang=${lang}`}>
+          <Link href={`/?lang=${lang}`} prefetch={true}>
             <Typography
               variant="h6"
               noWrap

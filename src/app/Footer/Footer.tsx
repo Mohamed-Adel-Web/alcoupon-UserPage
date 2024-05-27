@@ -37,6 +37,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
       <li style={{ margin: "1rem 0" }} key={link.title_en}>
         <Link
           href={`${link.href}`}
+          prefetch={true}
           style={{
             padding: "0 0.4rem",
             textDecoration: "none",
@@ -63,6 +64,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
       <li style={{ margin: "1rem 0" }} key={store.name_en}>
         <Link
           href={`/discount-codes/${store.id}?lang=${lang}`}
+          prefetch={true}
           style={{
             padding: "0 0.4rem",
             textDecoration: "none",

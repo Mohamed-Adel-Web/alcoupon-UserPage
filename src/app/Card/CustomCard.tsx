@@ -60,6 +60,7 @@ export default function CustomCard({ type, data, lang }: Props) {
     <Card sx={{ padding: "1rem 0", textAlign: "start" }}>
       <Link
         href={`/discount-codes/${store.id}?lang=${lang}`}
+        prefetch={true}
         style={{
           textDecoration: "none",
           display: "block",
@@ -114,6 +115,7 @@ export default function CustomCard({ type, data, lang }: Props) {
       <CardActions sx={{ flexDirection: isCoupon ? "column" : "row" }}>
         <Link
           href={`/discount-codes/${store.id}?lang=${lang}`}
+          prefetch={true}
           style={{
             textDecoration: "none",
             display: "block",
