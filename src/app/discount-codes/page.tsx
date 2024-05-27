@@ -1,11 +1,9 @@
-import {
-  Box,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import type { Metadata } from "next";
 import { Language } from "../types";
 import Grid from "@mui/material/Unstable_Grid2";
 import StoreList from "./StoreList";
+import { Suspense } from "react";
 export const generateMetadata = ({
   searchParams,
 }: {
@@ -73,7 +71,22 @@ export default async function ALLStores({
           </Typography>
         </Box>
         <Grid container spacing={2} sx={{ textAlign: "center" }}>
+          <Suspense
+            fallback={
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100vh",
+                }}
+              >
+                <CircularProgress sx={{ color: "#F3AD59" }} />
+              </Box>
+            }
+          >
             <StoreList lang={searchParams.lang} page={searchParams.page} />
+          </Suspense>
         </Grid>
 
         <Box
