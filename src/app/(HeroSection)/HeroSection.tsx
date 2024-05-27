@@ -19,10 +19,9 @@ function HeroSection({
     <>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
-          <Grid xs={12} lg={12}>
+          <Grid xs={12} lg={12} sx={{ margin: "1rem 0" }}>
             <SwiperApp swiperData={swiperData} />
           </Grid>
-
         </Grid>
       </Box>
     </>
