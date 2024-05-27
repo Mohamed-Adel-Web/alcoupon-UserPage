@@ -3,12 +3,9 @@ import type { Metadata } from "next";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Language, categoryTypes } from "@/app/types";
 import { useGetStoreByCategory } from "../../FetchData/useGetStoreByCategory";
+import StoreListByCategory from "../StoreListByCategory";
 import CategoryHead from "./CategoryHead";
 import { Suspense } from "react";
-import dynamic from "next/dynamic";
-const StoreListByCategory = dynamic(() => import("../StoreListByCategory"), {
-  ssr: false,
-});
 export const generateMetadata = async ({
   params,
   searchParams,
