@@ -5,7 +5,9 @@ const fetchStoreData = async (storeUrl: string): Promise<StoreType> => {
   try {
     const response = await fetch(storeUrl, {
       method: "GET",
-      cache: "force-cache",
+      next: {
+        revalidate: 3600, // 1 hour
+      },
     });
 
     if (!response.ok) {

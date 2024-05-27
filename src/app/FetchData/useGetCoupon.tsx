@@ -10,8 +10,9 @@ const fetchCouponsData = async (url: string): Promise<CouponsResponse> => {
   try {
     const response = await fetch(url, {
       method: "GET",
-      cache: "force-cache",
-      // next: { revalidate: 10800 },
+      next: {
+        revalidate: 3600, // 1 hour
+      },      // next: { revalidate: 10800 },
     });
 
     if (!response.ok) {

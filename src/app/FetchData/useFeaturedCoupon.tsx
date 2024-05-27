@@ -6,7 +6,9 @@ const fetchCouponsData = async (
   try {
     const response = await fetch(featuredCoupons, {
       method: "GET",
-      cache: "force-cache",
+      next: {
+        revalidate: 3600, // 1 hour
+      },
     });
 
     if (!response.ok) {
