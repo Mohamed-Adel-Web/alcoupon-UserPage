@@ -23,7 +23,14 @@ type Props = {
 export default function CustomCard({ type, data, lang }: Props) {
   const isCoupon = type === "coupon";
   const store = isCoupon ? (data as couponType).store : (data as StoreType);
-
+  const altText =
+    lang === "en"
+      ? isCoupon
+        ? (data as couponType).title_en
+        : store.title_en
+      : isCoupon
+      ? (data as couponType).title_ar
+      : store.title_ar;
   const renderStatusButton = (status: boolean | string) => {
     let isActive = true;
     if (typeof status === "string") {
@@ -35,6 +42,7 @@ export default function CustomCard({ type, data, lang }: Props) {
       lang === "en"
         ? { startIcon: isActive ? <GppGoodIcon /> : <GppBadIcon /> }
         : { endIcon: isActive ? <GppGoodIcon /> : <GppBadIcon /> };
+
     return (
       <Button
         component="label"
@@ -75,7 +83,7 @@ export default function CustomCard({ type, data, lang }: Props) {
             height: "100px",
             objectFit: "contain",
           }}
-          alt="store image"
+          alt={altText}
           src={store.image}
         />
       </Link>
