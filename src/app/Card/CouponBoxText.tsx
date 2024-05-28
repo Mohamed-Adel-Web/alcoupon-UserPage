@@ -59,7 +59,7 @@ const CouponBoxText: React.FC<Props> = ({ code, lang }) => {
       </Tooltip>
       <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
-          {lang === "en" ? "Code copied!" : "تم نسخ الكود!"}
+          {lang === "en" ? "Code copied" : "تم نسخ الكود"}
         </Alert>
       </Snackbar>
     </div>
