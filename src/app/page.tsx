@@ -5,12 +5,12 @@ import HomeDiscountAd from "./(HomeComponent)/HomeDiscountAd";
 import HomeFeatureStoreHead from "./(HomeComponent)/HomeFeatureStoreHead";
 import HomeFeatureStoreMain from "./(HomeComponent)/HomaFeatureStoreMain";
 import CouponInstruction from "./(HomeComponent)/CouponInstruction";
-import { useFeaturedCoupons } from "./FetchData/useFeaturedCoupon";
-import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
-import { Suspense } from "react";
+
 import useSwiperData from "./FetchData/useGetSwiper";
 import { Metadata } from "next";
 import { Language } from "./types";
+import { Suspense } from "react";
+import { Box, CircularProgress } from "@mui/material";
 
 export const metadata = ({
   searchParams,
@@ -38,19 +38,45 @@ export default async function Home({
   searchParams: { lang: Language };
 }) {
   const lang = searchParams.lang;
-  const couponData = await useFeaturedCoupons();
-  const storesData = await useFeaturedStoresData();
   const swiperData = await useSwiperData();
   return (
     <main>
-      <Suspense>
-        <HeroSection storesData={storesData} swiperData={swiperData} />
-      </Suspense>
+      <HeroSection swiperData={swiperData} />
       <HotFeaturedCouponHead lang={lang} />
-      <HotFeaturedCouponMain couponData={couponData} lang={lang} />
+      <Suspense
+        fallback={
+          <Box
+            sx={{
+              minHeight: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CircularProgress sx={{ color: "#F3AD59" }} />
+          </Box>
+        }
+      >
+        <HotFeaturedCouponMain lang={lang} />
+      </Suspense>
       <HomeDiscountAd lang={lang} />
       <HomeFeatureStoreHead lang={lang} />
-      <HomeFeatureStoreMain lang={lang} />
+      <Suspense
+        fallback={
+          <Box
+            sx={{
+              minHeight: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CircularProgress sx={{ color: "#F3AD59" }} />
+          </Box>
+        }
+      >
+        <HomeFeatureStoreMain lang={lang} />
+      </Suspense>
       <CouponInstruction lang={lang} />
     </main>
   );

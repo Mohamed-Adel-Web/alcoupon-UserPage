@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-
 import { Language } from "../types";
 function HomeDiscountAd({ lang }: { lang: Language }) {
   return (

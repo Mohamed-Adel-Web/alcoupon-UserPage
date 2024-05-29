@@ -2,16 +2,17 @@ import {
   Box,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Language, couponType } from "../types";
+import { Language} from "../types";
 import CustomCard from "../Card/CustomCard";
+import { useFeaturedCoupons } from "../FetchData/useFeaturedCoupon";
 
-function HotOffersMain({
-  couponData,
+async function HotOffersMain({
   lang,
 }: {
-  couponData: couponType[];
   lang: Language;
 }) {
+  const couponData = await useFeaturedCoupons();
+
   const offerCouponDataList = couponData?.map((coupon) => {
     return (
       <>

@@ -12,20 +12,6 @@ interface CategoryListProps {
 
 async function StoreListByCategory({ lang, id }: CategoryListProps) {
   const categoryData: categoryTypes | null = await useGetStoreByCategory(id);
-  if (!categoryData) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <CircularProgress sx={{ color: "#F3AD59" }} />
-      </Box>
-    );
-  }
 
   const storeList = categoryData?.stores?.map((store) => (
     <Grid xs={12} sm={6} md={4} lg={3} key={store.id}>

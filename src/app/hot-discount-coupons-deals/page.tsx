@@ -4,9 +4,7 @@ import type { Metadata } from "next";
 import { Language } from "../types";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-const CouponList = dynamic(() => import("./CouponList"), {
-  ssr: false,
-});
+import CouponList from "./CouponList";
 export const generateMetadata = ({
   searchParams,
 }: {

@@ -3,10 +3,7 @@ import type { Metadata } from "next";
 import { Language } from "../types";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Suspense } from "react";
-import dynamic from "next/dynamic";
-const StoreList = dynamic(() => import("./StoreList"), {
-  ssr: false,
-});
+import StoreList from "./StoreList";
 export const generateMetadata = ({
   searchParams,
 }: {

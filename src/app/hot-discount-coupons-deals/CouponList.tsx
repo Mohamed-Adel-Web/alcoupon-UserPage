@@ -13,22 +13,6 @@ interface CouponListProps {
 
 async function CouponList({ lang, page }: CouponListProps) {
   const { couponsData, last_page } = await useCouponsData(page);
-
-  if (!couponsData) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <CircularProgress sx={{ color: "#F3AD59" }} />
-      </Box>
-    );
-  }
-
   const couponsList = couponsData.map((coupon) => (
     <Grid xs={12} sm={6} md={4} lg={3} key={coupon.id}>
       <CustomCard type="coupon" data={coupon} lang={lang} />

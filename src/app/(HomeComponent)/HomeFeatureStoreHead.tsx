@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { Language } from "../types";
-
 function HomeAllStoreHead({ lang }: { lang: Language }) {
   return (
     <Box sx={{ display: "block" }}>

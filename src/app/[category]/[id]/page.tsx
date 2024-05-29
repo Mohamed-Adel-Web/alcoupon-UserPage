@@ -67,7 +67,22 @@ export default async function categoryPage({
         </Typography>
       </Box>
       <Grid container spacing={2} sx={{ textAlign: "center" }}>
-        <StoreListByCategory lang={searchParams.lang} id={params.id} />
+        <Suspense
+          fallback={
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+              }}
+            >
+              <CircularProgress sx={{ color: "#F3AD59" }} />
+            </Box>
+          }
+        >
+          <StoreListByCategory lang={searchParams.lang} id={params.id} />
+        </Suspense>
       </Grid>
 
       <Box
