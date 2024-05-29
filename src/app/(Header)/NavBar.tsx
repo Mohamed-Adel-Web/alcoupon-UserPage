@@ -36,9 +36,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setLang(currentSearchParams.get("lang"));
-    }
+    setLang(currentSearchParams.get("lang"));
   }, [currentSearchParams]);
 
   useEffect(() => {
