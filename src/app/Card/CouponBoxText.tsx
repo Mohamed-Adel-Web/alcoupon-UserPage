@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Snackbar, Alert, Tooltip, IconButton } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
@@ -11,14 +11,14 @@ type Props = {
 const CouponBoxText: React.FC<Props> = ({ code, lang }) => {
   const [open, setOpen] = useState(false);
 
-  const handleCopy = () => {
+  const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(code);
     setOpen(true);
-  };
+  }, [code]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setOpen(false);
-  };
+  }, []);
 
   return (
     <div
@@ -54,7 +54,7 @@ const CouponBoxText: React.FC<Props> = ({ code, lang }) => {
             transform: "translateY(-50%)",
           }}
         >
-          <ContentCopyIcon  sx={{fontSize:"16px"}}/>
+          <ContentCopyIcon sx={{ fontSize: "16px" }} />
         </IconButton>
       </Tooltip>
       <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
@@ -66,4 +66,4 @@ const CouponBoxText: React.FC<Props> = ({ code, lang }) => {
   );
 };
 
-export default CouponBoxText;
+export default React.memo(CouponBoxText);

@@ -1,5 +1,5 @@
-"use client"
-import React, { useEffect, useMemo, useState } from "react";
+"use client";
+import React, { useEffect, useState, useCallback } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -27,35 +27,48 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   const router = useRouter();
   const currentSearchParams = useSearchParams();
 
-  const handleSearchOpen = () => {
+  const handleSearchOpen = useCallback(() => {
     setSearchOpen(true);
-  };
+  }, []);
 
-  const handleSearchClose = () => {
+  const handleSearchClose = useCallback(() => {
     setSearchOpen(false);
-  };
+  }, []);
 
   useEffect(() => {
     setLang(currentSearchParams.get("lang"));
   }, [currentSearchParams]);
 
   useEffect(() => {
-    if (lang == "ar") {
+    if (lang === "ar") {
       document.body.dir = "rtl";
       document.body.className = "rtl";
-    } else if (lang == "en") {
+    } else if (lang === "en") {
       document.body.dir = "ltr";
       document.body.className = "ltr";
     }
   }, [lang]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (searchInput.length > 1) {
-      router.push(`/searchStore/${searchInput}?lang=${lang}`);
-      setSearchInput("");
-    }
-  };
+  const handleSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      if (searchInput.length > 1) {
+        router.push(`/searchStore/${searchInput}?lang=${lang}`);
+        setSearchInput("");
+      }
+    },
+    [searchInput, lang, router]
+  );
+
+  const handleLangChange = useCallback(() => {
+    const newLang = lang === "ar" ? "en" : "ar";
+    setLang(newLang);
+    const updatedSearchParams = new URLSearchParams(
+      currentSearchParams.toString()
+    );
+    updatedSearchParams.set("lang", newLang);
+    router.push(pathname + "?" + updatedSearchParams.toString());
+  }, [lang, currentSearchParams, pathname, router]);
 
   return (
     <nav
@@ -86,12 +99,13 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 textDecoration: "none",
               }}
             >
-              {lang == "en" ? (
+              {lang === "en" ? (
                 <Image
                   src={"/images/logo/Logo_En.svg"}
                   width={151}
                   height={51}
                   alt="Logo"
+                  loading="eager"
                 />
               ) : (
                 <Image
@@ -99,6 +113,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                   width={151}
                   height={51}
                   alt="Logo"
+                  loading="eager"
                 />
               )}
             </Typography>
@@ -119,7 +134,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
             <InputBase
               sx={{ ml: 1, flex: 1 }}
               placeholder={
-                lang == "en"
+                lang === "en"
                   ? "Search stores, coupons and discounts"
                   : "ابحث عن المتاجر، الكوبونات، والخصومات"
               }
@@ -143,18 +158,15 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
 
           <Box sx={{ display: "flex" }}>
             {/* languageControl */}
-            <Tooltip title="Go to Arabic Interface" sx={{ color: "white" }}>
-              <IconButton
-                onClick={() => {
-                  const newLang = lang === "ar" ? "en" : "ar";
-                  setLang(newLang);
-                  const updatedSearchParams = new URLSearchParams(
-                    currentSearchParams.toString()
-                  );
-                  updatedSearchParams.set("lang", newLang);
-                  router.push(pathname + "?" + updatedSearchParams.toString());
-                }}
-              >
+            <Tooltip
+              title={
+                lang === "en"
+                  ? "Go to Arabic Interface"
+                  : "Go to English Interface"
+              }
+              sx={{ color: "white" }}
+            >
+              <IconButton onClick={handleLangChange}>
                 <LanguageIcon />
                 {lang === "en" ? "AR" : "EN"}
               </IconButton>
@@ -206,4 +218,5 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
     </nav>
   );
 }
-export default Header;
+
+export default React.memo(Header);

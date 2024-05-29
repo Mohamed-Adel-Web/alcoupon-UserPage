@@ -1,14 +1,18 @@
 import "./styles/all.min.css";
 import "./styles/globals.css";
 import Container from "@mui/material/Container";
-import Footer from "./Footer/Footer";
-import NavBar from "./(Header)/NavBar";
-import NavigationLinks from "./(Header)/NavigationLinks";
 import { useGetCategories } from "./FetchData/useGetCategory";
-import { Suspense } from "react";
 import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
-
-
+import dynamic from "next/dynamic";
+const NavBar = dynamic(() => import("./(Header)/NavBar"), {
+  ssr: true,
+});
+const NavigationLinks = dynamic(() => import("./(Header)/NavigationLinks"),{
+  ssr: true,
+});
+const Footer = dynamic(() => import("./Footer/Footer"),{
+  ssr: true,
+});
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -54,16 +58,11 @@ export default async function RootLayout({
               gtag('config', 'UA-137368123-1');
             `,
           }}
-        /> 
+        />
       </head>
       <body>
-        <Suspense>
-          <NavBar AllCategories={AllCategories} />
-        </Suspense>
-        <Suspense>
+        <NavBar AllCategories={AllCategories} />
           <NavigationLinks AllCategoriesData={AllCategories} />
-        </Suspense>
-
         <Container
           maxWidth="lg"
           sx={{ textAlign: { xs: "center", md: "start" } }}
@@ -71,9 +70,7 @@ export default async function RootLayout({
           {children}
         </Container>
         <footer>
-          <Suspense>
             <Footer stores={AllStores} />
-          </Suspense>
         </footer>
       </body>
     </html>

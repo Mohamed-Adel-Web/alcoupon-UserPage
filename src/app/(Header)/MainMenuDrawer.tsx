@@ -12,27 +12,36 @@ import Link from "next/link";
 import { NavigationSources } from "./NavigationLinks";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { categoryTypes } from "../types";
+
 type Props = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   AllCategories: categoryTypes[];
   lang: string | null;
 };
+
 const mainMenuNavigationSources: {
   title_en: string;
   title_ar: string;
   href: string;
 }[] = NavigationSources;
-function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
-  function handleDrawerClose() {
+
+const MainMenuDrawer: React.FC<Props> = ({
+  open,
+  setOpen,
+  AllCategories,
+  lang,
+}) => {
+  const handleDrawerClose = React.useCallback(() => {
     setOpen(false);
-  }
+  }, [setOpen]);
 
   const mainMenuNavigationLinks = (
     <Box sx={{ width: { xs: "100vw", md: "17vw" } }} role="presentation">
       <List>
         {mainMenuNavigationSources.map((link, index) => (
           <Link
+            key={index}
             href={
               index > 0
                 ? `${link.href}?page=1&lang=${lang}`
@@ -45,9 +54,7 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
               fontWeight: "bold",
               textTransform: "capitalize",
             }}
-            onClick={() => {
-              setOpen(false);
-            }}
+            onClick={handleDrawerClose}
           >
             <ListItem
               sx={{
@@ -55,12 +62,11 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
                 fontWeight: "bold",
                 textTransform: "capitalize",
               }}
-              key={index}
               disablePadding
             >
               <ListItemButton>
                 <ListItemText
-                  primary={lang == "en" ? link.title_en : link.title_ar}
+                  primary={lang === "en" ? link.title_en : link.title_ar}
                   primaryTypographyProps={{
                     color: "black",
                     fontWeight: "bold",
@@ -73,17 +79,16 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
         ))}
         {AllCategories.map((category, index) => (
           <Link
+            key={index}
             href={`/${category.name_en}/${category.id}?lang=${lang}`}
             style={{ textDecoration: "none", color: "#000" }}
             prefetch={true}
-            onClick={() => {
-              setOpen(false);
-            }}
+            onClick={handleDrawerClose}
           >
-            <ListItem key={index} disablePadding>
+            <ListItem disablePadding>
               <ListItemButton>
                 <ListItemText
-                  primary={lang == "en" ? category.name_en : category.name_ar}
+                  primary={lang === "en" ? category.name_en : category.name_ar}
                   primaryTypographyProps={{
                     color: "black",
                     fontWeight: "bold",
@@ -97,21 +102,21 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
       </List>
     </Box>
   );
+
   return (
     <div>
       <Drawer open={open} onClose={handleDrawerClose}>
         <Box
-          className={"DrawerHeader"}
+          className="DrawerHeader"
           sx={{
             padding: "1rem 0.5rem",
             display: "flex",
-            backgroundColor:"black",
+            backgroundColor: "black",
             justifyContent: "space-between",
             alignItems: "center",
           }}
         >
           <Link href={`/?lang=${lang}`}>
-            
             <Typography
               variant="h6"
               noWrap
@@ -125,19 +130,19 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
                 textDecoration: "none",
               }}
             >
-              {lang == "en" ? (
+              {lang === "en" ? (
                 <Image
                   src={"/images/logo/Logo_En.svg"}
                   width={151}
                   height={51}
-                  alt="Picture of the author"
+                  alt="Logo"
                 />
               ) : (
                 <Image
                   src={"/images/logo/Logo_Ar.svg"}
                   width={151}
                   height={51}
-                  alt="Picture of the author"
+                  alt="Logo"
                 />
               )}
             </Typography>
@@ -155,5 +160,6 @@ function MainMenuDrawer({ open, setOpen, AllCategories, lang }: Props) {
       </Drawer>
     </div>
   );
-}
-export default MainMenuDrawer;
+};
+
+export default React.memo(MainMenuDrawer);

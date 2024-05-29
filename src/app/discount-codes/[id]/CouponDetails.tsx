@@ -1,17 +1,32 @@
 "use client";
+import * as React from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import { Language, couponType } from "@/app/types";
+
 type Props = {
   coupon: couponType | null;
   lang: Language;
 };
-function copyText(entryText: string) {
+
+const copyText = (entryText: string) => {
   navigator.clipboard.writeText(entryText);
-}
-export default function CouponDetails(props: Props) {
+};
+
+const CouponDetails: React.FC<Props> = React.memo(({ coupon, lang }) => {
   const [isCopied, setCopy] = useState<boolean>(false);
+
+  const handleCopyClick = useCallback(() => {
+    if (coupon?.code) {
+      copyText(coupon.code);
+      setCopy(true);
+      setTimeout(() => {
+        setCopy(false);
+      }, 3000);
+    }
+  }, [coupon]);
+
   return (
     <>
       <Box
@@ -32,21 +47,15 @@ export default function CouponDetails(props: Props) {
             cursor: "text",
           }}
         >
-          {props.coupon?.code}
+          {coupon?.code}
         </Typography>
         <Button
           variant="outlined"
           color="error"
           sx={{ fontWeight: "bold", padding: "0.9rem " }}
-          onClick={() => {
-            copyText(`${props.coupon?.code}`);
-            setCopy(true);
-            setTimeout(() => {
-              setCopy(false);
-            }, 3000);
-          }}
+          onClick={handleCopyClick}
         >
-          {props.lang == "en" ? "copy" : "نسخ"}
+          {lang === "en" ? "copy" : "نسخ"}
         </Button>
       </Box>
       {isCopied ? (
@@ -62,7 +71,7 @@ export default function CouponDetails(props: Props) {
           }}
         >
           <DoneIcon sx={{ fontSize: "20px", fontWeight: "bold" }} />{" "}
-          {props.lang == "en" ? "Copied" : "تم النسخ"}
+          {lang === "en" ? "Copied" : "تم النسخ"}
         </Typography>
       ) : (
         <Typography
@@ -72,12 +81,13 @@ export default function CouponDetails(props: Props) {
             color: "#0558A0",
           }}
         >
-          {props.lang == "en"
+          {lang === "en"
             ? "Copy the code above and paste at checkout."
-            : `"انسخ الكود  أعلاه والصقه عند الدفع."
-`}
+            : "انسخ الكود أعلاه والصقه عند الدفع."}
         </Typography>
       )}
     </>
   );
-}
+});
+
+export default CouponDetails;

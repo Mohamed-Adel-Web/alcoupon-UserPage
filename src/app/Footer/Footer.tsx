@@ -1,8 +1,8 @@
 "use client";
+import * as React from "react";
 import { Box, Button, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Link from "next/link";
-import "./Footer.css";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -10,9 +10,12 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import { useSearchParams } from "next/navigation";
 import { StoreType } from "../types";
 import Image from "next/image";
-function Footer({ stores }: { stores: StoreType[] }) {
+import "./Footer.css";
+
+const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
   const searchParam = useSearchParams();
   const lang = searchParam.get("lang");
+
   const NavigationSources: {
     title_en: string;
     title_ar: string;
@@ -24,7 +27,6 @@ function Footer({ stores }: { stores: StoreType[] }) {
       title_ar: "جميع المتاجر",
       href: `/discount-codes?page=1&lang=${lang}`,
     },
-
     {
       title_en: "All coupons",
       title_ar: "جميع الكوبونات",
@@ -32,56 +34,60 @@ function Footer({ stores }: { stores: StoreType[] }) {
     },
   ];
 
-  const NavigationLinksList = NavigationSources.map((link) => {
-    return (
-      <li style={{ margin: "1rem 0" }} key={link.title_en}>
-        <Link
-          href={`${link.href}`}
-          prefetch={true}
-          style={{
-            padding: "0 0.4rem",
-            textDecoration: "none",
-            color: "white",
-            fontWeight: "bold",
-            fontSize: "0.9rem",
-            lineHeight: "44px",
-            letterSpacing: "2px",
+  const NavigationLinksList = React.useMemo(
+    () =>
+      NavigationSources.map((link) => (
+        <li style={{ margin: "1rem 0" }} key={link.title_en}>
+          <Link
+            href={`${link.href}`}
+            prefetch={true}
+            style={{
+              padding: "0 0.4rem",
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "bold",
+              fontSize: "0.9rem",
+              lineHeight: "44px",
+              letterSpacing: "2px",
+              whiteSpace: "nowrap",
+              textTransform: "capitalize",
+            }}
+          >
+            {lang === "en" ? link.title_en : link.title_ar}
+          </Link>
+        </li>
+      )),
+    [NavigationSources, lang]
+  );
 
-            whiteSpace: "nowrap",
-            textTransform: "capitalize",
-          }}
-        >
-          {lang == "en" ? link.title_en : link.title_ar}
-        </Link>
-      </li>
-    );
-  });
-  const TopStoreData = stores?.filter((store, index) => {
-    return index < 6;
-  });
-  const topStoresList = TopStoreData?.map((store) => {
-    return (
-      <li style={{ margin: "1rem 0" }} key={store.name_en}>
-        <Link
-          href={`/discount-codes/${store.id}?lang=${lang}`}
-          prefetch={true}
-          style={{
-            padding: "0 0.4rem",
-            textDecoration: "none",
-            color: "white",
-            fontWeight: "bold",
-            fontSize: "0.9rem",
-            lineHeight: "44px",
-            letterSpacing: "2px",
-            whiteSpace: "nowrap",
-            textTransform: "capitalize",
-          }}
-        >
-          {lang == "en" ? store.name_en : store.name_ar}
-        </Link>
-      </li>
-    );
-  });
+  const TopStoreData = stores?.slice(0, 6);
+
+  const topStoresList = React.useMemo(
+    () =>
+      TopStoreData?.map((store) => (
+        <li style={{ margin: "1rem 0" }} key={store.name_en}>
+          <Link
+            href={`/discount-codes/${store.id}?lang=${lang}`}
+            prefetch={true}
+            style={{
+              padding: "0 0.4rem",
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "bold",
+              fontSize: "0.9rem",
+              lineHeight: "44px",
+              letterSpacing: "2px",
+              whiteSpace: "nowrap",
+              textTransform: "capitalize",
+            }}
+          >
+            {lang === "en" ? store.name_en : store.name_ar}
+          </Link>
+        </li>
+      )),
+    [TopStoreData, lang]
+  );
+
   return (
     <Box
       sx={{
@@ -99,34 +105,22 @@ function Footer({ stores }: { stores: StoreType[] }) {
             <Typography
               sx={{ fontWeight: "bold", fontSize: "1.5rem", color: "#F6931E" }}
             >
-              {lang == "en"
-                ? `              About Shop Coupons
-                `
-                : `عن كوبونات التسوق
-`}{" "}
+              {lang === "en" ? "About Shop Coupons" : "عن كوبونات التسوق"}
             </Typography>
             <Typography
               variant="body2"
               sx={{ lineHeight: "2rem", margin: "1rem 0" }}
             >
-              {lang == "en"
-                ? `Shop Coupons is Saudi Arabia and GCC's largest platform for
-              coupons and discount codes. It offers a range of features that
-              help users save money and avail discounts and offers from various
-              stores.`
-                : `كوبونات التسوق هي اكبر منصة كوبونات و اكواد خصم في المملكة العربية السعودية والخليج. تقدم مجموعة من المميزات التي تساعد المستخدمين على توفير المال والاستفادة من الخصومات الرائعه والعروض الحصريه من مختلف المتاجر.`}
+              {lang === "en"
+                ? "Shop Coupons is Saudi Arabia and GCC's largest platform for coupons and discount codes. It offers a range of features that help users save money and avail discounts and offers from various stores."
+                : "كوبونات التسوق هي اكبر منصة كوبونات و اكواد خصم في المملكة العربية السعودية والخليج. تقدم مجموعة من المميزات التي تساعد المستخدمين على توفير المال والاستفادة من الخصومات الرائعه والعروض الحصريه من مختلف المتاجر."}
             </Typography>
           </Grid>
           <Grid xs={12} md={6} lg={3}>
             <Typography
               sx={{ fontWeight: "bold", fontSize: "1.5rem", color: "#F6931E" }}
             >
-              {lang == "en"
-                ? `              Feature sections
-`
-                : `الأقسام المميزة
-
-`}
+              {lang === "en" ? "Feature sections" : "الأقسام المميزة"}
             </Typography>
             <ul>{NavigationLinksList}</ul>
           </Grid>
@@ -134,11 +128,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
             <Typography
               sx={{ fontWeight: "bold", fontSize: "1.5rem", color: "#F6931E" }}
             >
-              {lang == "en"
-                ? `Top Stores`
-                : `المتاجر المميزة
-
-`}
+              {lang === "en" ? "Top Stores" : "المتاجر المميزة"}
             </Typography>
             <ul>{topStoresList}</ul>
           </Grid>
@@ -158,24 +148,28 @@ function Footer({ stores }: { stores: StoreType[] }) {
                 justifyContent: "center",
               }}
             >
-              {lang == "en" ? (
+              {lang === "en" ? (
                 <Image
                   src={"/images/logo/Logo_En.svg"}
                   width={151}
                   height={51}
-                  alt="Picture of the author"
+                  alt="shopCoupon Logo"
+                  loading="eager"
+
                 />
               ) : (
                 <Image
                   src={"/images/logo/Logo_Ar.svg"}
                   width={151}
                   height={51}
-                  alt="Picture of the author"
+                  alt="shopCoupon Logo"
+                  loading="eager"
+
                 />
               )}
             </Typography>
             <Typography sx={{ fontWeight: "bold", margin: "1rem 0 " }}>
-              {lang == "en" ? `Follow us` : `تابعونا`}
+              {lang === "en" ? "Follow us" : "تابعونا"}
             </Typography>
             <ul
               style={{
@@ -192,10 +186,7 @@ function Footer({ stores }: { stores: StoreType[] }) {
                   href={
                     "https://www.instagram.com/shop.coupon/?igsh=dGJmc3Zpcm1ncTl6"
                   }
-                  style={{
-                    textDecoration: "none",
-                    color: "#F6931E",
-                  }}
+                  style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
                 >
                   <InstagramIcon sx={{ fontSize: "2rem" }} />
@@ -235,7 +226,6 @@ function Footer({ stores }: { stores: StoreType[] }) {
                   <TelegramIcon sx={{ fontSize: "2rem" }} />
                 </Link>
               </li>
-
               <li>
                 <Link
                   target="_blank"
@@ -272,10 +262,9 @@ function Footer({ stores }: { stores: StoreType[] }) {
             </ul>
           </Grid>
           <Grid xs={12} sx={{ textAlign: "center", margin: "1rem 0" }}>
-            {lang == "en"
-              ? `            Copyrights © 2024 All rights reserved by
-`
-              : `جميع الحقوق محفوظة بواسطة `}
+            {lang === "en"
+              ? "Copyrights © 2024 All rights reserved by"
+              : "جميع الحقوق محفوظة بواسطة "}
             <Link
               target="_blank"
               href={"https://kyanlabs.com/en"}
@@ -292,5 +281,6 @@ function Footer({ stores }: { stores: StoreType[] }) {
       </Container>
     </Box>
   );
-}
+});
+
 export default Footer;

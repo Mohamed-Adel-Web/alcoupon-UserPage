@@ -7,26 +7,22 @@ import { IconButton, InputBase, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function SearchModal({
-  open,
-  handleSearchClose,
-  lang,
-}: {
-  open: boolean;
-  handleSearchClose: () => void;
-  lang: string | null;
-}) {
+const SearchModal: React.FC<{ open: boolean, handleSearchClose: () => void, lang: string | null }> = React.memo(({ open, handleSearchClose, lang }) => {
   const [searchInput, setSearchInput] = React.useState<string>("");
   const router = useRouter();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (searchInput.length > 1) {
       router.push(`/searchStore/${searchInput}?lang=${lang}`);
       setSearchInput("");
       handleSearchClose();
     }
-  };
+  }, [searchInput, lang, router, handleSearchClose]);
+
+  const handleInputChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  }, []);
 
   return (
     <React.Fragment>
@@ -67,17 +63,15 @@ export default function SearchModal({
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder={
-              lang == "en"
-                ? `Search stores, coupons and discounts`
-                : `ابحث عن المتاجر، الكوبونات، والخصومات`
+              lang === "en"
+                ? "Search stores, coupons and discounts"
+                : "ابحث عن المتاجر، الكوبونات، والخصومات"
             }
             inputProps={{
               "aria-label": "Search stores, coupons and discounts",
             }}
             value={searchInput}
-            onChange={(event) => {
-              setSearchInput(event.target.value);
-            }}
+            onChange={handleInputChange}
           />
           <Button
             type="submit"
@@ -90,4 +84,6 @@ export default function SearchModal({
       </Dialog>
     </React.Fragment>
   );
-}
+});
+
+export default SearchModal;

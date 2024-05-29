@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { Grid, Pagination, PaginationItem } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -14,13 +14,10 @@ const toArabicNumber = (num: number) => {
     .join("");
 };
 
-function PaginationComponent({
-  page,
-  lastPage,
-}: {
+const PaginationComponent: React.FC<{
   page: number;
   lastPage: number | undefined;
-}) {
+}> = React.memo(({ page, lastPage }) => {
   const [pageNumber, setPage] = useState(page);
   const [lang, setLang] = useState<string | null>();
   const router = useRouter();
@@ -34,11 +31,15 @@ function PaginationComponent({
     setLang(searchParams.get("lang"));
   }, [searchParams]);
 
-  const handleChange = (event: React.ChangeEvent<unknown>, page: number) => {
-    router.push(`?page=${page}&lang=${lang}`);
-  };
+  const handleChange = useCallback(
+    (event: React.ChangeEvent<unknown>, page: number) => {
+      router.push(`?page=${page}&lang=${lang}`);
+    },
+    [router, lang]
+  );
 
   const isArabic = lang === "ar";
+
   return (
     <Grid container justifyContent="center">
       <Grid item>
@@ -66,6 +67,6 @@ function PaginationComponent({
       </Grid>
     </Grid>
   );
-}
+});
 
 export default PaginationComponent;

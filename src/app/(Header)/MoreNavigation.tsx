@@ -7,6 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Button } from "@mui/material";
 import { categoryTypes } from "../types";
 import Link from "next/link";
+
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
     elevation={0}
@@ -50,52 +51,60 @@ const StyledMenu = styled((props: MenuProps) => (
   },
 }));
 
-export default function MoreNavigation({
-  AllCategoriesData,
-  lang,
-}: {
+const MoreNavigation: React.FC<{
   AllCategoriesData: categoryTypes[];
   lang: string | null;
-}) {
+}> = React.memo(({ AllCategoriesData, lang }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const DynamicNavigationLinksList = AllCategoriesData.map(
-    (category, index) => {
-      if (index >= 8) {
-        return (
-          <Link
-            href={`/${category.name_en}/${category.id}?lang=${lang}`}
-            style={{
-              textDecoration: "none",
-              color: "black",
-            }}
-            prefetch={true}
-          >
-            <MenuItem
-              onClick={handleClose}
-              disableRipple
-              sx={{
-                fontWeight: "bold",
-                fontSize: "0.875rem",
-                lineHeight: "44px",
-                letterSpacing: "2px",
-                whiteSpace: "nowrap",
-                textTransform: "capitalize",
-              }}
-            >
-              {lang == "en" ? category.name_en : category.name_ar}
-            </MenuItem>
-          </Link>
-        );
-      }
-    }
+
+  const handleClick = React.useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(event.currentTarget);
+    },
+    []
   );
+
+  const handleClose = React.useCallback(() => {
+    setAnchorEl(null);
+  }, []);
+
+  const DynamicNavigationLinksList = React.useMemo(
+    () =>
+      AllCategoriesData.map((category, index) => {
+        if (index >= 8) {
+          return (
+            <Link
+              key={category.id}
+              href={`/${category.name_en}/${category.id}?lang=${lang}`}
+              style={{
+                textDecoration: "none",
+                color: "black",
+              }}
+              prefetch={true}
+            >
+              <MenuItem
+                onClick={handleClose}
+                disableRipple
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: "0.875rem",
+                  lineHeight: "44px",
+                  letterSpacing: "2px",
+                  whiteSpace: "nowrap",
+                  textTransform: "capitalize",
+                }}
+              >
+                {lang === "en" ? category.name_en : category.name_ar}
+              </MenuItem>
+            </Link>
+          );
+        }
+        return null;
+      }),
+    [AllCategoriesData, lang, handleClose]
+  );
+
   return (
     <div
       style={{
@@ -125,7 +134,7 @@ export default function MoreNavigation({
         }}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        {lang == "en" ? "More" : "المزيد"}
+        {lang === "en" ? "More" : "المزيد"}
       </Button>
       <StyledMenu
         id="demo-customized-menu"
@@ -140,4 +149,6 @@ export default function MoreNavigation({
       </StyledMenu>
     </div>
   );
-}
+});
+
+export default MoreNavigation;
