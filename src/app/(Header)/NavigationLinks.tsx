@@ -112,7 +112,7 @@ const NavigationLinks: React.FC<{ AllCategoriesData: categoryTypes[] }> =
           <Container maxWidth="lg" sx={{ display: "flex" }}>
             {NavigationLinksList}
             {DynamicNavigationLinksList}
-            {DynamicNavigationLinksList.length >= 8 && (
+            {DynamicNavigationLinksList.length > 8 && (
               <MoreNavigation
                 AllCategoriesData={AllCategoriesData}
                 lang={lang}
