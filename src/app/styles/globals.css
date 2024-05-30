@@ -18,6 +18,9 @@ body.rtl {
 .fa-brands {
   font-family: "Font Awesome 6 Brands" !important;
 }
+.fa-solid {
+  font-family: "Font Awesome 6 Free" !important;
+}
 
 body {
   background-color: #f2f2f2;

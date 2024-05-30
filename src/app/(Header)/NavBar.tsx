@@ -173,21 +173,14 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 gap: "5px",
                 color: "white",
                 fontSize: {
-                  xs: "0.9rem", // Adjust font size for small screens
-                  sm: "1.3rem", // Default font size
+                  xs: "0.9rem",
+                  sm: "1.3rem",
                 },
                 display: "flex",
                 alignItems: "center",
               }}
             >
-              <LanguageIcon
-                sx={{
-                  fontSize: {
-                    xs: "0.9rem", // Adjust font size for small screens
-                    sm: "1.3rem", // Default font size
-                  },
-                }}
-              />
+              <i className="fa-solid fa-globe"></i>
               {lang === "en" ? "AR" : "EN"}
             </Button>
 
