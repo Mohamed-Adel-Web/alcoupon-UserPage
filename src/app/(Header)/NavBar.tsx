@@ -159,7 +159,6 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
           </Paper>
           {/* search bar */}
 
-          <Box sx={{ display: "flex" }}>
             {/* languageControl */}
 
             <IconButton
@@ -167,7 +166,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               sx={{ gap: "5px", color: "white" }}
             >
               <LanguageIcon sx={{ verticalAlign: "middle" ,         
-            display: { xs: "none", sm: "flex" },
+            
 }} />
               {lang === "en" ? "AR" : "EN"}
             </IconButton>
@@ -206,7 +205,6 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               </Tooltip>
               {/* main menu in small screen */}
             </Typography>
-          </Box>
         </Toolbar>
       </Container>
       <MainMenuDrawer
