@@ -166,7 +166,8 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               sx={{ gap: "5px", color: "white" }}
             >
               <LanguageIcon sx={{ verticalAlign: "middle" ,         
-            
+                            display: { xs: "none", sm: "flex" },
+
 }} />
               {lang === "en" ? "AR" : "EN"}
             </IconButton>
