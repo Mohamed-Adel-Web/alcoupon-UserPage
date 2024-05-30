@@ -10,10 +10,12 @@
 
 body.ltr {
   direction: ltr;
+  overflow: hidden !important;
 }
 
 body.rtl {
   direction: rtl;
+  overflow: hidden !important;
 }
 .fa-brands {
   font-family: "Font Awesome 6 Brands" !important;
@@ -25,7 +27,7 @@ body.rtl {
 body {
   background-color: #f2f2f2;
   direction: rtl;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 @font-face {
   font-family: "Tajawal";

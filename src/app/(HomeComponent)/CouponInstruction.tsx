@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Link from "next/link";
 import { Language } from "../types";
-import Image from "next/image";
 function CouponInstruction({ lang }: { lang: Language }) {
   return (
     <Grid container spacing={4}>
@@ -67,12 +66,12 @@ function CouponInstruction({ lang }: { lang: Language }) {
             minHeight: "600px",
           }}
         >
-          <Image
-            width={600}
-            height={200}
-            src={"/images/CouponInstruction/instruction.svg"}
+          {/* <img
+            src={"/images/CouponInstruction/instruction.jpg"}
+       
+            style={{ width: "100%"}}
             alt="coupon instruction image"
-          />
+          /> */}
           <Box sx={{ padding: "1rem 2rem" }}>
             <Typography
               sx={{
