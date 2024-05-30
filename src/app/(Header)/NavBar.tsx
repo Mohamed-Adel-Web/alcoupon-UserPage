@@ -162,7 +162,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
           {/* languageControl */}
 
           {/* languageControl */}
-          <Typography sx={{ display: "flex" }}>
+          <Typography sx={{ display: "flex", alignItems: "center" }}>
             <Tooltip
               title={
                 lang == "en"
@@ -179,6 +179,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 justifyContent: "center",
                 alignItems: "center",
                 mx: "0.5rem",
+                mt: "0.3rem",
               }}
             >
               <Typography> {lang === "en" ? "AR" : "EN"}</Typography>
