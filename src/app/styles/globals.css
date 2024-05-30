@@ -10,12 +10,12 @@
 
 body.ltr {
   direction: ltr;
-  overflow: hidden !important;
+  overflow-x: hidden !important;
 }
 
 body.rtl {
   direction: rtl;
-  overflow: hidden !important;
+  overflow-x: hidden !important;
 }
 .fa-brands {
   font-family: "Font Awesome 6 Brands" !important;
