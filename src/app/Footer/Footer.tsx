@@ -133,41 +133,39 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
             <ul>{topStoresList}</ul>
           </Grid>
           <Grid xs={12} md={6} lg={3} sx={{ textAlign: "center" }}>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              sx={{
-                mr: 2,
-                display: "flex",
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-                justifyContent: "center",
-              }}
-            >
-              {lang === "en" ? (
-                <Image
-                  src={"/images/logo/Logo_En.svg"}
-                  width={151}
-                  height={51}
-                  alt="shopCoupon Logo"
-                  loading="eager"
-
-                />
-              ) : (
-                <Image
-                  src={"/images/logo/Logo_Ar.svg"}
-                  width={151}
-                  height={51}
-                  alt="shopCoupon Logo"
-                  loading="eager"
-
-                />
-              )}
-            </Typography>
+            <Link href={`/?lang=${lang}`} prefetch={true}>
+              <Typography
+                variant="h6"
+                noWrap
+                sx={{
+                  mr: 2,
+                  display: "flex",
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                {lang === "en" ? (
+                  <Image
+                    src={"/images/logo/Logo_En.svg"}
+                    width={151}
+                    height={51}
+                    alt="Logo"
+                    loading="eager"
+                  />
+                ) : (
+                  <Image
+                    src={"/images/logo/Logo_Ar.svg"}
+                    width={151}
+                    height={51}
+                    alt="Logo"
+                    loading="eager"
+                  />
+                )}
+              </Typography>
+            </Link>
             <Typography sx={{ fontWeight: "bold", margin: "1rem 0 " }}>
               {lang === "en" ? "Follow us" : "تابعونا"}
             </Typography>
