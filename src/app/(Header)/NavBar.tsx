@@ -90,7 +90,11 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
       <Container maxWidth="lg">
         <Toolbar
           disableGutters
-          sx={{ display: "flex", justifyContent: "space-between" }}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
         >
           {/* Logo */}
           <Link href={`/?lang=${lang}`} prefetch={true}>
@@ -167,22 +171,22 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
           <Box sx={{ display: "flex" }}>
             {/* languageControl */}
 
-            <Button
+            <span
               onClick={handleLangChange}
-              sx={{
+              style={{
                 gap: "5px",
                 color: "white",
-                fontSize: {
-                  xs: "0.9rem",
-                  sm: "1.3rem",
-                },
                 display: "flex",
                 alignItems: "center",
+                cursor: "pointer",
+                backgroundColor: "#212121",
+                padding: "0.5rem",
+                fontWeight: "bold",
               }}
             >
               <i className="fa-solid fa-globe"></i>
               {lang === "en" ? "AR" : "EN"}
-            </Button>
+            </span>
 
             {/* languageControl */}
             <Typography sx={{ display: { xs: "flex", md: "none" } }}>
