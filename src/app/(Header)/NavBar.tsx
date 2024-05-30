@@ -25,7 +25,6 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   const pathname = usePathname();
   const router = useRouter();
   const currentSearchParams = useSearchParams();
-
   const handleSearchOpen = useCallback(() => {
     setSearchOpen(true);
   }, []);
@@ -68,15 +67,12 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
     updatedSearchParams.set("lang", newLang);
     router.push(pathname + "?" + updatedSearchParams.toString());
   }, [lang, currentSearchParams, pathname, router]);
-
   const handleMainMenuOpen = useCallback(() => {
     setMainMenuOpen(true);
   }, []);
-
   const handleMainMenuClose = useCallback(() => {
     setMainMenuOpen(false);
   }, []);
-
   return (
     <nav
       style={{
@@ -86,165 +82,130 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
         background: "#212121",
       }}
     >
-      <Container
-        maxWidth="lg"
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "0.5rem",
-        }}
-      >
-        {/* Logo */}
-        <Link href={`/?lang=${lang}`} prefetch={true}>
-          <Typography
-            variant="h6"
-            noWrap
-            sx={{
-              mr: 2,
-              display: "flex",
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            {lang === "en" ? (
-              <Image
-                src={"/images/logo/Logo_En.svg"}
-                width={151}
-                height={51}
-                alt="Logo"
-                loading="eager"
-              />
-            ) : (
-              <Image
-                src={"/images/logo/Logo_Ar.svg"}
-                width={151}
-                height={51}
-                alt="Logo"
-                loading="eager"
-              />
-            )}
-          </Typography>
-        </Link>
-        {/* Logo */}
-
-        {/* search bar */}
-        <Paper
-          component="form"
-          sx={{
-            p: "2px 4px",
-            display: { md: "flex", xs: " none" },
-            alignItems: "center",
-            width: 600,
-          }}
-          onSubmit={handleSubmit}
+      <Container maxWidth="lg">
+        <Toolbar
+          disableGutters
+          sx={{ display: "flex", justifyContent: "space-between" }}
         >
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder={
-              lang === "en"
-                ? "Search stores, coupons and discounts"
-                : "ابحث عن المتاجر، الكوبونات، والخصومات"
-            }
-            inputProps={{
-              "aria-label": "Search stores, coupons and discounts",
-            }}
-            value={searchInput}
-            onChange={(event) => {
-              setSearchInput(event.target.value);
-            }}
-          />
-          <Button
-            type="submit"
-            sx={{ p: "7px", backgroundColor: "#E9ECEF", color: "black" }}
-            aria-label="search"
-          >
-            <SearchIcon />
-          </Button>
-        </Paper>
-        {/* search bar */}
-
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            height: "100%",
-            justifyContent: "center",
-          }}
-        >
-          {/* languageControl */}
-
-          <Button
-            onClick={handleLangChange}
-            sx={{
-              gap: "5px",
-              color: "white",
-              fontSize: {
-                xs: "0.9rem", // Adjust font size for small screens
-                sm: "1.3rem", // Default font size
-              },
-              display: "flex",
-              alignItems: "center",
-            }}
-            variant="text"
-          >
-            <LanguageIcon
+          {/* Logo */}
+          <Link href={`/?lang=${lang}`} prefetch={true}>
+            <Typography
+              variant="h6"
+              noWrap
               sx={{
-                fontSize: {
-                  xs: "0.9rem",
-                  sm: "1.3rem", // Default font size
-                },
-                verticalAlign: "middle",
+                mr: 2,
+                display: "flex",
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              {lang === "en" ? (
+                <Image
+                  src={"/images/logo/Logo_En.svg"}
+                  width={151}
+                  height={51}
+                  alt="Logo"
+                  loading="eager"
+                />
+              ) : (
+                <Image
+                  src={"/images/logo/Logo_Ar.svg"}
+                  width={151}
+                  height={51}
+                  alt="Logo"
+                  loading="eager"
+                />
+              )}
+            </Typography>
+          </Link>
+          {/* Logo */}
+
+          {/* search bar */}
+          <Paper
+            component="form"
+            sx={{
+              p: "2px 4px",
+              display: { md: "flex", xs: " none" },
+              alignItems: "center",
+              width: 600,
+            }}
+            onSubmit={handleSubmit}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder={
+                lang === "en"
+                  ? "Search stores, coupons and discounts"
+                  : "ابحث عن المتاجر، الكوبونات، والخصومات"
+              }
+              inputProps={{
+                "aria-label": "Search stores, coupons and discounts",
+              }}
+              value={searchInput}
+              onChange={(event) => {
+                setSearchInput(event.target.value);
               }}
             />
-            {lang === "en" ? "AR" : "EN"}
-          </Button>
+            <Button
+              type="submit"
+              sx={{ p: "7px", backgroundColor: "#E9ECEF", color: "black" }}
+              aria-label="search"
+            >
+              <SearchIcon />
+            </Button>
+          </Paper>
+          {/* search bar */}
 
-          {/* languageControl */}
-          <Typography sx={{ display: { xs: "flex", md: "none" } }}>
-            {/* Search in small Screen */}
-            <Tooltip
-              title="Search"
-              sx={{ color: "white" }}
-              onClick={handleSearchOpen}
+          <Box sx={{ display: "flex" }}>
+            {/* languageControl */}
+
+            <IconButton
+              onClick={handleLangChange}
+              sx={{ gap: "5px", color: "white" }}
             >
-              <IconButton>
-                <SearchIcon
-                  sx={{
-                    fontSize: {
-                      xs: "1rem",
-                      sm: "1.3rem",
-                    },
-                  }}
-                />
-              </IconButton>
-            </Tooltip>
-            <SearchModal
-              lang={lang}
-              open={searchOpen}
-              handleSearchClose={handleSearchClose}
-            />
-            {/* Search in small Screen */}
-            {/* main menu in small screen */}
-            <Tooltip
-              title="Main menu"
-              sx={{ color: "white" }}
-              onClick={handleMainMenuOpen}
-            >
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
+              <LanguageIcon sx={{ verticalAlign: "middle" }} />
+              {lang === "en" ? "AR" : "EN"}
+            </IconButton>
+            {/* languageControl */}
+            <Typography sx={{ display: { xs: "flex", md: "none" } }}>
+              {/* Search in small Screen */}
+              <Tooltip
+                title="Search"
+                sx={{ color: "white" }}
+                onClick={handleSearchOpen}
               >
-                <MenuIcon />
-              </IconButton>
-            </Tooltip>
-            {/* main menu in small screen */}
-          </Typography>
-        </Box>
+                <IconButton>
+                  <SearchIcon />
+                </IconButton>
+              </Tooltip>
+              <SearchModal
+                lang={lang}
+                open={searchOpen}
+                handleSearchClose={handleSearchClose}
+              />
+              {/* Search in small Screen */}
+              {/* main menu in small screen */}
+              <Tooltip
+                title="Main menu"
+                sx={{ color: "white" }}
+                onClick={handleMainMenuOpen}
+              >
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Tooltip>
+              {/* main menu in small screen */}
+            </Typography>
+          </Box>
+        </Toolbar>
       </Container>
       <MainMenuDrawer
         open={openMainMenu}
