@@ -196,6 +196,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                   xs: "0.9rem",
                   sm: "1.3rem", // Default font size
                 },
+                verticalAlign: "middle",
               }}
             />
             {lang === "en" ? "AR" : "EN"}
