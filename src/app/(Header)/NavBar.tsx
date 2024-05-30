@@ -179,7 +179,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 justifyContent: "center",
                 alignItems: "center",
                 mx: "0.5rem",
-                mt: "0.3rem",
+                mt: "0.4rem",
               }}
             >
               <Typography> {lang === "en" ? "AR" : "EN"}</Typography>
