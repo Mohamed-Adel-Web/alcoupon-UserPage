@@ -58,12 +58,12 @@ export default async function categoryPage({
           sx={{ padding: "1rem 0", fontSize: "1rem", fontWeight: "400" }}
         >
           {searchParams.lang == "en"
-            ? `   Our team at Shopcoupon.com diligently curates the latest coupon codes,
+            ? `   Our team at Shop coupons diligently curates the latest coupon codes,
         discounts, and deals from top online shopping sites. The Middle East
         is rapidly becoming a hub for online stores and e-commerce platforms,
         offering a wide range of products that are just a click away and
         delivered to your doorstep with exceptional speed.`
-            : `يعمل فريقنا في Shopcoupon.com بجد لتقديم أحدث أكواد الكوبونات والخصومات والعروض من أفضل مواقع التسوق الإلكتروني. أصبح الشرق الأوسط مركزًا سريع النمو للمتاجر الإلكترونية ومنصات التجارة الإلكترونية، حيث يمكن الحصول على مجموعة واسعة من المنتجات بنقرة واحدة فقط ويتم توصيلها إلى باب منزلك بسرعة فائقة `}
+            : `يعمل فريقنا في كوبونات التسوق بجد لتقديم أحدث أكواد الكوبونات والخصومات والعروض من أفضل مواقع التسوق الإلكتروني. أصبح الشرق الأوسط مركزًا سريع النمو للمتاجر الإلكترونية ومنصات التجارة الإلكترونية، حيث يمكن الحصول على مجموعة واسعة من المنتجات بنقرة واحدة فقط ويتم توصيلها إلى باب منزلك بسرعة فائقة `}
         </Typography>
       </Box>
       <Grid container spacing={2} sx={{ textAlign: "center" }}>
@@ -99,14 +99,14 @@ export default async function categoryPage({
           sx={{ fontSize: "1rem" }}
         >
           {searchParams.lang == "en"
-            ? `  Explore the ShopCoupon shopping guide, which features the top coupon
+            ? `  Explore the Shop Coupons shopping guide, which features the top coupon
         codes, deals, and discounts from premier online shopping sites,
         including clothing retailers and Chinese shopping platforms. Learn how
         to place orders from any online site with our easy-to-follow guides.
         Check out our comprehensive list of online shopping sites and
         e-commerce stores that offer coupon codes, vouchers, as well as deals
         and discounts, and provide shipping services.`
-            : `ستكشف دليل التسوق في ShopCoupon، الذي يتضمن أفضل أكواد الكوبونات والعروض والخصومات من أفضل مواقع التسوق الإلكتروني، بما في ذلك متاجر الملابس الإلكترونية ومواقع التسوق الصينية. تعلم كيفية تقديم الطلبات من أي موقع إلكتروني بسهولة مع أدلتنا العملية. تحقق من قائمتنا الشاملة لمواقع التسوق الإلكتروني ومتاجر التجارة الإلكترونية التي تقدم أكواد كوبونات وقسائم شراء، بالإضافة إلى العروض والخصومات وخدمات الشحن.`}
+            : `استكشف دليل التسوق في كوبونات التسوق، الذي يتضمن أفضل أكواد الكوبونات والعروض والخصومات من أفضل مواقع التسوق الإلكتروني، بما في ذلك متاجر الملابس الإلكترونية ومواقع التسوق الصينية. تعلم كيفية تقديم الطلبات من أي موقع إلكتروني بسهولة مع أدلتنا العملية. تحقق من قائمتنا الشاملة لمواقع التسوق الإلكتروني ومتاجر التجارة الإلكترونية التي تقدم أكواد كوبونات وقسائم شراء، بالإضافة إلى العروض والخصومات وخدمات الشحن`}
         </Typography>
       </Box>
     </Box>

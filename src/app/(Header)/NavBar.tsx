@@ -159,53 +159,55 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
           </Paper>
           {/* search bar */}
 
-            {/* languageControl */}
+          {/* languageControl */}
 
-            <IconButton
-              onClick={handleLangChange}
-              sx={{ gap: "5px", color: "white" }}
+          <IconButton
+            onClick={handleLangChange}
+            sx={{ gap: "5px", color: "white" }}
+          >
+            <LanguageIcon
+              sx={{
+                verticalAlign: "middle",
+                display: { xs: "none", sm: "flex" },
+              }}
+            />
+            {lang === "en" ? "AR" : "EN"}
+          </IconButton>
+          {/* languageControl */}
+          <Typography sx={{ display: { xs: "flex", md: "none" } }}>
+            {/* Search in small Screen */}
+            <Tooltip
+              title="Search"
+              sx={{ color: "white" }}
+              onClick={handleSearchOpen}
             >
-              <LanguageIcon sx={{ verticalAlign: "middle" ,         
-                            display: { xs: "none", sm: "flex" },
-
-}} />
-              {lang === "en" ? "AR" : "EN"}
-            </IconButton>
-            {/* languageControl */}
-            <Typography sx={{ display: { xs: "flex", md: "none" } }}>
-              {/* Search in small Screen */}
-              <Tooltip
-                title="Search"
-                sx={{ color: "white" }}
-                onClick={handleSearchOpen}
+              <IconButton>
+                <SearchIcon />
+              </IconButton>
+            </Tooltip>
+            <SearchModal
+              lang={lang}
+              open={searchOpen}
+              handleSearchClose={handleSearchClose}
+            />
+            {/* Search in small Screen */}
+            {/* main menu in small screen */}
+            <Tooltip
+              title="Main menu"
+              sx={{ color: "white" }}
+              onClick={handleMainMenuOpen}
+            >
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
               >
-                <IconButton>
-                  <SearchIcon />
-                </IconButton>
-              </Tooltip>
-              <SearchModal
-                lang={lang}
-                open={searchOpen}
-                handleSearchClose={handleSearchClose}
-              />
-              {/* Search in small Screen */}
-              {/* main menu in small screen */}
-              <Tooltip
-                title="Main menu"
-                sx={{ color: "white" }}
-                onClick={handleMainMenuOpen}
-              >
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                >
-                  <MenuIcon />
-                </IconButton>
-              </Tooltip>
-              {/* main menu in small screen */}
-            </Typography>
+                <MenuIcon />
+              </IconButton>
+            </Tooltip>
+            {/* main menu in small screen */}
+          </Typography>
         </Toolbar>
       </Container>
       <MainMenuDrawer

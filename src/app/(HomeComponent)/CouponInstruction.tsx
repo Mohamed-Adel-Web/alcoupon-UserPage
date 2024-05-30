@@ -31,9 +31,9 @@ function CouponInstruction({ lang }: { lang: Language }) {
             off your purchase cost, or by offering a specific amount off when
             you spend a set minimum, as well as providing free shipping.
             However, it can sometimes be challenging to find active codes that
-            work. That's why the team at ShopCoupon diligently verifies each
+            work. That's why the team at Shop Coupons diligently verifies each
             coupon code daily and checks their expiration dates.`
-              : `يمكن أن يوفر لك رمز ترويجي تخفيضات فورية، إما بتقليل نسبة معينة من إجمالي طلبك، مثل خصم نسبة مؤية معينة من تكلفة شرائك، أو بتقديم خصم محدد عند إنفاق حد أدنى معين، بالإضافة إلى توفير الشحن المجاني. ومع ذلك، قد يكون من الصعب في بعض الأحيان العثور على أكواد خصم نشطة وفعالة. لذلك، يقوم فريق الكوبون بالتحقق بعناية من كل رمز كوبون يوميًا ويفحص تواريخ انتهاء صلاحيتها.`}
+              : `يمكن أن يوفر لك رمز ترويجي تخفيضات فورية، إما بتقليل نسبة معينة من إجمالي طلبك، مثل خصم نسبة مؤية معينة من تكلفة شرائك، أو بتقديم خصم محدد عند إنفاق حد أدنى معين، بالإضافة إلى توفير الشحن المجاني. ومع ذلك، قد يكون من الصعب في بعض الأحيان العثور على أكواد خصم نشطة وفعالة. لذلك، يقوم فريق كوبونات التسوق بالتحقق بعناية من كل رمز كوبون يوميًا ويفحص تواريخ انتهاء صلاحيتها.`}
           </Typography>
           <Typography
             variant="body2"
@@ -93,7 +93,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
                 ? `First, you need to locate a coupon code or discount voucher and understand how to apply it. Simply open a coupon website to search for a recent and valid discount coupon for the store you wish to shop from and start saving. The coupons might offer a certain percentage or amount off your total, or alter your shipping costs by either eliminating or reducing them.
 
 `
-                : `أولاً، تحتاج إلى البحث عن رمز كوبون أو قسيمة خصم وفهم كيفية تطبيقها. كل ما عليك فعله هو فتح موقع ويب للكوبونات للبحث عن كوبون خصم صالح وحديث للمتجر الذي ترغب في التسوق منه وابدأ في التوفير. قد توفر الكوبونات نسبة معينة أو مبلغًا من إجمالي مشترياتك، أو تغير تكاليف الشحن الخاصة بك إما بإزالتها أو تخفيضها.
+                : `أولاً، تحتاج إلى البحث عن رمز كوبون أو قسيمة خصم وفهم كيفية تطبيقها. كل ما عليك فعله هو فتح موقع كوبونات التسوق للبحث عن كوبون خصم صالح وحديث للمتجر الذي ترغب في التسوق منه وابدأ في التوفير. قد توفر الكوبونات نسبة معينة أو مبلغًا من إجمالي مشترياتك، أو تغير تكاليف الشحن الخاصة بك إما بإزالتها أو تخفيضها.
 
                 `}
             </Typography>
