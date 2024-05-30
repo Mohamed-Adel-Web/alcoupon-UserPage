@@ -163,7 +163,15 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
 
           <Typography
             onClick={handleLangChange}
-            sx={{ cursor: "pointer", color: "white" }}
+            sx={{
+              cursor: "pointer",
+              color: "white",
+              fontSize: "1.5rem",
+              lineHeight: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
             {lang === "en" ? "AR" : "EN"}
           </Typography>
