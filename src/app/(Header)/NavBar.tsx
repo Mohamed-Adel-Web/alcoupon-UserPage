@@ -91,7 +91,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          padding: "1rem",
+          padding: "0.5rem",
         }}
       >
         {/* Logo */}
@@ -180,6 +180,8 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               },
               display: "flex",
               alignItems: "center",
+              padding: "0.8rem",
+              lineHeight: "1rem",
             }}
           >
             <LanguageIcon

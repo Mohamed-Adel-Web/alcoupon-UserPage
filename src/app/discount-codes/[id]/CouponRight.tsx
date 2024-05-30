@@ -1,5 +1,6 @@
 import { Language, StoreType } from "@/app/types";
 import { Box, Tooltip, Typography } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
 type Props = {
   store: StoreType | null;
@@ -9,6 +10,8 @@ type Props = {
 const CouponRight = (props: Props) => {
   const aboutEn = props.store?.about_en || "";
   const aboutAr = props.store?.about_ar || "";
+  const altText =
+    props.lang === "en" ? props.store?.title_en : props.store?.title_ar;
   return (
     <>
       <Box
@@ -34,10 +37,11 @@ const CouponRight = (props: Props) => {
                 : `${props.store?.name_ar}`
             }
           >
-            <img
+            <Image
+              width={210}
+              height={210}
               src={`${props.store?.image}`}
-              style={{ width: "210px" }}
-              alt="store image"
+              alt={`${altText}`}
             />
           </Tooltip>
         </Link>
@@ -60,7 +64,7 @@ const CouponRight = (props: Props) => {
               " linear-gradient(90deg, rgba(242,19,20,0.6895133053221288) 29%, rgba(244,147,30,0.7175245098039216) 72%)",
             textDecoration: "none",
             color: "Black",
-            fontWeight:"bold",
+            fontWeight: "bold",
             borderRadius: "2rem",
             margin: "1rem auto",
             display: "block",
