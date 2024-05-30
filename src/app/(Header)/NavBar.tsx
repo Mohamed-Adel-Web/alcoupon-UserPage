@@ -161,18 +161,12 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
 
           {/* languageControl */}
 
-          <IconButton
+          <Typography
             onClick={handleLangChange}
-            sx={{ gap: "5px", color: "white" }}
+            sx={{ cursor: "pointer", color: "white" }}
           >
-            <LanguageIcon
-              sx={{
-                verticalAlign: "middle",
-                display: { xs: "none", sm: "flex" },
-              }}
-            />
             {lang === "en" ? "AR" : "EN"}
-          </IconButton>
+          </Typography>
           {/* languageControl */}
           <Typography sx={{ display: { xs: "flex", md: "none" } }}>
             {/* Search in small Screen */}
