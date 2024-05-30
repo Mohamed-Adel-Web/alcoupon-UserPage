@@ -167,7 +167,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
           <Box sx={{ display: "flex" }}>
             {/* languageControl */}
 
-            <IconButton
+            <Button
               onClick={handleLangChange}
               sx={{
                 gap: "5px",
@@ -176,6 +176,8 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                   xs: "0.9rem", // Adjust font size for small screens
                   sm: "1.3rem", // Default font size
                 },
+                display: "flex",
+                alignItems: "center",
               }}
             >
               <LanguageIcon
@@ -187,7 +189,8 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 }}
               />
               {lang === "en" ? "AR" : "EN"}
-            </IconButton>
+            </Button>
+
             {/* languageControl */}
             <Typography sx={{ display: { xs: "flex", md: "none" } }}>
               {/* Search in small Screen */}
@@ -201,7 +204,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                     sx={{
                       fontSize: {
                         xs: "1rem",
-                        sm: "1.3rem", 
+                        sm: "1.3rem",
                       },
                     }}
                   />
