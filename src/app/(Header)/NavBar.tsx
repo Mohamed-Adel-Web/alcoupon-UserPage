@@ -25,32 +25,6 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   const pathname = usePathname();
   const router = useRouter();
   const currentSearchParams = useSearchParams();
-  const iconProps =
-    lang === "en"
-      ? {
-          startIcon: (
-            <LanguageIcon
-              sx={{
-                fontSize: {
-                  xs: "0.9rem",
-                  sm: "1.3rem", // Default font size
-                },
-              }}
-            />
-          ),
-        }
-      : {
-          endIcon: (
-            <LanguageIcon
-              sx={{
-                fontSize: {
-                  xs: "0.9rem",
-                  sm: "1.3rem", // Default font size
-                },
-              }}
-            />
-          ),
-        };
 
   const handleSearchOpen = useCallback(() => {
     setSearchOpen(true);
@@ -208,16 +182,22 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               gap: "5px",
               color: "white",
               fontSize: {
-                xs: "0.9rem", 
-                sm: "1.3rem", 
+                xs: "0.9rem", // Adjust font size for small screens
+                sm: "1.3rem", // Default font size
               },
               display: "flex",
               alignItems: "center",
-              lineHeight: "2.5rem",
             }}
             variant="text"
-            {...iconProps}
           >
+            <LanguageIcon
+              sx={{
+                fontSize: {
+                  xs: "0.9rem",
+                  sm: "1.3rem", // Default font size
+                },
+              }}
+            />
             {lang === "en" ? "AR" : "EN"}
           </Button>
 
