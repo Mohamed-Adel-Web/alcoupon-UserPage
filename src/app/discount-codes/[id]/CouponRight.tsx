@@ -75,7 +75,7 @@ const CouponRight = (props: Props) => {
           padding: "1rem 2rem",
           margin: "1rem 0",
           border: "1px solid #dddddd",
-          textAlign:  { xs: "center", md: "start" },
+          textAlign: "start",
         }}
       >
         {props.lang == "en" ? (

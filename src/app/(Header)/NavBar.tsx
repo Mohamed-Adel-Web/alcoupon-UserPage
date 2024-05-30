@@ -70,6 +70,14 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
     router.push(pathname + "?" + updatedSearchParams.toString());
   }, [lang, currentSearchParams, pathname, router]);
 
+  const handleMainMenuOpen = useCallback(() => {
+    setMainMenuOpen(true);
+  }, []);
+
+  const handleMainMenuClose = useCallback(() => {
+    setMainMenuOpen(false);
+  }, []);
+
   return (
     <nav
       style={{
@@ -158,19 +166,28 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
 
           <Box sx={{ display: "flex" }}>
             {/* languageControl */}
-            <Tooltip
-              title={
-                lang === "en"
-                  ? "Go to Arabic Interface"
-                  : "Go to English Interface"
-              }
-              sx={{ color: "white" }}
+
+            <IconButton
+              onClick={handleLangChange}
+              sx={{
+                gap: "5px",
+                color: "white",
+                fontSize: {
+                  xs: "0.9rem", // Adjust font size for small screens
+                  sm: "1.3rem", // Default font size
+                },
+              }}
             >
-              <IconButton onClick={handleLangChange} sx={{gap:"5px",color:"white"}}>
-                <LanguageIcon />
-                {lang === "en" ? "AR" : "EN"}
-              </IconButton>
-            </Tooltip>
+              <LanguageIcon
+                sx={{
+                  fontSize: {
+                    xs: "0.9rem", // Adjust font size for small screens
+                    sm: "1.3rem", // Default font size
+                  },
+                }}
+              />
+              {lang === "en" ? "AR" : "EN"}
+            </IconButton>
             {/* languageControl */}
             <Typography sx={{ display: { xs: "flex", md: "none" } }}>
               {/* Search in small Screen */}
@@ -180,7 +197,14 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                 onClick={handleSearchOpen}
               >
                 <IconButton>
-                  <SearchIcon />
+                  <SearchIcon
+                    sx={{
+                      fontSize: {
+                        xs: "1rem",
+                        sm: "1.3rem", 
+                      },
+                    }}
+                  />
                 </IconButton>
               </Tooltip>
               <SearchModal
@@ -193,7 +217,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               <Tooltip
                 title="Main menu"
                 sx={{ color: "white" }}
-                onClick={() => setMainMenuOpen(true)}
+                onClick={handleMainMenuOpen}
               >
                 <IconButton
                   size="large"
@@ -211,7 +235,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
       </Container>
       <MainMenuDrawer
         open={openMainMenu}
-        setOpen={setMainMenuOpen}
+        handleMainMenuClose={handleMainMenuClose}
         AllCategories={AllCategories}
         lang={lang}
       />

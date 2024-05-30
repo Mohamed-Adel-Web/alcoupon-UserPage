@@ -7,10 +7,10 @@ import dynamic from "next/dynamic";
 const NavBar = dynamic(() => import("./(Header)/NavBar"), {
   ssr: true,
 });
-const NavigationLinks = dynamic(() => import("./(Header)/NavigationLinks"),{
+const NavigationLinks = dynamic(() => import("./(Header)/NavigationLinks"), {
   ssr: true,
 });
-const Footer = dynamic(() => import("./Footer/Footer"),{
+const Footer = dynamic(() => import("./Footer/Footer"), {
   ssr: true,
 });
 export default async function RootLayout({
@@ -62,15 +62,12 @@ export default async function RootLayout({
       </head>
       <body>
         <NavBar AllCategories={AllCategories} />
-          <NavigationLinks AllCategoriesData={AllCategories} />
-        <Container
-          maxWidth="lg"
-          sx={{ textAlign: { xs: "center", md: "start" } }}
-        >
+        <NavigationLinks AllCategoriesData={AllCategories} />
+        <Container maxWidth="lg" sx={{ textAlign: "start" }}>
           {children}
         </Container>
         <footer>
-            <Footer stores={AllStores} />
+          <Footer stores={AllStores} />
         </footer>
       </body>
     </html>

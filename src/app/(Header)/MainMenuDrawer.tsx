@@ -6,7 +6,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { Tooltip, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { NavigationSources } from "./NavigationLinks";
@@ -15,7 +15,7 @@ import { categoryTypes } from "../types";
 
 type Props = {
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleMainMenuClose: () => void;
   AllCategories: categoryTypes[];
   lang: string | null;
 };
@@ -28,84 +28,85 @@ const mainMenuNavigationSources: {
 
 const MainMenuDrawer: React.FC<Props> = ({
   open,
-  setOpen,
+  handleMainMenuClose,
   AllCategories,
   lang,
 }) => {
-  const handleDrawerClose = React.useCallback(() => {
-    setOpen(false);
-  }, [setOpen]);
-
-  const mainMenuNavigationLinks = (
-    <Box sx={{ width: { xs: "100vw", md: "17vw" } }} role="presentation">
-      <List>
-        {mainMenuNavigationSources.map((link, index) => (
-          <Link
-            key={index}
-            href={
-              index > 0
-                ? `${link.href}?page=1&lang=${lang}`
-                : `${link.href}?lang=${lang}`
-            }
-            prefetch={true}
-            style={{
-              textDecoration: "none",
-              color: "black",
-              fontWeight: "bold",
-              textTransform: "capitalize",
-            }}
-            onClick={handleDrawerClose}
-          >
-            <ListItem
-              sx={{
+  const mainMenuNavigationLinks = React.useMemo(
+    () => (
+      <Box sx={{ width: { xs: "100vw", md: "17vw" } }} role="presentation">
+        <List>
+          {mainMenuNavigationSources.map((link, index) => (
+            <Link
+              key={index}
+              href={
+                index > 0
+                  ? `${link.href}?page=1&lang=${lang}`
+                  : `${link.href}?lang=${lang}`
+              }
+              prefetch={true}
+              style={{
+                textDecoration: "none",
                 color: "black",
                 fontWeight: "bold",
                 textTransform: "capitalize",
               }}
-              disablePadding
+              onClick={handleMainMenuClose}
             >
-              <ListItemButton>
-                <ListItemText
-                  primary={lang === "en" ? link.title_en : link.title_ar}
-                  primaryTypographyProps={{
-                    color: "black",
-                    fontWeight: "bold",
-                    textTransform: "capitalize",
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-        ))}
-        {AllCategories.map((category, index) => (
-          <Link
-            key={index}
-            href={`/${category.name_en}/${category.id}?lang=${lang}`}
-            style={{ textDecoration: "none", color: "#000" }}
-            prefetch={true}
-            onClick={handleDrawerClose}
-          >
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText
-                  primary={lang === "en" ? category.name_en : category.name_ar}
-                  primaryTypographyProps={{
-                    color: "black",
-                    fontWeight: "bold",
-                    textTransform: "capitalize",
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-        ))}
-      </List>
-    </Box>
+              <ListItem
+                sx={{
+                  color: "black",
+                  fontWeight: "bold",
+                  textTransform: "capitalize",
+                }}
+                disablePadding
+              >
+                <ListItemButton>
+                  <ListItemText
+                    primary={lang === "en" ? link.title_en : link.title_ar}
+                    primaryTypographyProps={{
+                      color: "black",
+                      fontWeight: "bold",
+                      textTransform: "capitalize",
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          ))}
+          {AllCategories.map((category, index) => (
+            <Link
+              key={index}
+              href={`/${category.name_en}/${category.id}?lang=${lang}`}
+              style={{ textDecoration: "none", color: "#000" }}
+              prefetch={true}
+              onClick={handleMainMenuClose}
+            >
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemText
+                    primary={
+                      lang === "en" ? category.name_en : category.name_ar
+                    }
+                    primaryTypographyProps={{
+                      color: "black",
+                      fontWeight: "bold",
+                      textTransform: "capitalize",
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+          ))}
+        </List>
+      </Box>
+    ),
+    [mainMenuNavigationSources, AllCategories, lang, handleMainMenuClose]
   );
 
   return (
     <div>
-      <Drawer open={open} onClose={handleDrawerClose}>
+      <Drawer open={open} onClose={handleMainMenuClose}>
         <Box
           className="DrawerHeader"
           sx={{
@@ -147,13 +148,10 @@ const MainMenuDrawer: React.FC<Props> = ({
               )}
             </Typography>
           </Link>
-          <Tooltip
-            title="Close"
-            sx={{ color: "white", cursor: "pointer" }}
-            onClick={handleDrawerClose}
-          >
-            <CloseRoundedIcon />
-          </Tooltip>
+          <CloseRoundedIcon
+            sx={{ color: "white", cursor: "pointer", marginX: "0.5rem" }}
+            onClick={handleMainMenuClose}
+          />
         </Box>
 
         {mainMenuNavigationLinks}
