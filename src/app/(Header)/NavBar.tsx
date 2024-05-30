@@ -166,7 +166,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
               }
               sx={{ color: "white" }}
             >
-              <IconButton onClick={handleLangChange}>
+              <IconButton onClick={handleLangChange} sx={{gap:"5px",color:"white"}}>
                 <LanguageIcon />
                 {lang === "en" ? "AR" : "EN"}
               </IconButton>
