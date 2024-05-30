@@ -138,7 +138,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
                 variant="h6"
                 noWrap
                 sx={{
-                  margin: "0 auto",
+                  justifyContent: "center",
                   display: "flex",
                   fontFamily: "monospace",
                   fontWeight: 700,
