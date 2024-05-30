@@ -161,26 +161,32 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
 
           {/* languageControl */}
 
-          <Typography
-            onClick={handleLangChange}
-            sx={{
-              cursor: "pointer",
-              color: "white",
-              fontSize: "1.5rem",
-              lineHeight: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {lang === "en" ? "AR" : "EN"}
-          </Typography>
           {/* languageControl */}
-          <Typography sx={{ display: { xs: "flex", md: "none" } }}>
+          <Typography sx={{ display: "flex" }}>
+            <Tooltip
+              title={
+                lang == "en"
+                  ? `اذهب الي اللغة العربية`
+                  : `Go to english Language`
+              }
+              onClick={handleLangChange}
+              sx={{
+                cursor: "pointer",
+                color: "white",
+                fontSize: "1.5rem",
+                lineHeight: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mx: "0.5rem",
+              }}
+            >
+              <Typography> {lang === "en" ? "AR" : "EN"}</Typography>
+            </Tooltip>
             {/* Search in small Screen */}
             <Tooltip
               title="Search"
-              sx={{ color: "white" }}
+              sx={{ color: "white", display: { xs: "flex", md: "none" } }}
               onClick={handleSearchOpen}
             >
               <IconButton>
@@ -196,7 +202,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
             {/* main menu in small screen */}
             <Tooltip
               title="Main menu"
-              sx={{ color: "white" }}
+              sx={{ color: "white", display: { xs: "flex", md: "none" } }}
               onClick={handleMainMenuOpen}
             >
               <IconButton
