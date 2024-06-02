@@ -40,7 +40,10 @@ export default async function Offers({
 }) {
   return (
     <Box sx={{ padding: "1rem 0" }}>
-      <Typography variant="h4" sx={{ textAlign: "center", padding: "1rem 0" }}>
+      <Typography
+        variant="h1"
+        sx={{ textAlign: "center", padding: "1rem 0", fontSize: "2.5rem" }}
+      >
         {searchParams.lang == "en"
           ? "Hot Coupon Deals"
           : "خصومات كوبونات حصرية"}
@@ -53,7 +56,7 @@ export default async function Offers({
           border: "1px solid #dddddd",
         }}
       >
-        <Typography variant="h5">
+        <Typography variant="h2" sx={{fontSize:"1.5rem"}}>
           {searchParams.lang == "en"
             ? "Offers, Sales, Deals, and Discounts are available year-round"
             : "العروض، التخفيضات، الصفقات، والخصومات متوفرة طوال العام"}
