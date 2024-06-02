@@ -17,13 +17,20 @@ export const generateMetadata = ({
           "Click here for a comprehensive list of online shopping sites and e-commerce stores featuring the latest coupons, discount codes, and deals.",
         keywords:
           "Coupons, Discount codes, Promo codes, Vouchers, Coupon code, discount code, Coupon, deals",
+        openGraph: {
+          images: ["/images/logo/Logo_En.svg"],
+        },
       }
     : {
         title:
           "كوبونات التسوق - استكشف افضل المتاجر عبر الإنترنت للحصول على احدث اكواد الخصم",
         description:
           "اضغط هنا للحصول على قائمة شاملة بمواقع التسوق عبر الإنترنت والمتاجر الإلكترونية التي تعرض أحدث القسائم واكواد الخصم وكوبونات التوفير والعروض.",
+
         keywords: "كوبون، كود خصم، كوبونات، اكواد خصم، كود توفير",
+        openGraph: {
+          images: ["/images/logo/Logo_Ar.svg"],
+        },
       };
 };
 

@@ -24,11 +24,17 @@ export const generateMetadata = async ({
         title: `${storeData?.meta.meta_title_ar}`,
         description: `${storeData?.meta.meta_description_ar}`,
         keywords: `${storeData?.meta.meta_keyword_ar}`,
+        openGraph: {
+          images: [`${storeData?.image}`],
+        },
       }
     : {
         title: `${storeData?.meta.meta_title_en}`,
         description: `${storeData?.meta.meta_description_en}`,
         keywords: `${storeData?.meta.meta_keyword_en}`,
+        openGraph: {
+          images: [`${storeData?.image}`],
+        },
       };
 };
 

@@ -18,6 +18,9 @@ export const generateMetadata = ({
           "Save big with Shop coupons, deals, and promos! Get discounts and exclusive offers from top brands on clothing, beauty, grocery, and more.",
         keywords:
           "Coupons, Discount codes, Promo codes, Vouchers, Coupon code, discount code, Coupon",
+        openGraph: {
+          images: ["/images/logo/Logo_En.svg"],
+        },
       }
     : {
         title:
@@ -25,6 +28,9 @@ export const generateMetadata = ({
         description:
           "وفر الكثير مع كوبونات التسوق والصفقات والعروض! احصل على خصومات وعروض حصرية من أفضل العلامات التجارية من الملابس والجمال والبقالة والمزيد.",
         keywords: " كوبون، كود خصم، كوبونات، اكواد خصم، كود توفير",
+        openGraph: {
+          images: ["/images/logo/Logo_Ar.svg"],
+        },
       };
 };
 export default async function Offers({

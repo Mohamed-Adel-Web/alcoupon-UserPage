@@ -21,11 +21,17 @@ export const generateMetadata = async ({
         title: `${categoryData?.meta_title_ar}`,
         description: `${categoryData?.meta_description_ar}`,
         keywords: `${categoryData?.meta_keyword_ar}`,
+        openGraph: {
+          images: ["/images/logo/Logo_Ar.svg"],
+        },
       }
     : {
         title: `${categoryData?.meta_title_en}`,
         description: `${categoryData?.meta_description_en}`,
         keywords: `${categoryData?.meta_keyword_en}`,
+        openGraph: {
+          images: ["/images/logo/Logo_En.svg"],
+        },
       };
 };
 
