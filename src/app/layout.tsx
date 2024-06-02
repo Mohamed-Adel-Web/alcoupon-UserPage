@@ -84,10 +84,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <link rel="icon" type="image/png" href="/images/title/favicon.ico" />
-        <link
-          rel="apple-touch-icon"
-          href="/images/title/favicon.ico"
-        />
+        <link rel="apple-touch-icon" href="/images/title/favicon.ico" />
         <link rel="canonical" href="https://www.shop-coupons.com" />
       </head>
       <body>

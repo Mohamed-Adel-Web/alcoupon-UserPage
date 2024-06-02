@@ -19,9 +19,9 @@ export const metadata = ({
 }): Metadata => {
   return searchParams?.lang === "en"
     ? {
-        title: "Shop Coupons and Discount Codes in KSA & GCC",
+        title: "Discover Coupons, Discount Codes, and Promo Codes in KSA & GCC",
         description:
-          "Discover exclusive coupons and promo codes at our one-stop destination! Your ultimate destination for deals awaits; embrace discounts.",
+          "Discover exclusive coupons, discount codes, and promo codes at our one-stop destination! Your ultimate destination for deals and discounts awaits.",
         keywords:
           "Coupons, Discount codes, Promo codes, Vouchers, Coupon code, discount code, Coupon",
         openGraph: {
@@ -29,10 +29,11 @@ export const metadata = ({
         },
       }
     : {
-        title: "كوبونات التسوق - بوابة اكواد خصم المتاجر في السعودية والخليج",
-        description:
+        title:
           "اكتشف اكواد خصم وكوبونات المتاجر العالمية الحصرية في وجهتنا الاستثنائية! تنتظرك خصومات لا مثيل لها؛ اغتنم الصفقات الرائعة وفرص التوفير الكبير",
-        keywords: " كوبون، كود خصم، كوبونات، اكواد خصم، كود توفير",
+        description:
+          "اكتشف أكواد الخصم والكوبونات الحصرية في وجهتنا الاستثنائية! تنتظرك خصومات وصفقات رائعة؛ اغتنم فرص التوفير الكبير.",
+        keywords: "كوبون، كود خصم، كوبونات، اكواد خصم، كود توفير",
         openGraph: {
           images: ["/images/logo/Logo_Ar.svg"],
         },
