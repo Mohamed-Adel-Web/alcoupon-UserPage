@@ -46,7 +46,7 @@ export default function CustomCard({ type, data, lang }: Props) {
     return (
       <Button
         component="label"
-        role={undefined}
+        role={"status"}
         color={isActive ? "success" : "error"}
         variant="text"
         sx={{ padding: "0", gap: "8px" }}

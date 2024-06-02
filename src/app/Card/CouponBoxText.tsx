@@ -31,16 +31,21 @@ const CouponBoxText: React.FC<Props> = ({ code, lang }) => {
         position: "relative",
       }}
     >
+      <label htmlFor="discount_coupon_code" style={{ display: "none" }}>
+        {lang === "en" ? "Discount Coupon Code" : "كود الخصم"}
+      </label>
       <textarea
+        id="discount_coupon_code"
         name="discount_coupon_code"
         className="couponCode"
         cols={100}
         rows={1}
         readOnly
-        contentEditable="false"
+        aria-readonly="true"
         autoComplete="off"
         onClick={handleCopy}
         style={{ cursor: "pointer", paddingRight: "30px" }}
+        aria-label={lang === "en" ? "Discount Coupon Code" : "كود الخصم"}
       >
         {code}
       </textarea>
