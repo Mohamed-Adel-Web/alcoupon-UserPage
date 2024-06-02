@@ -5,7 +5,7 @@ import {  Language } from "../types";
 function HotOffersHead({ lang }: { lang: Language }) {
   return (
     <Box sx={{ margin: "0.5rem 0" }}>
-      <Typography variant="h6" sx={{ padding: "1rem 0" }}>
+      <Typography variant="h1" sx={{ padding: "1rem 0",fontSize:"1.5rem" }}>
         {lang == "en"
           ? "Online discount codes and Coupons"
           : "أكواد خصم وقسائم شراء عبر الإنترنت"}
