@@ -1,4 +1,3 @@
-import MillionLint from '@million/lint';
 // @ts-check
 
 /**
@@ -6,9 +5,7 @@ import MillionLint from '@million/lint';
  */
 const nextConfig = {
   images: {
-    domains: ["coupon.kyanlabs.com"]
-  }
+    domains: ["coupon.kyanlabs.com"],
+  },
 };
-export default MillionLint.next({
-  rsc: true
-})(nextConfig);
+export default nextConfig;
