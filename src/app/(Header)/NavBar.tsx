@@ -178,6 +178,7 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
                   lang={lang}
                   searchInput={searchInput}
                   onClose={handleSearchListClose}
+                  setSearchInput={setSearchInput}
                 />
               </Box>
             )}{" "}

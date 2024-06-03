@@ -2,7 +2,15 @@
 import { Paper, List, ListItem, Typography, Box } from "@mui/material";
 import useSearchStoresData from "../FetchData/useSearchStoresData";
 import { StoreType } from "../types";
-import { useCallback, useEffect, useRef, useState, useMemo } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import Image from "next/image";
 import React from "react";
 import { debounce } from "lodash";
@@ -12,10 +20,12 @@ const SearchList = ({
   searchInput,
   lang,
   onClose,
+  setSearchInput,
 }: {
   searchInput: string;
   lang: string | null;
   onClose: () => void;
+  setSearchInput: Dispatch<SetStateAction<string>>;
 }) => {
   const [storesData, setStoresData] = useState<StoreType[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -68,7 +78,13 @@ const SearchList = ({
     >
       <List>
         {storesData?.map((store: StoreType) => (
-          <MemoizedListItem key={store.id} store={store} lang={lang} onClose={onClose} />
+          <MemoizedListItem
+            key={store.id}
+            store={store}
+            lang={lang}
+            onClose={onClose}
+            setSearchInput={setSearchInput}
+          />
         ))}
       </List>
     </Paper>
@@ -79,16 +95,21 @@ const ListItemComponent = ({
   store,
   lang,
   onClose,
+  setSearchInput,
 }: {
   store: StoreType;
   lang: string | null;
   onClose: () => void;
+  setSearchInput: Dispatch<SetStateAction<string>>;
 }) => (
   <Link
     href={`/discount-codes/${store.id}?lang=${lang}`}
     prefetch={true}
     style={{ textDecoration: "none", color: "Black" }}
-    onClick={onClose}
+    onClick={() => {
+      onClose();
+      setSearchInput("")
+    }}
   >
     <ListItem
       sx={{

@@ -47,7 +47,6 @@ const SearchModal: React.FC<{
         onClose={handleSearchClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        
         fullWidth
         sx={{
           "& .MuiDialog-paper": {
@@ -97,15 +96,15 @@ const SearchModal: React.FC<{
           >
             <SearchIcon />
           </Button>
-         
         </Paper>
         {showSearchList && (
-            <SearchList
-              lang={lang}
-              searchInput={searchInput}
-              onClose={handleSearchListClose}
-            />
-          )}{" "}
+          <SearchList
+            lang={lang}
+            searchInput={searchInput}
+            onClose={handleSearchListClose}
+            setSearchInput={setSearchInput}
+          />
+        )}{" "}
       </Dialog>
     </React.Fragment>
   );
