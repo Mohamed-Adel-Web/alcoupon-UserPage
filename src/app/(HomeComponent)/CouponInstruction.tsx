@@ -276,7 +276,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
             {lang == "en"
               ? `            Make sure you meet the minimum order value
 `
-              : `تأكد من أن طلبك يفي بالقيمة الدنيا المطلوبة لتطبيق الخصم.  `}
+              : `تأكد من أن طلبك يفي بالقيمة الأدني المطلوبة لتطبيق الخصم.  `}
           </strong>
           <Typography
             variant="body2"
