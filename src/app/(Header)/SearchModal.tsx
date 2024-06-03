@@ -3,26 +3,42 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import SearchIcon from "@mui/icons-material/Search";
-import { IconButton, InputBase, Paper } from "@mui/material";
+import { Box, IconButton, InputBase, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
 import CloseIcon from "@mui/icons-material/Close";
+import SearchList from "./SeachList";
 
-const SearchModal: React.FC<{ open: boolean, handleSearchClose: () => void, lang: string | null }> = React.memo(({ open, handleSearchClose, lang }) => {
+const SearchModal: React.FC<{
+  open: boolean;
+  handleSearchClose: () => void;
+  lang: string | null;
+}> = React.memo(({ open, handleSearchClose, lang }) => {
+  const [showSearchList, setShowSearchList] = React.useState<boolean>(false);
+
   const [searchInput, setSearchInput] = React.useState<string>("");
   const router = useRouter();
-
-  const handleSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (searchInput.length > 1) {
-      router.push(`/searchStore/${searchInput}?lang=${lang}`);
-      setSearchInput("");
-      handleSearchClose();
-    }
-  }, [searchInput, lang, router, handleSearchClose]);
-
-  const handleInputChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(event.target.value);
+  const handleSearchListClose = React.useCallback(() => {
+    setShowSearchList(false);
   }, []);
+  const handleSubmit = React.useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      if (searchInput.length > 1) {
+        router.push(`/searchStore/${searchInput}?lang=${lang}`);
+        setSearchInput("");
+        handleSearchClose();
+      }
+    },
+    [searchInput, lang, router, handleSearchClose]
+  );
+
+  const handleInputChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchInput(event.target.value);
+      setShowSearchList(true);
+    },
+    []
+  );
 
   return (
     <React.Fragment>
@@ -31,6 +47,7 @@ const SearchModal: React.FC<{ open: boolean, handleSearchClose: () => void, lang
         onClose={handleSearchClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        
         fullWidth
         sx={{
           "& .MuiDialog-paper": {
@@ -80,7 +97,15 @@ const SearchModal: React.FC<{ open: boolean, handleSearchClose: () => void, lang
           >
             <SearchIcon />
           </Button>
+         
         </Paper>
+        {showSearchList && (
+            <SearchList
+              lang={lang}
+              searchInput={searchInput}
+              onClose={handleSearchListClose}
+            />
+          )}{" "}
       </Dialog>
     </React.Fragment>
   );

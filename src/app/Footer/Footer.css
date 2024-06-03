@@ -7,12 +7,15 @@
   align-items: center;
   transition: 0.3s;
 }
-.icons li:hover .icon-href{
-    transition: 0.3s;
+.icons li:hover .icon-href {
+  transition: 0.3s;
 }
 .icons li:hover {
-  background-color: #F6931E;
+  background-color: #f6931e;
 }
-.icons li:hover .icon-href{
-    color: white !important;
+.icons li:hover .icon-href {
+  color: white !important;
+}
+.icons li:hover .kwai-image {
+  filter: brightness(0) invert(1);
 }

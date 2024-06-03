@@ -17,9 +17,11 @@ import { categoryTypes } from "../types";
 import SearchModal from "./SearchModal";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import SearchList from "./SeachList";
 function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
   const [openMainMenu, setMainMenuOpen] = useState<boolean>(false);
   const [lang, setLang] = useState<string | null>("ar");
+  const [showSearchList, setShowSearchList] = useState<boolean>(false);
   const [searchInput, setSearchInput] = useState<string>("");
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const pathname = usePathname();
@@ -37,6 +39,9 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
     setLang(currentSearchParams.get("lang"));
   }, [currentSearchParams]);
 
+  const handleSearchListClose = useCallback(() => {
+    setShowSearchList(false);
+  }, []);
   useEffect(() => {
     if (lang === "ar") {
       document.body.dir = "rtl";
@@ -124,39 +129,60 @@ function Header({ AllCategories }: { AllCategories: categoryTypes[] }) {
           {/* Logo */}
 
           {/* search bar */}
-          <Paper
-            component="form"
-            sx={{
-              p: "2px 4px",
-              display: { md: "flex", xs: " none" },
-              alignItems: "center",
-              width: 600,
-            }}
-            onSubmit={handleSubmit}
-          >
-            <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder={
-                lang === "en"
-                  ? "Search stores, coupons and discounts"
-                  : "ابحث عن المتاجر، الكوبونات، والخصومات"
-              }
-              inputProps={{
-                "aria-label": "Search stores, coupons and discounts",
+          <Box sx={{ position: "relative" }}>
+            {" "}
+            <Paper
+              component="form"
+              sx={{
+                p: "2px 4px",
+                display: { md: "flex", xs: " none" },
+                alignItems: "center",
+                width: 600,
               }}
-              value={searchInput}
-              onChange={(event) => {
-                setSearchInput(event.target.value);
-              }}
-            />
-            <Button
-              type="submit"
-              sx={{ p: "7px", backgroundColor: "#E9ECEF", color: "black" }}
-              aria-label="search"
+              onSubmit={handleSubmit}
             >
-              <SearchIcon />
-            </Button>
-          </Paper>
+              <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder={
+                  lang === "en"
+                    ? "Search stores, coupons and discounts"
+                    : "ابحث عن المتاجر، الكوبونات، والخصومات"
+                }
+                inputProps={{
+                  "aria-label": "Search stores, coupons and discounts",
+                }}
+                value={searchInput}
+                onChange={(event) => {
+                  setSearchInput(event.target.value);
+                  setShowSearchList(true);
+                }}
+              />
+              <Button
+                type="submit"
+                sx={{ p: "7px", backgroundColor: "#E9ECEF", color: "black" }}
+                aria-label="search"
+              >
+                <SearchIcon />
+              </Button>
+            </Paper>
+            {showSearchList && (
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "100%",
+                  left: "0",
+                  width: "100%",
+                }}
+              >
+                <SearchList
+                  lang={lang}
+                  searchInput={searchInput}
+                  onClose={handleSearchListClose}
+                />
+              </Box>
+            )}{" "}
+          </Box>
+
           {/* search bar */}
 
           {/* languageControl */}

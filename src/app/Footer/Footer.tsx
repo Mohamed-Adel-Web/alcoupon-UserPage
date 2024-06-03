@@ -184,6 +184,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
                   href="https://www.instagram.com/shop.coupon/?igsh=dGJmc3Zpcm1ncTl6"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   aria-label="Follow us on Instagram"
+                  className="icon-href"
                 >
                   <InstagramIcon sx={{ fontSize: "2rem" }} />
                 </Link>
@@ -194,6 +195,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
                   href="https://twitter.com/i/flow/login?redirect_after_login=%2FShop_coupon_"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   aria-label="Follow us on Twitter"
+                  className="icon-href"
                 >
                   <TwitterIcon sx={{ fontSize: "2rem" }} />
                 </Link>
@@ -204,6 +206,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
                   href="https://www.facebook.com/shop.coupon.codes?mibextid=ZbWKwL"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   aria-label="Follow us on Facebook"
+                  className="icon-href"
                 >
                   <FacebookIcon sx={{ fontSize: "2rem" }} />
                 </Link>
@@ -214,6 +217,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
                   href="https://t.me/shop_couponz"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   aria-label="Follow us on Telegram"
+                  className="icon-href"
                 >
                   <TelegramIcon sx={{ fontSize: "2rem" }} />
                 </Link>
@@ -223,6 +227,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
                   target="_blank"
                   href="https://www.snapchat.com/add/shop_coupons?share_id=ApMe0YNX2TA&locale=en-US"
                   style={{ textDecoration: "none", color: "#F6931E" }}
+                  className="icon-href"
                   aria-label="Follow us on Snapchat"
                 >
                   <i className="fa-brands fa-snapchat fa-2xl"></i>
@@ -233,6 +238,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
                   target="_blank"
                   href="https://www.youtube.com/@shop-coupons"
                   style={{ textDecoration: "none", color: "#F6931E" }}
+                  className="icon-href"
                   aria-label="Follow us on YouTube"
                 >
                   <i className="fa-brands fa-youtube fa-2xl"></i>
@@ -243,9 +249,27 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
                   target="_blank"
                   href="https://www.tiktok.com/@shopcoupons?_t=8k81TXP1Pd9&_r=1"
                   style={{ textDecoration: "none", color: "#F6931E" }}
+                  className="icon-href"
                   aria-label="Follow us on TikTok"
                 >
                   <i className="fa-brands fa-tiktok fa-2xl"></i>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  target="_blank"
+                  href="https://k.kwai.com/u/@shopcoupons/LOuYgC4H"
+                  style={{ textDecoration: "none", color: "" }}
+                  className="icon-href"
+                  aria-label="Follow us on TikTok"
+                >
+                  <Image
+                    height={50}
+                    width={50}
+                    alt="kwai logo"
+                    src={"/images/kwai-svgrepo-com.svg"}
+                    className="kwai-image"
+                  />
                 </Link>
               </li>
             </ul>
