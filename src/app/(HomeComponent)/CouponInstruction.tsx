@@ -67,12 +67,18 @@ function CouponInstruction({ lang }: { lang: Language }) {
             minHeight: "600px",
           }}
         >
-          {/* <img
-            src={"/images/CouponInstruction/instruction.jpg"}
-       
-            style={{ width: "100%"}}
+          <Image
+            src={"/images/CouponInstruction/instruction.svg"}
+            width={600}
+            height={242}
+            style={{
+              width: "100%",
+              margin: "0",
+              display: "block",
+              height: "100%",
+            }}
             alt="coupon instruction image"
-          /> */}
+          />
           <Box sx={{ padding: "1rem 2rem" }}>
             <Typography
               sx={{
