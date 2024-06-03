@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Link from "next/link";
 import { Language } from "../types";
+import Image from "next/image";
 function CouponInstruction({ lang }: { lang: Language }) {
   return (
     <Grid container spacing={4}>
@@ -151,11 +152,10 @@ function CouponInstruction({ lang }: { lang: Language }) {
             minHeight: "630px",
           }}
         >
-          <img
-            src={"/images/CouponInstruction/step-1.png"}
-            width={1000}
-            height={1000}
-            style={{ width: "100%", height: "auto" }}
+          <Image
+            src={"/images/CouponInstruction/step-1.svg"}
+            width={279}
+            height={140}
             alt="coupon instruction image"
           />
           <strong
@@ -200,11 +200,10 @@ function CouponInstruction({ lang }: { lang: Language }) {
             minHeight: "630px",
           }}
         >
-          <img
-            src={"/images/CouponInstruction/step-2.png"}
-            width={1000}
-            height={1000}
-            style={{ width: "100%", height: "auto" }}
+          <Image
+            src={"/images/CouponInstruction/step-2.svg"}
+            width={279}
+            height={140}
             alt="coupon instruction image"
           />
           <strong
@@ -261,11 +260,10 @@ function CouponInstruction({ lang }: { lang: Language }) {
             minHeight: "630px",
           }}
         >
-          <img
-            src={"/images/CouponInstruction/step-1.png"}
-            width={1000}
-            height={1000}
-            style={{ width: "100%", height: "auto" }}
+          <Image
+            src={"/images/CouponInstruction/step-3.svg"}
+            width={279}
+            height={140}
             alt="coupon instruction image"
           />
           <strong
