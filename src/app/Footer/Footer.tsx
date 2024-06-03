@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Link from "next/link";
 import InstagramIcon from "@mui/icons-material/Instagram";
