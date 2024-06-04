@@ -1,2 +1,5 @@
 User-agent: *
 Disallow:
+Sitemap: https://shop-coupons.com/sitemap-en.xml
+Sitemap: https://shop-coupons.com/sitemap-ar.xml
+
