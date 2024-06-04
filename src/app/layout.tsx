@@ -18,7 +18,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "coupons Stores",
   name: "shop coupon",
-  url: "https://www.shop-coupons.com",
+  url: "https://shop-coupons.com",
   logo: "/images/logo/Logo_En.svg",
   sameAs: [
     "https://www.facebook.com/shop.coupon.codes?mibextid=ZbWKwL",
