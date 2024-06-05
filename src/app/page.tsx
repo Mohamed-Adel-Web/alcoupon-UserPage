@@ -12,7 +12,7 @@ import { Language } from "./types";
 import { Suspense } from "react";
 import { Box, CircularProgress } from "@mui/material";
 
-export const metadata = ({
+export const generateMetadata  = ({
   searchParams,
 }: {
   searchParams: { lang: Language };
