@@ -5,7 +5,7 @@
  */
 const nextConfig = {
   images: {
-    domains: ["coupon.kyanlabs.com"],
+    domains: ["coupon.kyanlabs.com", "shop-coupons.com"],
   },
 };
 export default nextConfig;
