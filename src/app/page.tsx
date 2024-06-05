@@ -17,6 +17,7 @@ export const generateMetadata  = ({
 }: {
   searchParams: { lang: Language };
 }): Metadata => {
+  const baseUrl = "https://alcoupon-user-page.vercel.app";
   return searchParams?.lang === "en"
     ? {
         title: " Shop Coupons and Discount Codes in KSA & GCC",
