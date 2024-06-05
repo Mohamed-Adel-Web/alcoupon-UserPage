@@ -26,7 +26,7 @@ export const generateMetadata  = ({
         keywords:
           "Coupons, Discount codes, Promo codes, Vouchers, Coupon code, discount code, Coupon",
         openGraph: {
-          images: ["/images/logo/Logo_En.svg"],
+          images: [`${baseUrl}/images/logo/Logo_En.svg`],
         },
       }
     : {
@@ -35,7 +35,7 @@ export const generateMetadata  = ({
           "اكتشف اكواد خصم وكوبونات المتاجر العالمية الحصرية في وجهتنا الاستثنائية! تنتظرك خصومات لا مثيل لها؛ اغتنم الصفقات الرائعة وفرص التوفير الكبير",
         keywords: "كوبون، كود خصم، كوبونات، اكواد خصم، كود توفير",
         openGraph: {
-          images: ["/images/logo/Logo_Ar.svg"],
+          images: [`${baseUrl}/images/logo/Logo_Ar.svg`],
         },
       };
 };
