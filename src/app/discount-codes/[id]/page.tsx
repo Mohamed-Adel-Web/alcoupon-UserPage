@@ -37,9 +37,6 @@ export const generateMetadata = async ({
         },
       };
 };
-const addTargetBlankToLinks = (description) => {
-  return description.replace(/<a /g, '<a target="_blank" ');
-};
 
 
 export default async function couponDetails({
@@ -53,8 +50,6 @@ export default async function couponDetails({
   const coupons: couponType[] | undefined = storeData?.coupons;
   const descriptionEn = storeData?.description_en || "";
   const descriptionAr = storeData?.description_ar || "";
-  const modifiedDescriptionEn = addTargetBlankToLinks(descriptionEn);
-  const modifiedDescriptionAr = addTargetBlankToLinks(descriptionAr);
   const couponsList = coupons?.map((coupon) => {
     return (
       <Box
@@ -225,9 +220,9 @@ export default async function couponDetails({
             }}
           >
             {searchParams.lang == "en" ? (
-              <div dangerouslySetInnerHTML={{ __html: modifiedDescriptionEn }}></div>
+              <div dangerouslySetInnerHTML={{ __html: descriptionEn }}></div>
             ) : (
-              <div dangerouslySetInnerHTML={{ __html: modifiedDescriptionAr }}></div>
+              <div dangerouslySetInnerHTML={{ __html: descriptionAr  }}></div>
             )}
           </Box>
         </Grid>
