@@ -6,8 +6,9 @@ const fetchStoresData = async (
   try {
     const response = await fetch(featuredStores, {
       method: "GET",
-      cache: "no-store",
-    });
+ next: {
+        revalidate: 21600,
+      },    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
