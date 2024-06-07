@@ -6,8 +6,9 @@ const fetchCategoriesData = async (
   try {
     const response = await fetch(AllCategories, {
       method: "GET",
-      cache: "no-store",
-
+ next: {
+        revalidate: 21600,
+      },
     });
 
     if (!response.ok) {
