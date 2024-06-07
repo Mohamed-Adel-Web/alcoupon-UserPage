@@ -4,12 +4,12 @@ import Container from "@mui/material/Container";
 import { useGetCategories } from "./FetchData/useGetCategory";
 import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
 import dynamic from "next/dynamic";
-
+import { Suspense } from "react";
 const NavBar = dynamic(() => import("./(Header)/NavBar"), {
   ssr: true,
 });
 const NavigationLinks = dynamic(() => import("./(Header)/NavigationLinks"), {
-  ssr: false,
+  ssr: true,
 });
 const Footer = dynamic(() => import("./Footer/Footer"), {
   ssr: true,
@@ -88,8 +88,10 @@ export default async function RootLayout({
         <link rel="canonical" href="https://www.shop-coupons.com" />
       </head>
       <body>
-        <NavBar AllCategories={AllCategories} />
+          <NavBar AllCategories={AllCategories} />
+        <Suspense>
         <NavigationLinks AllCategoriesData={AllCategories} />
+        </Suspense>
         <Container maxWidth="lg" sx={{ textAlign: "start" }}>
           {children}
         </Container>
