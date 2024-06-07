@@ -8,8 +8,9 @@ const fetchStoresData = async (storeUrl: string): Promise<StoresResponse> => {
   try {
     const response = await fetch(storeUrl, {
       method: "GET",
-      cache: "no-store",
-    });
+ next: {
+        revalidate: 21600,
+      },    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
