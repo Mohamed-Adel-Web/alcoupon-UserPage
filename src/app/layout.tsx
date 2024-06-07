@@ -6,13 +6,13 @@ import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
 import dynamic from "next/dynamic";
 
 const NavBar = dynamic(() => import("./(Header)/NavBar"), {
-  ssr: false,
+  ssr: true,
 });
 const NavigationLinks = dynamic(() => import("./(Header)/NavigationLinks"), {
   ssr: false,
 });
 const Footer = dynamic(() => import("./Footer/Footer"), {
-  ssr: false,
+  ssr: true,
 });
 const jsonLd = {
   "@context": "https://schema.org",
