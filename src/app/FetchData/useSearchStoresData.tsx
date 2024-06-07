@@ -4,8 +4,9 @@ const fetchStoresData = async (SearchStores: string): Promise<StoreType[]> => {
   try {
     const response = await fetch(SearchStores, {
       method: "GET",
-      cache: "no-store",
-
+ next: {
+        revalidate: 21600,
+      },
     });
 
     if (!response.ok) {
