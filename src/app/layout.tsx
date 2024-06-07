@@ -89,9 +89,7 @@ export default async function RootLayout({
       </head>
       <body>
           <NavBar AllCategories={AllCategories} />
-        <Suspense>
         <NavigationLinks AllCategoriesData={AllCategories} />
-        </Suspense>
         <Container maxWidth="lg" sx={{ textAlign: "start" }}>
           {children}
         </Container>
