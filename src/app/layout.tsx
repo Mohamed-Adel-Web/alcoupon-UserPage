@@ -50,7 +50,7 @@ export default async function RootLayout({
     <html lang="en">
       <head>
         {/* Google Tag Manager */}
-        <script
+{/*         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-11459696307"
         ></script>
@@ -82,7 +82,7 @@ export default async function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        /> */}
         <link rel="icon" type="image/png" href="/images/title/favicon.ico" />
         <link rel="apple-touch-icon" href="/images/title/favicon.ico" />
         <link rel="canonical" href="https://www.shop-coupons.com" />
