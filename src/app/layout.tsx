@@ -49,40 +49,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager */}
-{/*         <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-11459696307"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-11459696307');
-            `,
-          }}
-        />
-        {/* Google Analytics */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=UA-137368123-1"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'UA-137368123-1');
-            `,
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        /> */}
+
         <link rel="icon" type="image/png" href="/images/title/favicon.ico" />
         <link rel="apple-touch-icon" href="/images/title/favicon.ico" />
         <link rel="canonical" href="https://www.shop-coupons.com" />
