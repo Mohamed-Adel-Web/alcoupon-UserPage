@@ -31,7 +31,6 @@ const useStoresData = async (page = 1) => {
     const { storesData, last_page } = await fetchStoresData(
       `${storeUrl}?page=${page}`
     );
-    console.log("Stores Data:", storesData);
     return { storesData, last_page };
   } catch (error) {
     console.error("Error in retrieving stores data:", error);

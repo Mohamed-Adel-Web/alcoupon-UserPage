@@ -24,7 +24,6 @@ const fetchSwiperData = async (getSwiperUrl: string): Promise<SwiperType[]> => {
 const useSwiperData = async () => {
   try {
     const SwiperData = await fetchSwiperData(getSwiperUrl);
-    console.log("Swiper Data:", SwiperData);
     return SwiperData;
   } catch (error) {
     console.error("Error in retrieving Swiper data:", error);

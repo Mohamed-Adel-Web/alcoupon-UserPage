@@ -26,7 +26,6 @@ const fetchStoresData = async (
 const useFeaturedStoresData = async () => {
   try {
     const storesData = await fetchStoresData(featuredStores);
-    console.log("Stores Data:", storesData);
     return storesData;
   } catch (error) {
     console.error("Error in retrieving stores data:", error);

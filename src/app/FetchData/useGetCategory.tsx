@@ -24,7 +24,6 @@ const fetchCategoriesData = async (
 const useGetCategories = async () => {
   try {
     const CategoriesData = await fetchCategoriesData(AllCategories);
-    console.log("Categories Data:", CategoriesData);
     return CategoriesData;
   } catch (error) {
     console.error("Error in retrieving Categories data:", error);

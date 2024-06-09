@@ -26,7 +26,6 @@ const fetchStoresByCategory = async (
 const useGetStoreByCategory = async (id: string | null) => {
   try {
     const categoryData = await fetchStoresByCategory(`${AllCategories}/${id}`);
-    console.log("Stores Data:", categoryData);
     return categoryData;
   } catch (error) {
     console.error("Error in retrieving stores data:", error);

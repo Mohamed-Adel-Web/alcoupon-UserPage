@@ -22,7 +22,6 @@ const fetchStoresData = async (SearchStores: string): Promise<StoreType[]> => {
 const useSearchStoresData = async (searchParam: string) => {
   try {
     const storesData = await fetchStoresData(`${searchStore}/${searchParam}`);
-    console.log("Stores Data:", storesData);
     return storesData;
   } catch (error) {
     console.error("Error in retrieving stores data:", error);
