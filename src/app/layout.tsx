@@ -3,8 +3,9 @@ import "./styles/globals.css";
 import Container from "@mui/material/Container";
 import { useGetCategories } from "./FetchData/useGetCategory";
 import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
+
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
+
 const NavBar = dynamic(() => import("./(Header)/NavBar"), {
   ssr: true,
 });
@@ -17,12 +18,12 @@ const Footer = dynamic(() => import("./Footer/Footer"), {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "coupons Stores",
-  name: "shop coupon",
-  url: "https://shop-coupons.com",
+  name: "shops coupon",
+  url: "https://shops-coupons.com",
   logo: "/images/logo/Logo_En.svg",
   sameAs: [
     "https://www.facebook.com/shop.coupon.codes?mibextid=ZbWKwL",
-    "https://twitter.com/i/flow/login?redirect_after_login=%2FShop_coupon_",
+    "https://twitter.com/i/flow/login?redirect_after_login=%2Fshopss_coupon_",
     "https://www.instagram.com/shop.coupon/?igsh=dGJmc3Zpcm1ncTl6",
     "https://www.snapchat.com/add/shop_coupons?share_id=ApMe0YNX2TA&locale=en-US",
     "https://www.youtube.com/@shop-coupons",
@@ -49,13 +50,30 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-
         <link rel="icon" type="image/png" href="/images/title/favicon.ico" />
         <link rel="apple-touch-icon" href="/images/title/favicon.ico" />
-        <link rel="canonical" href="https://www.shop-coupons.com" />
+        <link rel="canonical" href="https://shops-coupons.com" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=UA-137368123-1"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-137368123-1');
+          `,
+          }}
+        />
       </head>
       <body>
-          <NavBar AllCategories={AllCategories} />
+        <NavBar AllCategories={AllCategories} />
         <NavigationLinks AllCategoriesData={AllCategories} />
         <Container maxWidth="lg" sx={{ textAlign: "start" }}>
           {children}

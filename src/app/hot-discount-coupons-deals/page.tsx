@@ -13,9 +13,9 @@ export const generateMetadata = ({
   return searchParams?.lang === "en"
     ? {
         title:
-          " Top Discount Codes & Coupons Saving Of Up To 90% - Shop Coupons",
+          " Top Discount Codes & Coupons Saving Of Up To 90% - shops Coupons",
         description:
-          "Save big with Shop coupons, deals, and promos! Get discounts and exclusive offers from top brands on clothing, beauty, grocery, and more.",
+          "Save big with shops coupons, deals, and promos! Get discounts and exclusive offers from top brands on clothing, beauty, grocery, and more.",
         keywords:
           "Coupons, Discount codes, Promo codes, Vouchers, Coupon code, discount code, Coupon",
         openGraph: {
@@ -72,12 +72,12 @@ export default async function Offers({
             your total order, like 10% off, or as fixed value reductions, such as
             a 10 SAR discount on purchases of 100 SAR or more, or even free
             shipping. However, finding active discount codes can sometimes be
-            challenging. For this reason, the team at Shop coupons checks every
+            challenging. For this reason, the team at shops coupons checks every
             voucher code and their expiry dates daily. If you find it difficult to
-            locate and apply the best coupon while shopping online, don't worry;
+            locate and apply the best coupon while Shopping online, don't worry;
             we're here to guide you. We provide all the advice you need to evolve
             from a beginner to an expert in using coupons and saving money while
-            shopping on the internet.`
+            Shopping on the internet.`
             : " يمكن لرمز الترويج أن يقدم خصومات فورية إما على شكل نسبة مئوية من إجمالي طلبك، مثل خصم 10٪، أو كتخفيضات ذات قيمة ثابتة، مثل خصم 10 ريال على مشتريات بقيمة 100 ريال أو أكثر، أو حتى الشحن المجاني. ومع ذلك، قد يكون العثور على أكواد خصم فعالة أمرًا صعبًا أحيانًا. لهذا السبب، يقوم فريق كوبونات التسوق بفحص كل كود قسيمة وتواريخ انتهاء صلاحيتها يوميًا. إذا كنت تجد صعوبة في العثور على أفضل كوبون وتطبيقه أثناء التسوق عبر الإنترنت، فلا داعي للقلق؛ نحن هنا لنرشدك. نحن نقدم كل النصائح التي تحتاجها للتحول من مبتدئ إلى خبير في استخدام الكوبونات وتوفير المال أثناء التسوق عبر الإنترنت."}
         </Typography>
       </Box>

@@ -5,9 +5,8 @@ const fetchStoreData = async (storeUrl: string): Promise<StoreType> => {
   try {
     const response = await fetch(storeUrl, {
       method: "GET",
- next: {
-        revalidate: 21600,
-      },    });
+      cache: "no-store",
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

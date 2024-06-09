@@ -32,7 +32,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
             off your purchase cost, or by offering a specific amount off when
             you spend a set minimum, as well as providing free shipping.
             However, it can sometimes be challenging to find active codes that
-            work. That's why the team at Shop Coupons diligently verifies each
+            work. That's why the team at Shops Coupons diligently verifies each
             coupon code daily and checks their expiration dates.`
               : `يمكن أن يوفر لك رمز ترويجي تخفيضات فورية، إما بتقليل نسبة معينة من إجمالي طلبك، مثل خصم نسبة مؤية معينة من تكلفة شرائك، أو بتقديم خصم محدد عند إنفاق حد أدنى معين، بالإضافة إلى توفير الشحن المجاني. ومع ذلك، قد يكون من الصعب في بعض الأحيان العثور على أكواد خصم نشطة وفعالة. لذلك، يقوم فريق كوبونات التسوق بالتحقق بعناية من كل رمز كوبون يوميًا ويفحص تواريخ انتهاء صلاحيتها.`}
           </Typography>
@@ -42,7 +42,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
             sx={{ padding: "1rem 0", lineHeight: "1.5rem" }}
           >
             {lang == "en"
-              ? `While shopping online, you might have noticed a "Coupon Code" box that appears before you complete the checkout process. Many online stores regularly offer promotional codes to their customers.`
+              ? `While Shopping online, you might have noticed a "Coupon Code" box that appears before you complete the checkout process. Many online stores regularly offer promotional codes to their customers.`
               : `أثناء التسوق عبر الإنترنت، ربما لاحظت مربع "رمز الكوبون" الذي يظهر قبل إتمام الدفع. بعض المتاجر الإلكترونية توفر بشكل مستمر أكواد ترويجية لعملائها.
 
               `}
@@ -53,7 +53,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
             sx={{ lineHeight: "1.5rem" }}
           >
             {lang == "en"
-              ? `If you find it difficult to discover and apply the best coupons while shopping from online stores, there's no need to worry; we're here to help. We will provide you with all the necessary advice to transition from a beginner to an expert in using coupons, enabling you to master the art of saving while shopping online.
+              ? `If you find it difficult to discover and apply the best coupons while Shopping from online stores, there's no need to worry; we're here to help. We will provide you with all the necessary advice to transition from a beginner to an expert in using coupons, enabling you to master the art of saving while Shopping online.
 `
               : `إذا وجدت صعوبة في اكتشاف وتطبيق أفضل الكوبونات أثناء التسوق من المتاجر الإلكترونية، فلا داعي للقلق؛ نحن هنا لمساعدتك. سنقدم لك كل النصائح الضرورية للانتقال من مبتدئ إلى متسوق خبير، مما يمكنك من إتقان فن استخدام الكوبونات وتعظيم وفوراتك عبر الإنترنت.`}
           </Typography>
@@ -78,6 +78,8 @@ function CouponInstruction({ lang }: { lang: Language }) {
               height: "100%",
             }}
             alt="coupon instruction image"
+            loading="eager"
+
           />
           <Box sx={{ padding: "1rem 2rem" }}>
             <Typography
@@ -97,7 +99,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
               sx={{ lineHeight: "1.5rem" }}
             >
               {lang == `en`
-                ? `First, you need to locate a coupon code or discount voucher and understand how to apply it. Simply open a coupon website to search for a recent and valid discount coupon for the store you wish to shop from and start saving. The coupons might offer a certain percentage or amount off your total, or alter your shipping costs by either eliminating or reducing them.
+                ? `First, you need to locate a coupon code or discount voucher and understand how to apply it. Simply open a coupon website to search for a recent and valid discount coupon for the store you wish to Shops from and start saving. The coupons might offer a certain percentage or amount off your total, or alter your shipping costs by either eliminating or reducing them.
 
 `
                 : `أولاً، تحتاج إلى البحث عن رمز كوبون أو قسيمة خصم وفهم كيفية تطبيقها. كل ما عليك فعله هو فتح موقع كوبونات التسوق للبحث عن كوبون خصم صالح وحديث للمتجر الذي ترغب في التسوق منه وابدأ في التوفير. قد توفر الكوبونات نسبة معينة أو مبلغًا من إجمالي مشترياتك، أو تغير تكاليف الشحن الخاصة بك إما بإزالتها أو تخفيضها.
@@ -163,6 +165,8 @@ function CouponInstruction({ lang }: { lang: Language }) {
             width={279}
             height={140}
             alt="coupon instruction image"
+            loading="eager"
+
           />
           <strong
             style={{
@@ -172,7 +176,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
             }}
           >
             {lang == "en"
-              ? `Here’s how to properly apply a promotional code during online shopping.
+              ? `Here’s how to properly apply a promotional code during online Shopping.
 `
               : ` كيفية تطبيق رمز ترويجي بشكل صحيح أثناء التسوق عبر الإنترنت`}
           </strong>
@@ -182,16 +186,11 @@ function CouponInstruction({ lang }: { lang: Language }) {
             sx={{ lineHeight: "1.5rem", padding: "1rem 0" }}
           >
             {lang === "en"
-              ? `Before completing your purchase, we recommend all online shoppers follow this guide for a seamless shopping experience. Ensure that the voucher code is entered accurately. Typically, these codes are composed of uppercase English letters and can be case-sensitive, meaning they might not work if inputted in lowercase. When copying and pasting the discount code from our website, make sure no extra spaces are included at the beginning or end of the code, as this could trigger an error message.
+              ? `Before completing your purchase, we recommend all online Shoppers follow this guide for a seamless Shopping experience. Ensure that the voucher code is entered accurately. Typically, these codes are composed of uppercase English letters and can be case-sensitive, meaning they might not work if inputted in lowercase. When copying and pasting the discount code from our website, make sure no extra spaces are included at the beginning or end of the code, as this could trigger an error message.
 
 
 `
               : `قبل إتمام عملية الشراء، ننصح جميع المتسوقين عبر الإنترنت باتباع هذا الدليل لتجربة تسوق سلسة. تأكد من إدخال رمز القسيمة بدقة. عادةً ما تتكون هذه الرموز من حروف إنجليزية كبيرة وقد تكون حساسة لحالة الأحرف، مما يعني أنها قد لا تعمل إذا تم إدخالها بأحرف صغيرة. عند نسخ ولصق رمز الخصم من موقعنا، تأكد من عدم وجود مسافات إضافية في بداية أو نهاية الرمز، حيث قد يؤدي ذلك إلى ظهور رسالة خطأ.
-
-
-
-
-
 
 `}
           </Typography>
@@ -211,6 +210,8 @@ function CouponInstruction({ lang }: { lang: Language }) {
             width={279}
             height={140}
             alt="coupon instruction image"
+            loading="eager"
+
           />
           <strong
             style={{
@@ -230,7 +231,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
             sx={{ lineHeight: "1.5rem", padding: "1rem 0" }}
           >
             {lang == `en`
-              ? `To apply a voucher code, start by finishing your shopping and adding items to your cart. Once you've copied a coupon code, paste it into the designated field during the checkout process and apply it. This will update your total to reflect the discount. After applying the discount, you can proceed with payment in your local currency and complete your order for shipping to major cities.
+              ? `To apply a voucher code, start by finishing your Shopping and adding items to your cart. Once you've copied a coupon code, paste it into the designated field during the checkout process and apply it. This will update your total to reflect the discount. After applying the discount, you can proceed with payment in your local currency and complete your order for shipping to major cities.
 
 `
               : `لتطبيق رمز القسيمة، ابدأ بإنهاء تسوقك وإضافة المنتجات إلى عربة التسوق الخاصة بك. بعد نسخ رمز الكوبون، الصقه في الحقل المخصص خلال عملية الدفع وطبقه. سيؤدي ذلك إلى تحديث إجمالي الفاتورة ليعكس الخصم. بعد تطبيق الخصم، يمكنك المتابعة بالدفع بعملتك المحلية وإتمام طلبك للشحن إلى المدن الرئيسية.
@@ -271,6 +272,7 @@ function CouponInstruction({ lang }: { lang: Language }) {
             width={279}
             height={140}
             alt="coupon instruction image"
+            loading="eager"
           />
           <strong
             style={{

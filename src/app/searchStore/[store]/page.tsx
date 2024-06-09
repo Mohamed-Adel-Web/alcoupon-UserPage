@@ -13,9 +13,9 @@ export const generateMetadata = ({
   return searchParams?.lang === "en"
     ? {
         title:
-          " Explore Top Online Stores for Latest Coupons and Deals - Shop Coupons",
+          " Explore Top Online Stores for Latest Coupons and Deals - shops Coupons",
         description:
-          "Click here for a comprehensive list of online shopping sites and e-commerce stores featuring the latest coupons, discount codes, and deals.",
+          "Click here for a comprehensive list of online Shopping sites and e-commerce stores featuring the latest coupons, discount codes, and deals.",
         keywords:
           "Coupons, Discount codes, Promo codes, Vouchers, Coupon code, discount code, Coupon, deals",
       }

@@ -4,9 +4,10 @@ const fetchSwiperData = async (getSwiperUrl: string): Promise<SwiperType[]> => {
   try {
     const response = await fetch(getSwiperUrl, {
       method: "GET",
- next: {
+      next: {
         revalidate: 21600,
-      },    });
+      },
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

@@ -128,6 +128,7 @@ const ListItemComponent = ({
           alt={lang === "en" ? store?.title_en : store?.title_ar}
           width={70}
           height={70}
+          loading="eager"
         />
       </Box>
       <Box>

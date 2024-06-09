@@ -10,6 +10,7 @@ import { Language, ProductType, StoreType } from "@/app/types";
 import CouponFlags from "./CouponFlags";
 import { useSingleStoreData } from "../../FetchData/useGetSingleStore";
 import { couponType } from "@/app/types";
+import { notFound } from "next/navigation";
 export const generateMetadata = async ({
   params,
   searchParams,
@@ -49,6 +50,9 @@ export default async function couponDetails({
   searchParams: { lang: Language };
 }) {
   const storeData: StoreType | null = await useSingleStoreData(params.id);
+  if (!storeData) {
+    notFound();
+  }
   const coupons: couponType[] | undefined = storeData?.coupons;
   const descriptionEn = storeData?.description_en || "";
   const descriptionAr = storeData?.description_ar || "";
@@ -224,9 +228,13 @@ export default async function couponDetails({
             }}
           >
             {searchParams.lang == "en" ? (
-              <div dangerouslySetInnerHTML={{ __html: modifiedDescriptionEn }}></div>
+              <div
+                dangerouslySetInnerHTML={{ __html: modifiedDescriptionEn }}
+              ></div>
             ) : (
-              <div dangerouslySetInnerHTML={{ __html: modifiedDescriptionAr }}></div>
+              <div
+                dangerouslySetInnerHTML={{ __html: modifiedDescriptionAr }}
+              ></div>
             )}
           </Box>
         </Grid>

@@ -84,6 +84,7 @@ export default function CustomCard({ type, data, lang }: Props) {
           }}
           alt={altText}
           src={store.image}
+          loading="eager"
         />
       </Link>
       <CardContent>

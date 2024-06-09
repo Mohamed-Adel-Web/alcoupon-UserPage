@@ -29,6 +29,7 @@ const CouponRight = (props: Props) => {
               ? `${props.store?.link_en}`
               : `${props.store?.link_ar}`
           }
+          target="_blank"
         >
           <Tooltip
             title={
@@ -42,6 +43,7 @@ const CouponRight = (props: Props) => {
               height={210}
               src={`${props.store?.image}`}
               alt={`${altText}`}
+              loading="eager"
             />
           </Tooltip>
         </Link>
@@ -70,7 +72,7 @@ const CouponRight = (props: Props) => {
             display: "block",
           }}
         >
-          {props.lang == "en" ? `Shop Now` : `تسوق الان`}
+          {props.lang == "en" ? `shops Now` : `تسوق الان`}
         </Link>
       </Box>{" "}
       <Box

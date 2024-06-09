@@ -12,15 +12,15 @@ import { Language } from "./types";
 import { Suspense } from "react";
 import { Box, CircularProgress } from "@mui/material";
 
-export const generateMetadata  = ({
+export const generateMetadata = ({
   searchParams,
 }: {
   searchParams: { lang: Language };
 }): Metadata => {
-  const baseUrl = "https://shop-coupons.com";
+  const baseUrl = "https://shops-coupons.com";
   return searchParams?.lang === "en"
     ? {
-        title: " Shop Coupons and Discount Codes in KSA & GCC",
+        title: " Shops Coupons and Discount Codes in KSA & GCC",
         description:
           " Discover exclusive coupons and promo codes at our one-stop destination! Your ultimate destination for deals awaits; embrace discounts.",
         keywords:

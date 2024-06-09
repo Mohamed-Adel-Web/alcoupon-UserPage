@@ -58,6 +58,7 @@ export default function CouponFlags({
           width={30}
           height={30}
           alt={`${flag.code} flag`}
+          loading="eager"
         />
       )
     );

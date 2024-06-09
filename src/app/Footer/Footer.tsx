@@ -105,14 +105,14 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
             <Typography
               sx={{ fontWeight: "bold", fontSize: "1.5rem", color: "#F6931E" }}
             >
-              {lang === "en" ? "About Shop Coupons" : "عن كوبونات التسوق"}
+              {lang === "en" ? "About shops Coupons" : "عن كوبونات التسوق"}
             </Typography>
             <Typography
               variant="body2"
               sx={{ lineHeight: "2rem", margin: "1rem 0" }}
             >
               {lang === "en"
-                ? "Shop Coupons is Saudi Arabia and GCC's largest platform for coupons and discount codes. It offers a range of features that help users save money and avail discounts and offers from various stores."
+                ? "shops Coupons is Saudi Arabia and GCC's largest platform for coupons and discount codes. It offers a range of features that help users save money and avail discounts and offers from various stores."
                 : "كوبونات التسوق هي اكبر منصة كوبونات و اكواد خصم في المملكة العربية السعودية والخليج. تقدم مجموعة من المميزات التي تساعد المستخدمين على توفير المال والاستفادة من الخصومات الرائعه والعروض الحصريه من مختلف المتاجر."}
             </Typography>
           </Grid>
@@ -181,7 +181,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
               <li>
                 <Link
                   target="_blank"
-                  href="https://www.instagram.com/shop.coupon/?igsh=dGJmc3Zpcm1ncTl6"
+                  href="https://www.instagram.com/shops.coupon/?igsh=dGJmc3Zpcm1ncTl6"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   aria-label="Follow us on Instagram"
                   className="icon-href"
@@ -192,7 +192,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
               <li>
                 <Link
                   target="_blank"
-                  href="https://twitter.com/i/flow/login?redirect_after_login=%2FShop_coupon_"
+                  href="https://twitter.com/i/flow/login?redirect_after_login=%2Fshops_coupon_"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   aria-label="Follow us on Twitter"
                   className="icon-href"
@@ -203,7 +203,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
               <li>
                 <Link
                   target="_blank"
-                  href="https://www.facebook.com/shop.coupon.codes?mibextid=ZbWKwL"
+                  href="https://www.facebook.com/shops.coupon.codes?mibextid=ZbWKwL"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   aria-label="Follow us on Facebook"
                   className="icon-href"
@@ -214,7 +214,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
               <li>
                 <Link
                   target="_blank"
-                  href="https://t.me/shop_couponz"
+                  href="https://t.me/shops_couponz"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   aria-label="Follow us on Telegram"
                   className="icon-href"
@@ -225,7 +225,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
               <li>
                 <Link
                   target="_blank"
-                  href="https://www.snapchat.com/add/shop_coupons?share_id=ApMe0YNX2TA&locale=en-US"
+                  href="https://www.snapchat.com/add/shops_coupons?share_id=ApMe0YNX2TA&locale=en-US"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
                   aria-label="Follow us on Snapchat"
@@ -236,7 +236,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
               <li>
                 <Link
                   target="_blank"
-                  href="https://www.youtube.com/@shop-coupons"
+                  href="https://www.youtube.com/@shops-coupons"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
                   aria-label="Follow us on YouTube"
@@ -247,7 +247,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
               <li>
                 <Link
                   target="_blank"
-                  href="https://www.tiktok.com/@shopcoupons?_t=8k81TXP1Pd9&_r=1"
+                  href="https://www.tiktok.com/@shopscoupons?_t=8k81TXP1Pd9&_r=1"
                   style={{ textDecoration: "none", color: "#F6931E" }}
                   className="icon-href"
                   aria-label="Follow us on TikTok"
@@ -258,7 +258,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
               <li>
                 <Link
                   target="_blank"
-                  href="https://k.kwai.com/u/@shopcoupons/LOuYgC4H"
+                  href="https://k.kwai.com/u/@shopscoupons/LOuYgC4H"
                   style={{ textDecoration: "none", color: "" }}
                   className="icon-href"
                   aria-label="Follow us on TikTok"
@@ -286,6 +286,7 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
                 color: "#F6931E",
                 textDecoration: "none",
                 fontWeight: "bold",
+                margin:"0 0.3rem"
               }}
             >
               Kyanlabs

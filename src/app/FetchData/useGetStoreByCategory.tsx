@@ -1,5 +1,6 @@
 import { AllCategories } from "@/app/BackEnd/endPoint";
 import { StoreType, categoryTypes } from "@/app/types";
+import { redirect } from "next/navigation";
 
 const fetchStoresByCategory = async (
   storeUrl: string
@@ -7,9 +8,8 @@ const fetchStoresByCategory = async (
   try {
     const response = await fetch(storeUrl, {
       method: "GET",
- next: {
-        revalidate: 21600,
-      },    });
+      cache: "no-store",
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

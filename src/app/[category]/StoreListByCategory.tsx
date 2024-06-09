@@ -4,6 +4,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { Language, categoryTypes } from "../types";
 import { useGetStoreByCategory } from "../FetchData/useGetStoreByCategory";
 import CustomCard from "../Card/CustomCard";
+import { notFound } from "next/navigation";
 
 interface CategoryListProps {
   lang: Language;
@@ -12,6 +13,9 @@ interface CategoryListProps {
 
 async function StoreListByCategory({ lang, id }: CategoryListProps) {
   const categoryData: categoryTypes | null = await useGetStoreByCategory(id);
+  if (!categoryData) {
+    notFound()
+  }
 
   const storeList = categoryData?.stores?.map((store) => (
     <Grid xs={12} sm={6} md={4} lg={3} key={store.id}>
