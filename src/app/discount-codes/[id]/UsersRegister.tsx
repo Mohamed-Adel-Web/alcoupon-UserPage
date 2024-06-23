@@ -1,13 +1,13 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import { Box, Button, Typography, styled } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 import "flag-icons/css/flag-icons.min.css";
-import useUserData from "@/app/FetchData/useRegisterUser";
 import { userType } from "@/app/types";
 import { useRouter } from "next/navigation";
+import useUserData from "@/app/FetchData/useRegisterUser";
 
 const CustomTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
@@ -25,6 +25,7 @@ const CustomTextField = styled(TextField)({
 interface FormErrors {
   email?: string;
   phoneNumber?: string;
+  backend?: string;
 }
 
 interface UserRegisterProps {
@@ -100,9 +101,11 @@ const UserRegister: React.FC<UserRegisterProps> = ({ lang }) => {
     if (Object.keys(errors).length === 0) {
       console.log(formValues);
 
-      const { isSuccess } = await useUserData(formValues);
-      if (isSuccess) {
+      const response = await useUserData(formValues);
+      if (response.isSuccess) {
         router.push(`/thank-you?lang=${lang}`);
+      } else {
+        setFormErrors({ backend: response.errorMessage });
       }
     }
   };
@@ -171,6 +174,9 @@ const UserRegister: React.FC<UserRegisterProps> = ({ lang }) => {
         </Box>
         <Typography variant="body2" color="error">
           {formErrors.phoneNumber}
+        </Typography>
+        <Typography variant="body2" color="error">
+          {formErrors.backend}
         </Typography>
         <Button
           style={{

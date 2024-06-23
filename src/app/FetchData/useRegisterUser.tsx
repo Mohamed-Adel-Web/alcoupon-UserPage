@@ -1,27 +1,35 @@
 import axios from "axios";
 import { usersUrl } from "../BackEnd/endPoint";
 import { userType } from "../types";
+
+interface FetchUserDataResponse {
+  isSuccess: boolean;
+  errorMessage?: string;
+}
+
 const fetchUserData = async (
   userUrl: string,
   requestBody: userType
-): Promise<boolean> => {
+): Promise<FetchUserDataResponse> => {
   try {
-    const response = await axios.post(userUrl, requestBody);
-
-    return true;
+    await axios.post(userUrl, requestBody);
+    return { isSuccess: true };
   } catch (error) {
-    console.error("Fetching user data failed:", error);
-    return false;
+    let errorMessage = "An error occurred";
+    if (axios.isAxiosError(error) && error.response) {
+      errorMessage = error.response.data.errors.errors.email || errorMessage;
+    }
+    return { isSuccess: false, errorMessage };
   }
 };
 
 const useUserData = async (requestBody: userType) => {
   try {
-    const isSuccess = await fetchUserData(usersUrl, requestBody);
-    return { isSuccess };
+    const response = await fetchUserData(usersUrl, requestBody);
+    return response;
   } catch (error) {
     console.error("Error in retrieving user data:", error);
-    return { isSuccess: false };
+    return { isSuccess: false, errorMessage: "An unexpected error occurred" };
   }
 };
 
