@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { Language } from "../types";
+import UserRegister from "../discount-codes/[id]/UsersRegister";
 function HomeDiscountAd({ lang }: { lang: Language }) {
   return (
     <Box

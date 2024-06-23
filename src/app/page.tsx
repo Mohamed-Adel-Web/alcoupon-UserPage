@@ -11,6 +11,7 @@ import { Metadata } from "next";
 import { Language } from "./types";
 import { Suspense } from "react";
 import { Box, CircularProgress } from "@mui/material";
+import UserRegister from "./discount-codes/[id]/UsersRegister";
 
 export const generateMetadata = ({
   searchParams,
@@ -67,6 +68,7 @@ export default async function Home({
         <HotFeaturedCouponMain lang={lang} />
       </Suspense>
       <HomeDiscountAd lang={lang} />
+      <UserRegister lang={lang} />
       <HomeFeatureStoreHead lang={lang} />
       <Suspense
         fallback={

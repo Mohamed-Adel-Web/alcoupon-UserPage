@@ -2,6 +2,7 @@ import { Language, StoreType } from "@/app/types";
 import { Box, Tooltip, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import UserRegister from "./UsersRegister";
 type Props = {
   store: StoreType | null;
   lang: Language;
@@ -75,6 +76,7 @@ const CouponRight = (props: Props) => {
           {props.lang == "en" ? `shops Now` : `تسوق الان`}
         </Link>
       </Box>{" "}
+      <UserRegister lang={props.lang} />
       <Box
         sx={{
           backgroundColor: "white",

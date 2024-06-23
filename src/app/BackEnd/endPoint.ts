@@ -21,3 +21,5 @@ const GetLangRoute = `langs`;
 export const GetLang = baseUrl + GetLangRoute;
 const GetSwiperRoute = `slider-images`;
 export const getSwiperUrl = baseUrl + GetSwiperRoute;
+const userRoute = `user`;
+export const usersUrl = baseUrl + userRoute;

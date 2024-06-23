@@ -78,3 +78,7 @@ export interface SwiperType {
   image_ar: string;
   image_en: string;
 }
+export interface userType {
+  email: string;
+  phone_number: string;
+}
