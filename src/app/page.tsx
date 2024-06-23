@@ -5,7 +5,6 @@ import HomeDiscountAd from "./(HomeComponent)/HomeDiscountAd";
 import HomeFeatureStoreHead from "./(HomeComponent)/HomeFeatureStoreHead";
 import HomeFeatureStoreMain from "./(HomeComponent)/HomaFeatureStoreMain";
 import CouponInstruction from "./(HomeComponent)/CouponInstruction";
-
 import useSwiperData from "./FetchData/useGetSwiper";
 import { Metadata } from "next";
 import { Language } from "./types";
