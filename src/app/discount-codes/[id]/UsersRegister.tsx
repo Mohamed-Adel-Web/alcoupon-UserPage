@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { Box, Button, Typography, styled } from "@mui/material";
 import TextField from "@mui/material/TextField";
@@ -40,6 +40,7 @@ const translations = {
     subscribe: "Subscribe Now",
     emailError: "Enter a valid email",
     phoneNumberError: "Enter a valid phone number",
+    backendError: "This email is already in use",
   },
   ar: {
     title: "احصل على عروض حصرية في بريدك الوارد",
@@ -48,6 +49,7 @@ const translations = {
     subscribe: "اشترك الآن",
     emailError: "أدخل بريد إلكتروني صحيح",
     phoneNumberError: "أدخل رقم هاتف صحيح",
+    backendError: "هذا الحساب مسجل بالفعل",
   },
 };
 
@@ -63,8 +65,6 @@ const UserRegister: React.FC<UserRegisterProps> = ({ lang }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-
-
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
@@ -92,12 +92,11 @@ const UserRegister: React.FC<UserRegisterProps> = ({ lang }) => {
     setFormErrors(errors);
 
     if (Object.keys(errors).length === 0) {
-
       const response = await useUserData(formValues);
       if (response.isSuccess) {
         router.push(`/thank-you?lang=${lang}`);
       } else {
-        setFormErrors({ backend: response.errorMessage });
+        setFormErrors({ backend: translations[lang].backendError });
       }
     }
   };
@@ -126,9 +125,9 @@ const UserRegister: React.FC<UserRegisterProps> = ({ lang }) => {
           sx={{ margin: "2rem 0" }}
           value={formValues.email}
           onChange={handleChange}
-          error={!!formErrors.email}
+          error={!!formErrors.email || !!formErrors.backend}
           dir="ltr"
-          helperText={formErrors.email}
+          helperText={formErrors.email || formErrors.backend}
         />
         <Box sx={{ direction: "ltr !important" }}>
           <PhoneInput
@@ -166,9 +165,6 @@ const UserRegister: React.FC<UserRegisterProps> = ({ lang }) => {
         </Box>
         <Typography variant="body2" color="error">
           {formErrors.phoneNumber}
-        </Typography>
-        <Typography variant="body2" color="error">
-          {formErrors.backend}
         </Typography>
         <Button
           style={{
