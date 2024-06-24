@@ -64,10 +64,7 @@ const UserRegister: React.FC<UserRegisterProps> = ({ lang }) => {
     return emailRegex.test(email);
   };
 
-  const validatePhoneNumber = (phoneNumber: string): boolean => {
-    const phoneRegex = /^[0-9]{7,15}$/;
-    return phoneRegex.test(phoneNumber.replace(/\D/g, ""));
-  };
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
@@ -92,14 +89,9 @@ const UserRegister: React.FC<UserRegisterProps> = ({ lang }) => {
       errors.email = translations[lang].emailError;
     }
 
-    if (!validatePhoneNumber(formValues.phone_number)) {
-      errors.phoneNumber = translations[lang].phoneNumberError;
-    }
-
     setFormErrors(errors);
 
     if (Object.keys(errors).length === 0) {
-      console.log(formValues);
 
       const response = await useUserData(formValues);
       if (response.isSuccess) {
