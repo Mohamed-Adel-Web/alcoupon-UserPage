@@ -4,6 +4,8 @@ import Container from "@mui/material/Container";
 import { useGetCategories } from "./FetchData/useGetCategory";
 import { useFeaturedStoresData } from "./FetchData/useFeatureStore";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 import dynamic from "next/dynamic";
 import Script from "next/script";
 
@@ -70,8 +72,8 @@ export default async function RootLayout({
           }}
         />
       </head>
+      <GoogleTagManager gtmId="UA-137368123-1" />
       <body>
-        <GoogleTagManager gtmId="UA-137368123-1" />
         <NavBar AllCategories={AllCategories} />
         <NavigationLinks AllCategoriesData={AllCategories} />
         <Container maxWidth="lg" sx={{ textAlign: "start" }}>
