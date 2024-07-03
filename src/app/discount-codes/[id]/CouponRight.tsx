@@ -73,7 +73,7 @@ const CouponRight = (props: Props) => {
             display: "block",
           }}
         >
-          {props.lang == "en" ? `shops Now` : `تسوق الان`}
+          {props.lang == "en" ? `shop Now` : `تسوق الان`}
         </Link>
       </Box>{" "}
       <UserRegister lang={props.lang} />

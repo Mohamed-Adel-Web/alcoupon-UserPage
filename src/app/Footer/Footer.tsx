@@ -280,16 +280,15 @@ const Footer: React.FC<{ stores: StoreType[] }> = React.memo(({ stores }) => {
               ? "Copyrights © 2024 All rights reserved by"
               : "جميع الحقوق محفوظة بواسطة "}
             <Link
-              target="_blank"
-              href={"https://kyanlabs.com/en"}
+              href={"/"}
               style={{
                 color: "#F6931E",
                 textDecoration: "none",
                 fontWeight: "bold",
-                margin:"0 0.3rem"
+                margin: "0 0.3rem",
               }}
             >
-              Kyanlabs
+              {lang === "en" ? "Shops Coupons" : "كوبونات التسوق"}
             </Link>
           </Grid>
         </Grid>
